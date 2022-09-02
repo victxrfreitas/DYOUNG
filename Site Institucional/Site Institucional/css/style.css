@@ -3,6 +3,10 @@
  * URL: https://GetTemplates.co
  */
  
+html{
+  scroll-behavior: smooth;
+}
+
 @font-face {
   font-family: "Lato-Regular";
   src: url(../fonts/Lato-Regular.ttf);
