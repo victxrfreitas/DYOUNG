@@ -67,10 +67,10 @@ body {
   font-size: 36px;
   font-family: "Lato-Black";
   text-transform: uppercase;
-  background: -webkit-linear-gradient(left, #1d3ede, #01e6f8);
-  background: -ms-linear-gradient(left, #1d3ede, #01e6f8);
-  background: -moz-linear-gradient(left, #1d3ede, #01e6f8);
-  background: -o-linear-gradient(left, #1d3ede, #01e6f8);
+  background: -webkit-linear-gradient(left, #00568F, #99c7ff);
+  background: -ms-linear-gradient(left, #00568F, #99c7ff);
+  background: -moz-linear-gradient(left, #00568F, #99c7ff);
+  background: -o-linear-gradient(left, #00568F, #99c7ff);
   -webkit-background-clip: text;
   -ms-background-clip: text;
   -o-background-clip: text;
@@ -114,8 +114,8 @@ body {
   border-width: 2px;
 }
 #gtco-main-nav form a.btn-info {
-  background: #01e6f8;
-  border-color: #01e6f8;
+  background: #00568F;
+  border-color: #00568F;
 }
 #gtco-main-nav form a.btn-outline-dark {
   border-color: #fff;
@@ -123,8 +123,8 @@ body {
 }
 @media (max-width: 991px) {
   #gtco-main-nav form a.btn-outline-dark {
-    border-color: #1d3ede;
-    color: #1d3ede;
+    border-color: #00568F;
+    
   }
 }
 #gtco-main-nav::after {
@@ -132,11 +132,11 @@ body {
   content: "";
   height: 600px;
   width: 900px;
-  background-image: -webkit-linear-gradient(-220deg, #1d3ede, #01e6f8);
-  background-image: -moz-linear-gradient(-220deg, #1d3ede, #01e6f8);
-  background-image: -ms-linear-gradient(-220deg, #1d3ede, #01e6f8);
-  background-image: -o-linear-gradient(-220deg, #1d3ede, #01e6f8);
-  background-image: linear-gradient(-220deg, #1d3ede, #01e6f8);
+  background-image: -webkit-linear-gradient(-220deg, #00568F, #99c7ff);
+  background-image: -moz-linear-gradient(-220deg, #00568F, #99c7ff);
+  background-image: -ms-linear-gradient(-220deg, #00568F, #99c7ff);
+  background-image: -o-linear-gradient(-220deg, #00568F, #99c7ff);
+  background-image: linear-gradient(-220deg, #00568F, #99c7ff);
   left: 49.5%;
   top: -50px;
   z-index: -1;
@@ -207,9 +207,9 @@ body {
 }
 
 .gtco-banner-area a, .gtco-feature a, .gtco-features a, .gtco-news .owl-carousel .card a, #gtco-footer .submit-button {
-  background-image: -moz-linear-gradient(0deg, #06c6f9 0%, #38eaf9 100%);
-  background-image: -webkit-linear-gradient(0deg, #06c6f9 0%, #38eaf9 100%);
-  background-image: -ms-linear-gradient(0deg, #06c6f9 0%, #38eaf9 100%);
+  background-image: -moz-linear-gradient(0deg, #00568F 0%, #99c7ff 100%);
+  background-image: -webkit-linear-gradient(0deg, #00568F 0%, #99c7ff  100%);
+  background-image: -ms-linear-gradient(0deg, #00568F 0%, #99c7ff  100%);
   font-size: 18px;
   font-family: "OpenSans-Semibold";
   color: #fff;
@@ -552,14 +552,14 @@ body {
   border-radius: 50%;
   display: block;
   background: #fff;
-  border: 2px solid #01e6f8;
+  border: 2px solid  #99c7ff;
   margin: 0 5px;
 }
 .gtco-testimonials .owl-dots .active {
   box-shadow: none;
 }
 .gtco-testimonials .owl-dots .active span {
-  background: #01e6f8;
+  background:  #99c7ff;
   box-shadow: none;
   height: 12px;
   width: 12px;
