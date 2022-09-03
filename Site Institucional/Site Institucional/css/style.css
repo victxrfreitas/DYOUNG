@@ -225,7 +225,7 @@ body {
   border-radius: 50%;
   height: 32px;
   width: 32px;
-  color: #37eaf9;
+  color: #00568F;
   font-size: 22px;
   text-align: center;
   padding-top: 5px;
@@ -382,7 +382,7 @@ body {
   margin: 30px 5px;
   padding: 20px 10px;
   border-radius: 20px;
-  box-shadow: 0 15px 40px 0 rgba(0, 0, 0, 0.08);
+  box-shadow: 0 5px 10px 0 #99c7ff;
 }
 .gtco-features .col-lg-8 .card .oval {
   background: linear-gradient(to right, #f1f6fd, #f0fbfe);
@@ -401,7 +401,7 @@ body {
 .gtco-features .col-lg-8 .card h3 {
   font-family: "Lato-Regular";
   font-size: 24px;
-  color: #1d3ede;
+  color: #00568F;
 }
 .gtco-features .col-lg-8 .card p {
   font-size: 16px;
@@ -576,12 +576,12 @@ body {
   max-width: 100px;
   border-radius: 50%;
   margin: 0 auto;
-  border: 5px solid #1d3ede;
+  border: 5px solid #00568F;
   width: 100px;
   height: 100px;
 }
 .gtco-testimonials .card h5 {
-  color: #1d3ede;
+  color: #00568F;
   font-size: 21px;
   line-height: 1.3;
   font-family: "Lato-Medium";
@@ -730,7 +730,7 @@ body {
 #gtco-footer h4 {
   font-family: "Lato-Medium";
   font-size: 24px;
-  color: #1d3ede;
+  color: #00568F;
   margin-bottom: 30px;
 }
 #gtco-footer input, #gtco-footer textarea {
@@ -796,3 +796,11 @@ body {
     margin-bottom: 50px;
   }
 }
+
+.img_div{
+  margin-top: -90px;
+  width: 500px;
+  margin-left: 90px;
+}
+
+
