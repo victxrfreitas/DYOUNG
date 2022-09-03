@@ -1,5 +1,41 @@
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+@font-face {
+	font-family: "Lato-Regular";
+	src: url(../fonts/Lato-Regular.ttf);
+  }
+  @font-face {
+	font-family: "Lato-Black";
+	src: url(../fonts/Lato-Black.ttf);
+  }
+  @font-face {
+	font-family: "Lato-Bold";
+	src: url(../fonts/Lato-Bold.ttf);
+  }
+  @font-face {
+	font-family: "Lato-Light";
+	src: url(../fonts/Lato-Light.ttf);
+  }
+  @font-face {
+	font-family: "Lato-Medium";
+	src: url(../fonts/Lato-Medium.ttf);
+  }
+  @font-face {
+	font-family: "Lato-Semibold";
+	src: url(../fonts/Lato-Semibold.ttf);
+  }
+  @font-face {
+	font-family: "OpenSans-Bold";
+	src: url(../fonts/OpenSans-Bold.ttf);
+  }
+  @font-face {
+	font-family: "OpenSans-Regular";
+	src: url(../fonts/OpenSans-Regular.ttf);
+  }
+  @font-face {
+	font-family: "OpenSans-Semibold";
+	src: url(../fonts/OpenSans-Semibold.ttf);
+  }
 
 * {
 	box-sizing: border-box;
@@ -11,7 +47,7 @@ body {
 	justify-content: center;
 	align-items: center;
 	flex-direction: column;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'OpenSans-Regular', sans-serif;
 	height: 100vh;
 	margin: -20px 0 50px;
 }
@@ -46,8 +82,8 @@ a {
 
 button {
 	border-radius: 20px;
-	border: 1px solid #01e6f8;
-	background-color: #01e6f8;
+	border: 1px solid  #00568F;
+	background-color:  #00568F;
 	color: #FFFFFF;
 	font-size: 12px;
 	font-weight: bold;
@@ -160,9 +196,9 @@ input {
 }
 
 .overlay {
-	background: #01e6f8;
-	background: -webkit-linear-gradient(left top, #1d3ede, #01e6f8);
-	background: linear-gradient(left top, #1d3ede, #01e6f8);
+	background: #99c7ff;
+	background: -webkit-linear-gradient(left top,  #00568F, #99c7ff);
+	background: linear-gradient(left top,  #00568F, #99c7ff);
 	background-repeat: no-repeat;
 	background-size: cover;
 	background-position: 0 0;
