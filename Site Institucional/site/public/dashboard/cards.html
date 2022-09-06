@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="../assets/icon/favicon.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>D'Young | DashBoard</title>
+    <link rel="stylesheet" href="dashboard.css">
+
+    <!-- <script src="../js/funcoes.js"></script> -->
+</head>
+
+<body onload="limparSessao()">
+    <div class="container">
+        <div class="card">
+            <img src="gear.gif" class="gear">
+            Site em manutenção...
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script>
+    setTimeout(() => {
+        sessionStorage.clear();
+        // finalizarAguardar();
+        alert('Site em manuteção, você será redirecionado para a tela inicial.')
+        window.location = "../index.html";
+    }, "1000");
+
+</script>

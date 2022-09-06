@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="./css/cad-log.css">
+	<script src="js/funcoes.js"></script>
+	<script src="https://kit.fontawesome.com/4ea0191552.js" crossorigin="anonymous"></script>
+	<title>Entrar</title>
+</head>
+
+<body>
+	<a class="sair" href="index.html">
+		<i class="fa-solid fa-right-from-bracket"></i>
+	</a>
+	<div class="container" id="container">
+
+		<div class="form-container sign-up-container">
+			<div class="form">
+				<h1>Criar conta</h1>
+				<!-- <div class="social-container">
+				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+			</div>
+			<span>or use your email for registration</span> -->
+				<input type="text" placeholder="Nome" id="ipt_nome_cadastro" />
+				<input type="number" placeholder="CPF" id="ipt_cpf_cadastro" />
+				<input type="text" placeholder="Cargo" id="ipt_cargo_cadastro" />
+				<input type="email" placeholder="E-mail" id="ipt_email_cadastro" />
+				<input type="password" placeholder="Senha" id="ipt_senha_cadastro" />
+				<input type="password" placeholder="Confirmar senha" id="ipt_ConfSenha_cadastro" />
+				<button onclick="cadastrar()">Cadastrar</button>
+			</div>
+		</div>
+		<div class="form-container sign-in-container">
+			<div class="form">
+				<h1>Login</h1>
+				<!-- <div class="social-container">
+				<a href="#" class="social"><i class="fab fa-facebook-f"></i></a>
+				<a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+				<a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+			</div>
+			<span>or use your account</span> -->
+				<input type="email" placeholder="Email" id="ipt_email_login" />
+				<input type="password" placeholder="Senha" id="ipt_senha_login" />
+				<a href="#">Esqueceu a senha?</a>
+				<button onclick="entrar()">Entrar</button>
+			</div>
+		</div>
+		<div class="overlay-container">
+			<div class="overlay">
+				<div class="overlay-panel overlay-left">
+					<h1>Bem-Vindo!</h1>
+					<br>
+					<!-- <p>To keep connected with us please login with your personal info</p> -->
+					<button class="ghost" id="signIn">Login</button>
+				</div>
+				<div class="overlay-panel overlay-right">
+					<h1>Olá, cadastre-se!</h1>
+					<br>
+					<!-- <p>Enter your personal details and start journey with us</p> -->
+					<button class="ghost" id="signUp">Cadastrar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="./js/cad-log.js"></script>
+</body>
+
+</html>
+
+<script>
+	function cadastrar() {
+		// aguardar();
+
+		//Recupere o valor da nova input pelo nome do id
+		// Agora vá para o método fetch logo abaixo
+		var nomeVar = ipt_nome_cadastro.value;
+		var cpfVar = ipt_cpf_cadastro.value;
+		var cargoVar = ipt_cargo_cadastro.value;
+		var emailVar = ipt_email_cadastro.value;
+		var senhaVar = ipt_senha_cadastro.value;
+		var confirmacaoSenhaVar = ipt_ConfSenha_cadastro.value;
+
+		if (nomeVar == "" || cpfVar == "" || cargoVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+			// cardErro.style.display = "block"
+			alert("Preencha todos os campos. ");
+
+			// finalizarAguardar();
+			return false;
+		} else if (senhaVar != confirmacaoSenhaVar) {
+			alert("As senhas não são iguais.");
+			return false;
+		}
+		// else {
+		// 	setInterval(sumirMensagem, 5000)
+		// }
+
+		// Enviando o valor da nova input
+		fetch("/usuarios/cadastrar", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				// crie um atributo que recebe o valor recuperado aqui
+				// Agora vá para o arquivo routes/usuario.js
+				nomeServer: nomeVar,
+				cpfServer: cpfVar,
+				cargoServer: cargoVar,
+				emailServer: emailVar,
+				senhaServer: senhaVar
+			})
+		}).then(function (resposta) {
+
+			console.log("resposta: ", resposta);
+
+			if (resposta.ok) {
+				// cardErro.style.display = "block";
+
+				alert("Cadastro realizado com sucesso! Redirecionando para tela de Login...");
+
+				setTimeout(() => {
+					location.reload();
+				}, "1500")
+
+				// limparFormulario();
+				// finalizarAguardar();
+			} else {
+				throw ("Houve um erro ao tentar realizar o cadastro!");
+			}
+		}).catch(function (resposta) {
+			console.log(`#ERRO: ${resposta}`);
+			// finalizarAguardar();
+		});
+
+		return false;
+	}
+
+	// function sumirMensagem() {
+	// 	cardErro.style.display = "none"
+	// }
+
+</script>
+
+<script>
+	function entrar() {
+		// aguardar();
+
+		var emailVar = ipt_email_login.value;
+		var senhaVar = ipt_senha_login.value;
+
+		if (emailVar == "" || senhaVar == "") {
+			cardErro.style.display = "block"
+			alert("Preencha todos os campos");
+			// finalizarAguardar();
+			return false;
+		}
+		// else {
+		//     setInterval(sumirMensagem, 5000)
+		// }
+
+		console.log("FORM LOGIN: ", emailVar);
+		console.log("FORM SENHA: ", senhaVar);
+
+		fetch("/usuarios/autenticar", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				emailServer: emailVar,
+				senhaServer: senhaVar
+			})
+		}).then(function (resposta) {
+			console.log("ESTOU NO THEN DO entrar()!")
+
+			if (resposta.ok) {
+				console.log(resposta);
+
+				resposta.json().then(json => {
+					console.log(json);
+					console.log(JSON.stringify(json));
+
+					sessionStorage.EMAIL_USUARIO = json.email;
+					sessionStorage.NOME_USUARIO = json.nome;
+					sessionStorage.ID_USUARIO = json.id;
+
+					setTimeout(function () {
+						window.location = "./dashboard/cards.html";
+					}, 1000); // apenas para exibir o loading
+
+				});
+
+			} else {
+
+				console.log("Houve um erro ao tentar realizar o login!");
+
+				resposta.text().then(texto => {
+					console.error(texto);
+					finalizarAguardar(texto);
+				});
+			}
+
+		}).catch(function (erro) {
+			console.log(erro);
+		})
+
+		return false;
+	}
+
+    // function sumirMensagem() {
+    //     cardErro.style.display = "none"
+    // }
+
+</script>
