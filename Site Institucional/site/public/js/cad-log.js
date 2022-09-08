@@ -1,6 +1,7 @@
 const signUpButton = document.getElementById('signUp');
 const signInButton = document.getElementById('signIn');
 const container = document.getElementById('container');
+var btn = document.querySelector('.sair');
 
 signUpButton.addEventListener('click', () => {
 	container.classList.add("right-panel-active");
