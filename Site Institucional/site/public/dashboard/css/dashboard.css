@@ -29,10 +29,31 @@
     height: 100px;
 } */
 :root{
-    --main-color:#DD2F6E;
+    --main-color:#00568F;
     --color-dark:#1D2231;
     --text-grey:#8390A2;
 }
+
+@font-face {
+  font-family: "Lato-Semibold";
+  src: url(../fonts/Lato-Semibold.ttf);
+}
+
+@font-face {
+  font-family: "OpenSans-Bold";
+  src: url(../fonts/OpenSans-Bold.ttf);
+}
+
+@font-face {
+  font-family: "OpenSans-Regular";
+  src: url(../fonts/OpenSans-Regular.ttf);
+}
+
+@font-face {
+  font-family: "OpenSans-Semibold";
+  src: url(../fonts/OpenSans-Semibold.ttf);
+}
+
 
 
 *{
@@ -44,6 +65,7 @@
     text-decoration: none;
     list-style: none;
     box-sizing: border-box;
+    font-family: "Arial";
 }
 
 html{
@@ -51,14 +73,14 @@ html{
 }
 body{
     background-color:#f0eff5;
-    font-family: poppins;
+    font-family: "OpenSans-Regular";
     min-height: 100vh;
     color: #27282f;
 }
 
 nav{
     width: 100%;
-    background-color: #00568F;
+    background-color: #FFF;
     /* gradient-top: linear-gradient(0deg, #00568fff, #b8c3caff, #99c7ffff); */
     /* $gradient-right: linear-gradient(90deg, #00568fff, #b8c3caff, #99c7ffff);
     $gradient-bottom: linear-gradient(180deg, #00568fff, #b8c3caff, #99c7ffff);
@@ -87,7 +109,7 @@ nav{
  }
 
  nav .search-bar{
-     background-color: #B8C3CA;
+     background-color: #dcdfe1;
      width: 32vw;
      padding: 8px 1.6rem ;
      border-radius: 6px;
@@ -106,7 +128,7 @@ nav{
  }
 
  nav .comboBox{
-  background-color: #B8C3CA;
+  background-color: #dcdfe1;
   width: 15vw;
   padding: 8px 1.6rem ;
   border-radius: 6px;
@@ -165,7 +187,7 @@ nav .adm .nome{
     top: 0;
     height: 100%;
     width: 82px;
-    background: #00568F;
+    background: #FFF;
     padding: 6px 14px;
     z-index: 99;
     transition: all 0.5s ease;
@@ -275,12 +297,12 @@ nav .adm .nome{
     left: 0;
     transform: translateY(-50%);
     font-size: 22px;
-    background: #00568F;
-    color: #FF4000;
+    background: #FFF;
+    color: #00568F;
   }
   .sidebar.open .bx-search:hover{
-    background: #00568F;
-    color: #FFF;
+    background: #FFF;
+    color: #000;
   }
   .sidebar .bx-search:hover{
     background: #FFF;
@@ -297,7 +319,7 @@ nav .adm .nome{
     background: #00568F;
   }
   .sidebar li a:hover{
-    background: #FF4000;
+    background: #00568F;
   }
   .sidebar li a .links_name{
     color: #fff;
@@ -363,7 +385,7 @@ nav .adm .nome{
     top: 50%;
     right: 0;
     transform: translateY(-50%);
-    background: #00568F;
+    background: #FFF;
     width: 100%;
     height: 60px;
     line-height: 60px;
@@ -390,7 +412,7 @@ nav .adm .nome{
   }
   .home-section .text{
     display: inline-block;
-    color: #00568F;
+    color: #FFF;
     font-size: 25px;
     font-weight: 500;
     margin: 18px
@@ -502,13 +524,14 @@ td .status{
     height:10px;
     width:10px;border-radius: 50%;
     margin-right:1rem;
+    
 }
 
-.status.purple{
-    background:rebeccapurple;
+.status.red{
+    background:rgb(240, 105, 105);
 }
-.status.pink{background:deeppink}
-.status.orange{background:orangered}
+.status.green{background:rgb(114, 185, 146)}
+.status.yellow{background:rgb(240, 240, 128)}
 
 .table-responsive{
     width: 100%;overflow-x: auto;
