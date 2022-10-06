@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
+    <title>Dashboard</title>
+</head>
+<body>
+    
+     <!-- COMEÇO DA NAVBAR  -->
+  <nav>
+    <div class="container">
+      <img src="images/LogoMATprojetoOrange.png" alt="" class="logo">
+      <div class="search-bar">
+        <span class="material-icons-sharp">search</span>
+        <input type="search" placeholder="Buscar...">
+      </div>
+
+      <div class="comboBox">
+
+
+        <select id="lista_estacionamento">
+          <option value="">Morumbi</option>
+          <option value="">Consolação</option>
+          <option value="">Tatuapé</option>
+          <option value="">Penha</option>
+          <option value="">Faria Lima</option>
+        </select>
+        <span class="material-icons-sharp"> expand_more</span>
+      </div>
+
+
+      <div class="adm">
+
+        <span class="nome">Bem-vindo, Fernando!</span>
+      </div>
+
+      <!-- <button id="menu-btn">
+                <span class="material-icons-sharp">menu</span>
+            </button> -->
+
+    </div>
+  </nav>
+  <!-- FIM DA NAVBAR  -->
+  <main>
+    <!--============================== COMEÇO BARRA LATERAL - MENU =============================================== -->
+
+    <aside>
+      <!-- TAG UTILIZADA PARA CRIAR UMA BARRA LATERAL, NO CASO O MENU  -->
+      <div class="sidebar">
+        <div class="logo-details">
+
+          <div class="logo_name">MAT</div>
+          <i class='bx bx-menu' id="btn"></i>
+        </div>
+        <ul class="nav-list">
+          <li>
+            <i class='bx bx-search'></i>
+            <input type="text" placeholder="Search...">
+            <span class="tooltip">Pesquisar</span>
+          </li>
+          <li>
+            <a href="dashboard.html">
+              <i class='bx bx-grid-alt'></i>
+              <span class="links_name">Dashboard</span>
+            </a>
+            <span class="tooltip">Dashboard</span>
+          </li>
+          <li>
+
+          <li>
+            <a href="#">
+              <i class='bx bx-car'></i>
+              <span class="links_name">Estacionamento</span>
+            </a>
+            <span class="tooltip">Estacionamento</span>
+          </li>
+          <li>
+
+            <a href="alertas.html">
+              <i class='bx bx-pie-chart-alt-2'></i>
+              <span class="links_name">Analytics</span>
+            </a>
+            <span class="tooltip">Analytics</span>
+          </li>
+
+          <li>
+
+            <a href="https://mat-suporte.freshdesk.com/support/home">
+              <i class='bx bx-support'></i>
+              <span class="links_name">Suporte</span>
+            </a>
+            <span class="tooltip">
+              Support</span>
+          </li>
+
+
+
+          <li>
+
+          <li class="profile">
+            <div class="profile-details">
+
+              <div class="name_job">
+                <div class="name">Fernando</div>
+                <div class="job">Administrador</div>
+              </div>
+            </div>
+            <i class='bx bx-log-out' id="log_out"></i>
+          </li>
+        </ul>
+      </div>
+
+
+
+    </aside>
+    <!--=================================== FIM BARRA LATERAL - MENU =======================================-->
+
+    <section class="meio">
+
+       
+  
+        <div class="cards">
+            <div class="card-single">
+                <div>
+                    <h1>10%</h1>
+                    <span>
+                     Em Risco de atingir sua capacidade total</span>
+                </div>
+
+                <div>
+                    <span class="las la-users">
+
+                    </span>
+                </div>
+            </div>
+
+            <div class="card-single">
+                <div>
+                    <h1>10%</h1>
+                    <span>
+                      Estão sem serviços</span>
+                </div>
+
+                <div>
+                    <span class="las la-clipboard">
+
+                    </span>
+                </div>
+            </div>
+
+            <div class="card-single">
+                <div>
+                    <h1>80%</h1>
+                    <span>Em funcionamento</span>
+                </div>
+
+                <div>
+                    <span class="las la-shopping-bag"></span>                        </span>
+                </div>
+            </div>
+
+            <div class="card-single">
+                <div>
+                    <h1>$6</h1>
+                    <span>Income</span>
+                </div>
+
+                <div>
+                    <span class="lab la-google-wallet"></span>                        </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="recent-grid">
+            <div class="projects">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Receny Projects</h3>
+                        <button>See More <span class="las la-arrow-right">
+                        </span></button>
+
+                    </div>
+                    <div class="card-body">
+                        <table width="100%">
+                            <thead>
+                                <tr>
+                                    <td>Poupa Tempo</td>
+                                    <td>Total de Totens</td>
+                                    <td>Situação do Posto</td>
+                                    <td>Quantidade</td>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Itaquera</td>
+                                    <td>3</td>
+                                    <td><span class="status red"></span>
+                                        Sem serviço
+                                    </td>
+                                    <td>2</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Consolação</td>
+                                    <td>4</td>
+                                    <td>
+                                        <span class="status yellow"></span>
+                                        Parcial
+                                    </td>
+                                    <td>2</td>
+                                </tr>
+                                <tr>
+                                    <td>Guaianases</td>
+                                    <td>5</td>
+                                    <td>
+                                        <span class="status green"></span>
+                                        Estável
+                                    </td>
+                                    <td>5</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Sé</td>
+                                    <td>5</td>
+                                    <td><span class="status green"></span>
+                                      Estável
+                                    </td>
+                                    <td>5</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Lapa</td>
+                                    <td>5</td>
+                                    <td>
+                                        <span class="status green"></span>
+                                        Estável
+                                    </td>
+                                    <td>5</td>
+                                </tr>
+                                <tr>
+                                    <td>Morumbi</td>
+                                    <td>5</td>
+                                    <td>
+                                        <span class="status green"></span>
+                                        Estável
+                                    </td>
+                                    <td>5</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="customer">
+                <div class="card-header">
+                    <h3>New Customer</h3>
+                    <button>See More <span class="las la-arrow-right">
+                    </span></button>
+                </div>
+
+                <div class="card-body">
+                    <div class="customer">
+                       <div class="info">
+                        <img src="img/2.jpg" alt="pic" width="40px" height="40px">
+                        <div>
+                            <h4>HEshan Umix</h4>
+                            <small>CED</small>
+                        </div>
+                       </div>
+                       <div class="contact">
+                           <span class="las la-user-circle"></span>
+                           <span class="las la-user-comment"></span>
+                           <span class="las la-user-phone"></span>
+                       </div>
+                    </div>
+                </div>
+                  
+                <div class="card-body">
+                    <div class="customer">
+                       <div class="info">
+                        <img src="img/2.jpg" alt="pic" width="40px" height="40px">
+                        <div>
+                            <h4>HEshan Umix</h4>
+                            <small>CED</small>
+                        </div>
+                       </div>
+                       <div class="contact">
+                           <span class="las la-user-circle"></span>
+                           <span class="las la-user-comment"></span>
+                           <span class="las la-user-phone"></span>
+                       </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+   -->
+  
+  
+  
+      </section>
+  
+  
+
+
+
+
+</body>
+</html>
+
+
+<script>
+    let sidebar = document.querySelector(".sidebar");
+    let closeBtn = document.querySelector("#btn");
+    let searchBtn = document.querySelector(".bx-search");
+
+    closeBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("open");
+      menuBtnChange();//calling the function(optional)
+    });
+
+    searchBtn.addEventListener("click", () => { // Sidebar open when you click on the search iocn
+      sidebar.classList.toggle("open");
+      menuBtnChange(); //calling the function(optional)
+    });
+
+    // following are the code to change sidebar button(optional)
+    function menuBtnChange() {
+      if (sidebar.classList.contains("open")) {
+        closeBtn.classList.replace("bx-menu", "bx-menu-alt-right");//replacing the iocns class
+      } else {
+        closeBtn.classList.replace("bx-menu-alt-right", "bx-menu");//replacing the iocns class
+      }
+    }
+  </script>
