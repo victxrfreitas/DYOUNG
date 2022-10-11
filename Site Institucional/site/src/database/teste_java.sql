@@ -60,6 +60,14 @@ status_coleta TINYINT,
 fk_totem INT, FOREIGN KEY (fk_totem) REFERENCES totem(idTotem),
 fk_posto INT, FOREIGN KEY (fk_posto) REFERENCES posto(idPosto)
 );
+CREATE TABLE temperatura_maquina (
+idTemperatura INT PRIMARY KEY AUTO_INCREMENT,
+uso_temperatura DOUBLE,
+data_hora_captura DATETIME,
+status_coleta TINYINT,
+fk_totem INT, FOREIGN KEY (fk_totem) REFERENCES totem(idTotem),
+fk_posto INT, FOREIGN KEY (fk_posto) REFERENCES posto(idPosto)
+);
 
 INSERT INTO endereco_posto VALUES
 (null, 'Rua Haddock Lobo', 595, 'São Paulo');
@@ -71,3 +79,4 @@ INSERT INTO cadastro_funcionario VALUES
 (null, 'Gustavo', 'gustavo.carriel@sptech.school', '12345678900', 'ATIVO', '@Gustavo08', 'Responsavel de TI', 1);
 
 SELECT * FROM cadastro_funcionario WHERE email = 'gustavo.carriel@sptech.school' AND senha = '@Gustavo08';
+select * from endereco_posto;

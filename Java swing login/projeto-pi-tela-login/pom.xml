@@ -23,7 +23,7 @@
 </descriptorRefs>
 <archive>
 <manifest>
-<mainClass>com.mycompany.projeto.pi.tela.login.TelaLogin02</mainClass> </manifest>
+<mainClass>com.mycompany.projeto.pi.tela.login.TelaLogin</mainClass> </manifest>
 </archive>
 </configuration>
 <executions>
