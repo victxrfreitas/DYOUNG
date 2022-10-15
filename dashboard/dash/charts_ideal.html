@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>FAQ</title>
+    <title>Dados do Totem</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -34,41 +34,49 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-              
+                
                 </div>
                 <img src="img/Logo-DYoung.png" width="60%">
             </a>
 
-
+            <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
+            <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-question"></i>
-                    <span>FAQ</span></a>
+                <a class="nav-link" href="charts_ideal.html">
+                    <i class="fas fa-fw fa-chart-area"></i>
+                    <span>Gráficos</span></a>
             </li>
+
+            <!-- Divider -->
             <hr class="sidebar-divider">
 
+           
+            <li class="nav-item faq">
+                <a class="nav-link" href="cards.html">
+                    <i class="fas fa-fw fa-tablet"></i>
+                    <span>Totens</span></a>
+            </li>
+         
             <li class="nav-item">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
-
-          
                         
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tabela</span></a>
             </li>
-
-            <li class="nav-item faq">
-                <a class="nav-link" href="cards.html">
-                    <i class="fas fa-fw fa-tablet"></i>
-                    <span>Totens</span></a>
-            </li>
+     
         
+            <li class="nav-item faq">
+                <a class="nav-link" href="FAQ.html">
+                    <i class="fas fa-fw fa-question"></i>
+                    <span>FAQ</span></a>
+            </li>
 
             <li class="nav-item faq">
                 <a class="nav-link" href="helpdesk.html">
@@ -76,6 +84,7 @@
                     <span>HelpDesk</span></a>
             </li>
       
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -195,7 +204,6 @@
 
                         <!-- Nav Item - Messages -->
                       
-                     
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -222,64 +230,80 @@
                     </ul>
 
                 </nav>
-                <!-- End of Topbar -->
+          
 
-                <!-- Begin Page Content -->
+                
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <h1 class="h3 mb-1 text-gray-800">FAQ</h1>
-                    <p class="mb-4">Precisa de alguma ajuda? <br> Reunimos aqui algumas das principais dúvidas referentes a nossa plataforma.</p>
+                  
+                    <h1 class="h3 mb-2 text-gray-800">Dados do Totem</h1>
+                    <p class="mb-4">Relatório geral:  Sem serviço </p>
 
-                    <!-- Content Row -->
                     <div class="row">
 
-                        <!-- Border Left Utilities -->
-                        <div class="col-lg-6">
+                        <div class="col-xl-8 col-lg-7">
 
-                            <div class="card mb-4 py-3 border-left-primary" style="width: 50rem;">
+                            <!-- Area Chart -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-success">CPU</h6>
+                                </div>
                                 <div class="card-body">
-                                    <i class="fas fa-fw fa-plus "></i>
-                                    Como faço para ver o desempenho dos totens?
+                                    <div class="chart-area">
+                                        <canvas id="myAreaChart"></canvas>
+                                    </div>
+                                    <hr>
+                                
                                 </div>
                             </div>
 
-                            <div class="card mb-4 py-3 border-left-primary" style="width: 50rem;">
-                                <div class="card-body">
-                                    <i class="fas fa-fw fa-plus "></i>
-                                    Como faço para ver todos os totens do posto do Poupa Tempo?
+                            <!-- Bar Chart -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-success">Disco</h6>
                                 </div>
-                            </div>
-
-                            <div class="card mb-4 py-3 border-left-primary" style="width: 50rem;">
                                 <div class="card-body">
-                                    <i class="fas fa-fw fa-plus "></i>
-                                    Como entrar em contato com o suporte da plataforma?
+                                    <div class="chart-bar">
+                                        <canvas id="myBarChart"></canvas>
+                                    </div>
+                                    <hr>
+                                   
                                 </div>
-                            </div>
-
-                            <!-- <div class="card mb-4 py-3 border-left-primary" style="width: 50rem;">
-                                <div class="card-body">
-                                    <i class="fas fa-fw fa-plus "></i>
-                                    .border-left-info
-                                </div>
-                            </div> -->
-
                             </div>
 
                         </div>
 
+                        <!-- Donut Chart -->
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-success">Memória</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body">
+                                    <div class="chart-pie pt-4">
+                                        <canvas id="myPieChart"></canvas>
+                                    </div>
+                                    <hr>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-        </div>
-        <!-- End of Content Wrapper -->
+                </div>
+                
+
+            </div>
+          
+    
 
     </div>
-    <!-- End of Page Wrapper -->
 
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
+
+ 
+
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -310,6 +334,14 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/chart-area-ideal-demo.js"></script>
+    <script src="js/demo/chart-pie-ideal-demo.js"></script>
+    <script src="js/demo/chart-bar-ideal-demo.js"></script>
 
 </body>
 
