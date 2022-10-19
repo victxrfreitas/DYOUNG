@@ -26,6 +26,7 @@ public class Logado extends javax.swing.JFrame {
         Conexao con = new Conexao();
         JdbcTemplate banco = con.getConnection();
         Conversor convert = new Conversor();
+        Conversor02 convert02 = new Conversor02();
         Processador cpu = new Processador();
         Memoria mem = new Memoria();
 
@@ -39,26 +40,38 @@ public class Logado extends javax.swing.JFrame {
                 String insert = "INSERT INTO dado_cpu VALUES (null, ?, current_timestamp, null, null, null);";
                 banco.update(insert, dadoCpu);
                 System.out.println(String.format("Inserindo dado CPU: %.0f", dadoCpu));
-                lblDadoCpu.setText(String.format("%.0f ", dadoCpu));
+                lblDadoCpu.setText(String.format("%.0f %s", dadoCpu, "%"));
                 
                 
-                //Pegando os dados da RAM = Memória RAM transformando, exibindo e guardando no banco de dados
-                // TERMINAAAAAAARRRR!!!!!
+                //Pegando os dados da RAM = Memória RAM transformando, exibindo 
+                //e guardando no banco de dados
+                //Os dados da memoria chegam em "LONG", porem temos que converter
+                //para double e fazer a conta para calcular a porcentagem de uso
                 Long dadoMemoriaRam = mem.getEmUso();
                 Long dadoTotalMemoriaRam = mem.getTotal();
                 
-                String dadoRamString = Conversor.formatarBytes(dadoMemoriaRam);
-                String dadoTotalRamString = Conversor.formatarBytes(dadoTotalMemoriaRam);
+                //Convertendo os dados para "String" para ficar mais faceis de transformar em double
+                String dadoRamString = Conversor02.formatarBytes(dadoMemoriaRam);
+                String dadoTotalRamString = Conversor02.formatarBytes(dadoTotalMemoriaRam);
                 
+                //Tranformando os dados de "String" para "Double"
                 Double dadoRamDouble = Double.valueOf(dadoRamString);
                 Double dadoTotalRamlDouble = Double.valueOf(dadoTotalRamString);
                 
-                Double total = (dadoTotalRamlDouble / 100) * dadoRamDouble;
-                System.out.println(String.format("Inserindo dado da MemÓria RAM: %.2f", total));
+                // Realizando a conta para calcular a porcentagem de uso
+                Double total = (dadoRamDouble * 100) / dadoTotalRamlDouble;
+                
+                //Inserindo os dados no banco
+                String insertRam = "INSERT INTO dado_ram VALUES (null, ?, current_timestamp, null, null, null);";
+                banco.update(insertRam, total);
+                
+                //Exibindo os dados
+                System.out.println(String.format("Inserindo dado da MemÓria RAM: %.0f", total));
+                lblDadoRam.setText(String.format("%.0f %s", total, "%"));
                 
                 
                 //Pegando os dados do DISCO = Disco transformando, exibindo e guardando no banco de dados
-                disc.getTamanho();
+                
             }
         }, 0, 3000);
     }
@@ -210,17 +223,11 @@ public class Logado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPararActionPerformed
-        ativo = false;
-        System.out.println("Parou!!");
+
     }//GEN-LAST:event_btnPararActionPerformed
-Boolean ativo = true;
+
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
 
-        
-            while(ativo){
-            
-        }
-        
     }//GEN-LAST:event_btnInicioActionPerformed
 
     /**
