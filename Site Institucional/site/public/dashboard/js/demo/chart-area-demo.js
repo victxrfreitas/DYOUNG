@@ -27,18 +27,26 @@ function number_format(number, decimals, dec_point, thousands_sep) {
   return s.join(dec);
 }
 
-// Bar Chart Example
-var ctx = document.getElementById("myBarChart");
-var myBarChart = new Chart(ctx, {
-  type: 'bar',
+// Area Chart Example
+var ctx = document.getElementById("myAreaChart");
+var myLineChart = new Chart(ctx, {
+  type: 'line',
   data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: ["13:50:58", "13:50:59", "13:51:00", "13:51:01", "13:51:02", "13:51:03", "13:51:04", "13:51:05", "13:51:06", "13:51:07", "13:51:08", "13:51:09"],
     datasets: [{
-      label: "Revenue",
-      backgroundColor: "#f6c23e",
-      hoverBackgroundColor: "#f6c23e",
-      borderColor: "#f6c23e",
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
+      label: "Uso da CPU",
+      lineTension: 0.3,
+      backgroundColor: "#e74a3b",
+      borderColor: "#e74a3b",
+      pointRadius: 3,
+      pointBackgroundColor: "#e74a3b",
+      pointBorderColor: "#e74a3b",
+      pointHoverRadius: 3,
+      pointHoverBackgroundColor: "#e74a3b",
+      pointHoverBorderColor: "#e74a3b",
+      pointHitRadius: 10,
+      pointBorderWidth: 2,
+      data: [30, 38, 39, 58, 75, 31, 49, 45, 69, 87, 92, 87],
     }],
   },
   options: {
@@ -54,26 +62,23 @@ var myBarChart = new Chart(ctx, {
     scales: {
       xAxes: [{
         time: {
-          unit: 'month'
+          unit: 'date'
         },
         gridLines: {
           display: false,
           drawBorder: false
         },
         ticks: {
-          maxTicksLimit: 6
-        },
-        maxBarThickness: 25,
+          maxTicksLimit: 7
+        }
       }],
       yAxes: [{
         ticks: {
-          min: 0,
-          max: 15000,
           maxTicksLimit: 5,
           padding: 10,
-          // Include a dollar sign in the ticks
+          // Include a percent sign in the ticks
           callback: function(value, index, values) {
-            return '$' + number_format(value);
+            return number_format(value) + '%';
           }
         },
         gridLines: {
@@ -89,23 +94,25 @@ var myBarChart = new Chart(ctx, {
       display: false
     },
     tooltips: {
+      backgroundColor: "rgb(255,255,255)",
+      bodyFontColor: "#858796",
       titleMarginBottom: 10,
       titleFontColor: '#6e707e',
       titleFontSize: 14,
-      backgroundColor: "rgb(255,255,255)",
-      bodyFontColor: "#858796",
       borderColor: '#dddfeb',
       borderWidth: 1,
       xPadding: 15,
       yPadding: 15,
       displayColors: false,
+      intersect: false,
+      mode: 'index',
       caretPadding: 10,
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+          return datasetLabel + ': ' + number_format(tooltipItem.yLabel) + '%';
         }
       }
-    },
+    }
   }
 });

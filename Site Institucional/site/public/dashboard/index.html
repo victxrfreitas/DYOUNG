@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Totens</title>
+    <title>Dashboard</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -34,9 +34,12 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                 
+                    <!-- <i class="fas fa-laugh-wink"></i> -->
                 </div>
-                <img src="img/Logo-DYoung.png" width="60%">
+                
+             
+                    <img src="img/Logo-DYoung.png" width="60%">
+            
             </a>
 
             <!-- Divider -->
@@ -44,34 +47,32 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-tablet"></i>
-                    <span>Totens</span></a>
-            </li>
-          
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-       
-
-    
-          
-
-            <!-- Nav Item - Charts -->
-
-              <li class="nav-item">
                 <a class="nav-link" href="index.html">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
-                        
+
+
+ 
+          
+            <!-- Divider -->
+            <hr class="sidebar-divider d-none d-md-block">
+
+                     
             <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tabela</span></a>
             </li>
 
+            <!-- Nav Item - Charts -->
+        
+            <li class="nav-item faq">
+                <a class="nav-link" href="cards.html">
+                    <i class="fas fa-fw fa-tablet"></i>
+                    <span>Totens</span></a>
+            </li>
+         
             <li class="nav-item faq">
                 <a class="nav-link" href="FAQ.html">
                     <i class="fas fa-fw fa-question"></i>
@@ -85,6 +86,8 @@
             </li>
       
 
+         
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -92,6 +95,8 @@
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
+
+     
 
         </ul>
         <!-- End of Sidebar -->
@@ -156,10 +161,10 @@
                             <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-bell fa-fw"></i>
-                                <!-- Counter - Alerts -->
+                                
                                 <span class="badge badge-danger badge-counter">3+</span>
                             </a>
-                            <!-- Dropdown - Alerts -->
+                       
                             <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="alertsDropdown">
                                 <h6 class="dropdown-header">
@@ -202,8 +207,7 @@
                             </div>
                         </li>
 
-                        <!-- Nav Item - Messages -->
-                       
+                   
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -218,7 +222,7 @@
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                               
+                                
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -230,17 +234,30 @@
                     </ul>
 
                 </nav>
-                <!-- End of Topbar -->
-
-                <!-- Begin Page Content -->
+               
                 <div class="container-fluid">
 
-                    <!-- Page Heading -->
-                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Totens</h1>
-                    </div>
 
+                  
                     <div class="row">
+
+                        <!-- Earnings (Monthly) Card Example -->
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-warning shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                                EM Risco DE atingir A CAPACIDADE TOTAL </div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">10%</div>
+                                        </div>
+                                        <!-- <div class="col-auto">
+                                            <i class="fas fa-alert fa-2x text-gray-300"></i>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -248,249 +265,235 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            
-                                            <!-- <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Totem 1</div> -->
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"> <a href="charts_critico.html" style="text-decoration: none; color: rgb(95, 94, 94);">Totem 1</a> </div>
+                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                                Estão sem serviços</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">10%</div>
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-exclamation-triangle fa-2x text-danger"></i>
-                                        </div>
+                                        
+                                        <!-- <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Earnings (Annual) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-left-success shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                               </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"> <a href="charts_ideal.html" style="text-decoration: none; color: rgb(95, 94, 94);">Totem 2</a></div>
+                                               Em funcionamento</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">10%</div>
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-check fa-2x text-success"></i>
-                                        </div>
+                                        
+                                        <!-- <div class="col-auto">
+                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                        <!-- Tasks Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                               </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"> <a href="charts_ideal.html" style="text-decoration: none; color: rgb(95, 94, 94);">Totem 3</a></div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-check fa-2x text-success"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                       
 
                         <!-- Pending Requests Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="charts_alerta.html" style="text-decoration: none; color: rgb(95, 94, 94);">Totem 4</a></div>
+                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                                Total de TOTENS</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-exclamation-triangle fa-2x text-warning"></i>
-                                        </div>
+                                        <!-- <div class="col-auto">
+                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
+                                        </div> -->
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                   
+                    <!-- Content Row -->
+
+                    <div class="row">
+
+                        <!-- Area Chart -->
+                         <!-- <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+                                
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                            aria-labelledby="dropdownMenuLink">
+                                            <div class="dropdown-header">Dropdown Header:</div>
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                        </div>
+                                    </div>
+                                </div>  -->
+                                <!-- Card Body -->
+                                <!-- <div class="card-body">
+                                    <div class="chart-area">
+                                        <canvas id="myAreaChart"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+
+                        <!-- Pie Chart -->
+                     
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+                        <!-- Content Column -->
+                        <div class="col-lg-6 mb-4" style="width: 65rem;">
+
+                            <!-- Project Card Example -->
+                            <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary"> Situação dos Postos do Poupa Tempo</h6>
+                                </div>
+                                <div class="card-body2">
+                                    <h4 class="small font-weight-bold"><a href="cards.html">Itaquera</a><span
+                                            class="float-right">Em estado crítico: 90%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 90%"
+                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    
+                                    <h4 class="small font-weight-bold"><a href="cards.html">Sé</a><span
+                                            class="float-right">Em alerta: 40%</span></h4>
+                                    <div class="progress mb-4">
+                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
+                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                    </div>
+                                    <h4 class="small font-weight-bold"><a href="cards.html">Lapa</a><span
+                                        class="float-right">Em alerta: 50%</span></h4>
+                                <div class="progress mb-4">
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 50%"
+                                        aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                              
+                                    <h4 class="small font-weight-bold"><a href="cards.html">Osasco</a><span
+                                            class="float-right">Ideal</span></h4>
+                                    <div class="progress">
+                                        <div class="progress-bar bg-success" role="progressbar" style="width: 10%"
+                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="10"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Color System -->
+                            <div class="row" style="margin-top: -16rem; margin-left: 32rem; margin-right: -30rem; flex-wrap: nowrap;">
+                                
+                                <div class="col-xl-5 col-lg-6 mb-4">
+                                    <div class="card bg-danger text-white shadow">
+                                        <div class="card-body">
+                                            Estado Crítico <br>
+                                            <b>80% a 100%</b>
+                                            dos totens estão com um mau desempenho e travamento.
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-5 col-lg-6 mb-4">
+                                    <div class="card bg-warning text-white shadow">
+                                        <div class="card-body">
+                                            Em alerta
+                                            <br>
+                                            <b>40% a 79%</b>
+                                            dos totens estão com chances de ocorrer travamento.
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                               
+                       
+
+                                <div class="col-xl-5 col-lg-6 mb-4"  > <!--  style="margin-left: 8rem;"-->
+                                    <div class="card bg-success text-white shadow">
+                                        <div class="card-body">
+                                            Ideal
+                                            <br>
+                                            <b>0% a 39%</b>
+                                            dos totens estão com chances de ocorrer travamento.
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                            </div>
+
+                        </div>
+<!-- 
+                        <div class="col-lg-6 mb-4"> -->
+
+                            <!-- Illustrations -->
+                            <!-- <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="text-center">
+                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                                            src="img/undraw_posting_photo.svg" alt="...">
+                                    </div>
+                                    <p>Add some quality, svg illustrations to your project courtesy of <a
+                                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
+                                        constantly updated collection of beautiful svg images that you can use
+                                        completely free and without attribution!</p>
+                                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
+                                        unDraw &rarr;</a>
+                                </div>
+                            </div> -->
+
+                            <!-- Approach -->
+                            <!-- <div class="card shadow mb-4">
+                                <div class="card-header py-3">
+                                    <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
+                                </div>
+                                <div class="card-body">
+                                    <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
+                                        CSS bloat and poor page performance. Custom CSS classes are used to create
+                                        custom components and custom utility classes.</p>
+                                    <p class="mb-0">Before working with this theme, you should become familiar with the
+                                        Bootstrap framework, especially the utility classes.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div> -->
                 <!-- /.container-fluid -->
 
-                <div class="row2">
+            </div>
+            <!-- End of Main Content -->
 
-                    <!-- Earnings (Monthly) Card Example -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-danger shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                          </div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="charts_critico.html" style="text-decoration: none; color: rgb(95, 94, 94);">Totem 5</a></div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-exclamation-triangle fa-2x text-danger"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Footer -->
             
-                    <!-- Earnings (Annual) Card Example -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-success shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                           </div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="charts_ideal.html" style="text-decoration: none; color: rgb(95, 94, 94);">Totem 6</a></div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-check fa-2x text-success"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            
-                    <!-- Tasks Card Example -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-success shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                           </div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800"> <a href="charts_ideal.html" style="text-decoration: none; color: rgb(95, 94, 94);">Totem 7</a></div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-check fa-2x text-success"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-            
-                    <!-- Pending Requests Card Example -->
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="card border-left-warning shadow h-100 py-2">
-                            <div class="card-body">
-                                <div class="row no-gutters align-items-center">
-                                    <div class="col mr-2">
-                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                        </div>
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="charts_alerta.html" style="text-decoration: none; color: rgb(95, 94, 94);">Totem 8</a></div>
-                                    </div>
-                                    <div class="col-auto">
-                                        <i class="fas fa-exclamation-triangle fa-2x text-warning"></i>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-       
+            <!-- End of Footer -->
 
-    <div class="row2">
-
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-danger shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                               </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="charts_critico.html" style="text-decoration: none; color: rgb(95, 94, 94);">Totem 9</a></div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-exclamation-triangle fa-2x text-danger"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
+        <!-- End of Content Wrapper -->
 
-        <!-- Earnings (Annual) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                             </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="charts_ideal.html" style="text-decoration: none; color: rgb(95, 94, 94);">Totem 10</a></div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-check fa-2x text-success"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-
-        <!-- Tasks Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                               </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"> <a href="charts_ideal.html" style="text-decoration: none; color: rgb(95, 94, 94);">Totem 11</a></div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-check fa-2x text-success"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Pending Requests Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                              </div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="charts_alerta.html" style="text-decoration: none; color: rgb(95, 94, 94);">Totem 12</a></div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-exclamation-triangle fa-2x text-warning"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
+    <!-- End of Page Wrapper -->
 
-   
-<!-- /.container-fluid -->
-
-</div>
-<!-- End of Main Content -->
-
-<!-- Footer -->
-
-<!-- End of Footer -->
-
-</div>
-<!-- End of Content Wrapper -->
-
-</div>
-<!-- End of Page Wrapper -->
-
-<!-- Scroll to Top Button-->
-<a class="scroll-to-top rounded" href="#page-top">
-<i class="fas fa-angle-up"></i>
-</a>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
 
     <!-- Logout Modal-->
     <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
@@ -521,6 +524,13 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+
+    <!-- Page level plugins -->
+    <script src="vendor/chart.js/Chart.min.js"></script>
+
+    <!-- Page level custom scripts -->
+    <script src="js/demo/chart-area-demo.js"></script>
+    <script src="js/demo/chart-pie-demo.js"></script>
 
 </body>
 

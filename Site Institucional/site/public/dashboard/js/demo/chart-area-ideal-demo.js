@@ -32,21 +32,21 @@ var ctx = document.getElementById("myAreaChart");
 var myLineChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    labels: ["13:50:58", "13:50:59", "13:51:00", "13:51:01", "13:51:02", "13:51:03", "13:51:04", "13:51:05", "13:51:06", "13:51:07", "13:51:08", "13:51:09"],
     datasets: [{
       label: "Earnings",
       lineTension: 0.3,
-      backgroundColor: "#f6c23e",
-      borderColor: "#f6c23e",
+      backgroundColor: "#1cc88a",
+      borderColor: "#1cc88a",
       pointRadius: 3,
-      pointBackgroundColor: "#f6c23e",
-      pointBorderColor: "#f6c23e",
+      pointBackgroundColor: "#1cc88a",
+      pointBorderColor: "#1cc88a",
       pointHoverRadius: 3,
-      pointHoverBackgroundColor: "#f6c23e",
-      pointHoverBorderColor: "#f6c23e",
+      pointHoverBackgroundColor: "#1cc88a",
+      pointHoverBorderColor: "#1cc88a",
       pointHitRadius: 10,
       pointBorderWidth: 2,
-      data: [0, 10000, 5000, 15000, 10000, 20000, 15000, 25000, 20000, 30000, 25000, 40000],
+      data: [30, 38, 39, 58, 75, 31, 49, 45, 69, 87, 92, 87],
     }],
   },
   options: {
@@ -76,9 +76,9 @@ var myLineChart = new Chart(ctx, {
         ticks: {
           maxTicksLimit: 5,
           padding: 10,
-          // Include a dollar sign in the ticks
+          // Include a percent sign in the ticks
           callback: function(value, index, values) {
-            return '$' + number_format(value);
+            return number_format(value) + '%';
           }
         },
         gridLines: {
@@ -110,7 +110,7 @@ var myLineChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+          return datasetLabel + ': ' + number_format(tooltipItem.yLabel) + '%';
         }
       }
     }

@@ -32,13 +32,13 @@ var ctx = document.getElementById("myBarChart");
 var myBarChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["January", "February", "March", "April", "May", "June"],
+    labels: ["13:50:58", "13:50:59", "13:51:00", "13:51:01", "13:51:02", "13:51:03"],
     datasets: [{
-      label: "Revenue",
-      backgroundColor: "#e74a3b",
-      hoverBackgroundColor: "#2e59d9",
-      borderColor: "#4e73df",
-      data: [4215, 5312, 6251, 7841, 9821, 14984],
+      label: "Uso do Disco",
+      backgroundColor: "#1cc88a",
+      hoverBackgroundColor: "#1cc88a",
+      borderColor: "#1cc88a",
+      data: [70, 84, 59, 64, 78, 52],
     }],
   },
   options: {
@@ -68,12 +68,12 @@ var myBarChart = new Chart(ctx, {
       yAxes: [{
         ticks: {
           min: 0,
-          max: 15000,
+          max: 100,
           maxTicksLimit: 5,
           padding: 10,
           // Include a dollar sign in the ticks
           callback: function(value, index, values) {
-            return '$' + number_format(value);
+            return number_format(value) + '%';
           }
         },
         gridLines: {
@@ -103,7 +103,7 @@ var myBarChart = new Chart(ctx, {
       callbacks: {
         label: function(tooltipItem, chart) {
           var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
-          return datasetLabel + ': $' + number_format(tooltipItem.yLabel);
+          return datasetLabel + ': ' +   number_format(tooltipItem.yLabel) + '%' ;
         }
       }
     },

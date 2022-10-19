@@ -7,9 +7,9 @@ var ctx = document.getElementById("myPieChart");
 var myPieChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
-    labels: ["Direct", "Referral"],
+    labels: ["Em uso", "Disponível"],
     datasets: [{
-      data: [70, 30],
+      data: [6.7, 1.3],
       backgroundColor: ['#e74a3b', '#1cc88a'],
       hoverBackgroundColor: ['#2e59d9', '#17a673', '#2c9faf'],
       hoverBorderColor: "rgba(234, 236, 244, 1)",
