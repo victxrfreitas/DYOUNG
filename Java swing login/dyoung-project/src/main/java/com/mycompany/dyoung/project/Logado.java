@@ -1,8 +1,15 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.mycompany.dyoung.project;
+
+import com.github.britooo.looca.api.core.Looca;
+import com.github.britooo.looca.api.group.discos.Disco;
+import com.github.britooo.looca.api.group.discos.DiscoGrupo;
+import com.github.britooo.looca.api.group.memoria.Memoria;
+import com.github.britooo.looca.api.group.processador.Processador;
+import com.github.britooo.looca.api.util.Conversor;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *
@@ -11,10 +18,49 @@ package com.mycompany.dyoung.project;
 public class Logado extends javax.swing.JFrame {
 
     /**
-     * Creates new form Logado
+     * Creates new form 
      */
     public Logado() {
         initComponents();
+        
+        Conexao con = new Conexao();
+        JdbcTemplate banco = con.getConnection();
+        Conversor convert = new Conversor();
+        Processador cpu = new Processador();
+        Memoria mem = new Memoria();
+
+        
+        
+        new Timer().scheduleAtFixedRate(new TimerTask(){
+            public void run(){
+                
+                //Pegando os dados da CPU = Processador exibindo e guardando no banco de dados
+                Double dadoCpu = cpu.getUso();
+                String insert = "INSERT INTO dado_cpu VALUES (null, ?, current_timestamp, null, null, null);";
+                banco.update(insert, dadoCpu);
+                System.out.println(String.format("Inserindo dado CPU: %.0f", dadoCpu));
+                lblDadoCpu.setText(String.format("%.0f ", dadoCpu));
+                
+                
+                //Pegando os dados da RAM = Memória RAM transformando, exibindo e guardando no banco de dados
+                // TERMINAAAAAAARRRR!!!!!
+                Long dadoMemoriaRam = mem.getEmUso();
+                Long dadoTotalMemoriaRam = mem.getTotal();
+                
+                String dadoRamString = Conversor.formatarBytes(dadoMemoriaRam);
+                String dadoTotalRamString = Conversor.formatarBytes(dadoTotalMemoriaRam);
+                
+                Double dadoRamDouble = Double.valueOf(dadoRamString);
+                Double dadoTotalRamlDouble = Double.valueOf(dadoTotalRamString);
+                
+                Double total = (dadoTotalRamlDouble / 100) * dadoRamDouble;
+                System.out.println(String.format("Inserindo dado da MemÓria RAM: %.2f", total));
+                
+                
+                //Pegando os dados do DISCO = Disco transformando, exibindo e guardando no banco de dados
+                disc.getTamanho();
+            }
+        }, 0, 3000);
     }
 
     /**
@@ -164,10 +210,16 @@ public class Logado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPararActionPerformed
-        // TODO add your handling code here:
+        ativo = false;
+        System.out.println("Parou!!");
     }//GEN-LAST:event_btnPararActionPerformed
-
+Boolean ativo = true;
     private void btnInicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicioActionPerformed
+
+        
+            while(ativo){
+            
+        }
         
     }//GEN-LAST:event_btnInicioActionPerformed
 
@@ -197,13 +249,14 @@ public class Logado extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Logado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Logado().setVisible(true);
             }
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

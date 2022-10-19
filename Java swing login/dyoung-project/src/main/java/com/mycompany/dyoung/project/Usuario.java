@@ -12,6 +12,7 @@ public class Usuario {
     private String statusFuncionario;
     private String senha;
     private String cargo;
+    private Boolean ativo = false;
 
     public Integer getIdFuncionario() {
         return idFuncionario;
@@ -68,4 +69,13 @@ public class Usuario {
     public void setCargo(String cargo) {
         this.cargo = cargo;
     }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
+    }
+    
 }

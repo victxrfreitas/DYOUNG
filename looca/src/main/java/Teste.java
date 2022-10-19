@@ -25,9 +25,9 @@ public class Teste {
         Double procDado = proc.getUso();
         Long memDado = mem.getEmUso();
         Double tempDado = temp.getTemperatura();
-        String insert = "INSERT INTO dados VALUES(null, ?, ?, ?)";
+        String insert = "INSERT INTO dado_cpu VALUES(null, ?, null, 1,null,null)";
         
-        banco.update(insert, procDado, memDado, tempDado);
+        banco.update(insert, procDado);
         
         System.out.println("Dados inseridos no banco");
         

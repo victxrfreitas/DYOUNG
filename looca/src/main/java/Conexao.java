@@ -23,7 +23,7 @@ public class Conexao {
 
         dataSource​.setUsername("root");
 
-        dataSource​.setPassword("");
+        dataSource​.setPassword("@Gustavo08");
 
         this.connection = new JdbcTemplate(dataSource);
 
