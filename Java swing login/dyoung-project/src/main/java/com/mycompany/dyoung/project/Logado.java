@@ -27,7 +27,6 @@ public class Logado extends javax.swing.JFrame {
         Conexao con = new Conexao();
         JdbcTemplate banco = con.getConnection();
         Conversor convert = new Conversor();
-        Conversor02 convert02 = new Conversor02();
         Processador cpu = new Processador();
         Memoria mem = new Memoria();
         DiscosGroup discoGrupo = new DiscosGroup();
@@ -38,12 +37,14 @@ public class Logado extends javax.swing.JFrame {
         new Timer().scheduleAtFixedRate(new TimerTask(){
             public void run(){
                 
+                
+                
                 //Pegando os dados da CPU = Processador exibindo e guardando no banco de dados
                 Double dadoCpu = cpu.getUso();
 //                String insert = "INSERT INTO dado_cpu VALUES (null, ?, current_timestamp, null, 1, 1);";
 //                banco.update(insert, dadoCpu);
-                System.out.println(String.format("Inserindo dado CPU: %.0f", dadoCpu));
-                lblDadoCpu.setText(String.format("%.0f %s", dadoCpu, "%"));
+                System.out.println(String.format("Inserindo dado CPU: %.1f", dadoCpu));
+                lblDadoCpu.setText(String.format("%.1f %s", dadoCpu, "%"));
                 
                 
                 //Pegando os dados da RAM = Memória RAM transformando, exibindo 
@@ -54,12 +55,17 @@ public class Logado extends javax.swing.JFrame {
                 Long dadoTotalMemoriaRam = mem.getTotal();
                 
                 //Convertendo os dados para "String" para ficar mais faceis de transformar em double
-                String dadoRamString = Conversor02.formatarBytes(dadoMemoriaRam);
-                String dadoTotalRamString = Conversor02.formatarBytes(dadoTotalMemoriaRam);
+                String dadoRamString = convert.formatarBytes(dadoMemoriaRam);
+                String dadoTotalRamString = convert.formatarBytes(dadoTotalMemoriaRam);
+                
+                lblProcessadorNome.setText(cpu.getNome());
+                lblRamNome.setText(String.format("%s", dadoTotalRamString));
+                lblSistemaNome.setText(sistema.getSistemaOperacional());
+                lblTipoSistemaNome.setText(sistema.getArquitetura() + "bits");
                 
                 //Tranformando os dados de "String" para "Double"
-                Double dadoRamDouble = Double.valueOf(dadoRamString);
-                Double dadoTotalRamlDouble = Double.valueOf(dadoTotalRamString);
+                Double dadoRamDouble = Double.parseDouble(dadoRamString.substring(0, 1));
+                Double dadoTotalRamlDouble = Double.parseDouble(dadoTotalRamString.substring(0, 1));
                 
                 // Realizando a conta para calcular a porcentagem de uso
                 Double totalRam = (dadoRamDouble * 100) / dadoTotalRamlDouble;
@@ -69,9 +75,10 @@ public class Logado extends javax.swing.JFrame {
 //                banco.update(insertRam, totalRam);
                 
                 //Exibindo os dados
-                System.out.println(String.format("Inserindo dado da Memória RAM: %.0f", totalRam));
-                lblDadoRam.setText(String.format("%.0f %s", totalRam, "%"));
-                
+                System.out.println(String.format("Inserindo dado da Memória RAM: %.1f", totalRam));
+//                    System.out.println(String.format("%s", dadoRamString));
+                lblDadoRam.setText(String.format("%.1f %s", totalRam, "%"));
+//                lblDadoRam.setText(String.format("%s", dadoRamString));
                 
                 //Pegando os dados do DISCO = Disco transformando, exibindo e guardando no banco de dados
                 List<Disco> discos = discoGrupo.getDiscos();
@@ -83,26 +90,24 @@ public class Logado extends javax.swing.JFrame {
 //                    System.out.println(Conversor.formatarBytes(disco.getEscritas()));
                     
                     
-                    String dadoDiscoTotalString = Conversor02.formatarBytes(disco.getTamanho());
-                    String dadoDiscoEcritaString = Conversor02.formatarBytes(disco.getBytesDeEscritas());
-                    String dadoDiscoLeituraString = Conversor02.formatarBytes(disco.getBytesDeLeitura());
+                    String dadoDiscoTotalString = convert.formatarBytes(disco.getTamanho());
+                    String dadoDiscoEcritaString = convert.formatarBytes(disco.getBytesDeEscritas());
+                    String dadoDiscoLeituraString = convert.formatarBytes(disco.getBytesDeLeitura());
                     
-                    Double dadoDiscoTotalDouble = Double.valueOf(dadoDiscoTotalString);
-                    Double dadoDiscoEcritaDouble = Double.valueOf(dadoDiscoEcritaString);
-                    Double dadoDiscoLeituraDouble = Double.valueOf(dadoDiscoLeituraString);
+                    Double dadoDiscoTotalDouble = Double.parseDouble(dadoDiscoTotalString.substring(0, 3));
+                    Double dadoDiscoEcritaDouble = Double.parseDouble(dadoDiscoEcritaString.substring(0, 1));
+                    Double dadoDiscoLeituraDouble = Double.parseDouble(dadoDiscoLeituraString.substring(0, 1));
                     
                     Double totalUso = dadoDiscoEcritaDouble + dadoDiscoLeituraDouble;
                     Double totalDisco = (totalUso * 100) / dadoDiscoTotalDouble;
-                    System.out.println(String.format("Inserindo dado do Disco: %.0f", totalDisco));
-                    lblDadoDisco.setText(String.format("%.0f %s", totalDisco, "%"));
+                    
+                    System.out.println(String.format("Inserindo dado do Disco: %.1f", totalDisco));
+                    lblDadoDisco.setText(String.format("%.1f %s", totalDisco, "%"));
 //                    String insertDisco = "INSERT INTO dado_disco VALUES (null, ?, current_timestamp, null, 1, 1);";
 //                    banco.update(insertDisco, totalDisco);
 
                 }
-                lblProcessadorNome.setText(cpu.getNome());
-                lblRamNome.setText(String.format("%.0f %s", dadoTotalRamlDouble, "GB"));
-                lblSistemaNome.setText(sistema.getFabricante());
-                lblTipoSistemaNome.setText(sistema.getSistemaOperacional());
+                
             }
         }, 0, 2000);
     }
@@ -286,7 +291,7 @@ public class Logado extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(lblTipoSistemaNome))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 53, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -299,7 +304,7 @@ public class Logado extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblDadoCpu)
                     .addComponent(lblDadoRam))
-                .addGap(121, 121, 121))
+                .addGap(128, 128, 128))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

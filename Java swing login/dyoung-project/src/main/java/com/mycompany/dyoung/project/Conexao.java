@@ -13,13 +13,21 @@ public class Conexao {
     public Conexao() {
         BasicDataSource dataSource = new BasicDataSource();
 
-        dataSource​.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+        //dataSource​.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
-        dataSource​.setUrl("jdbc:sqlserver://dyoung-bd.database.windows.net/dyoung-bd");
+        dataSource​.setDriverClassName("com.mysql.cj.jdbc.Driver");
 
-        dataSource​.setUsername("admin-dyoung");
+        dataSource​.setUrl("jdbc:mysql://localhost:3306/dyoung");
 
-        dataSource​.setPassword("#Gfgrupo6");
+        //dataSource​.setUrl("jdbc:sqlserver://dyoung-bd.database.windows.net/dyoung-bd");
+
+//        dataSource​.setUsername("admin-dyoung");
+//
+//        dataSource​.setPassword("#Gfgrupo6");
+        
+        dataSource​.setUsername("root");
+
+        dataSource​.setPassword("#Gf45016792801");
 
         this.connection = new JdbcTemplate(dataSource);
 
