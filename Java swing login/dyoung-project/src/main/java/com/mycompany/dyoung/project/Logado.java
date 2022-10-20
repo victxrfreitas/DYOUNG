@@ -2,7 +2,7 @@ package com.mycompany.dyoung.project;
 
 import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.discos.Disco;
-import com.github.britooo.looca.api.group.discos.DiscosGroup;
+import com.github.britooo.looca.api.group.discos.DiscoGrupo;
 import com.github.britooo.looca.api.group.memoria.Memoria;
 import com.github.britooo.looca.api.group.processador.Processador;
 import com.github.britooo.looca.api.group.sistema.Sistema;
@@ -29,7 +29,7 @@ public class Logado extends javax.swing.JFrame {
         Conversor convert = new Conversor();
         Processador cpu = new Processador();
         Memoria mem = new Memoria();
-        DiscosGroup discoGrupo = new DiscosGroup();
+        DiscoGrupo discoGrupo = new DiscoGrupo();
         Sistema sistema = new Sistema();
         
 
@@ -41,8 +41,8 @@ public class Logado extends javax.swing.JFrame {
                 
                 //Pegando os dados da CPU = Processador exibindo e guardando no banco de dados
                 Double dadoCpu = cpu.getUso();
-//                String insert = "INSERT INTO dado_cpu VALUES (null, ?, current_timestamp, null, 1, 1);";
-//                banco.update(insert, dadoCpu);
+                String insert = "INSERT INTO dado_cpu VALUES (null, ?, null, null, 1, 1);";
+                banco.update(insert, dadoCpu);
                 System.out.println(String.format("Inserindo dado CPU: %.1f", dadoCpu));
                 lblDadoCpu.setText(String.format("%.1f %s", dadoCpu, "%"));
                 
@@ -55,8 +55,8 @@ public class Logado extends javax.swing.JFrame {
                 Long dadoTotalMemoriaRam = mem.getTotal();
                 
                 //Convertendo os dados para "String" para ficar mais faceis de transformar em double
-                String dadoRamString = convert.formatarBytes(dadoMemoriaRam);
-                String dadoTotalRamString = convert.formatarBytes(dadoTotalMemoriaRam);
+                String dadoRamString = Conversor02.formatarBytes(dadoMemoriaRam);
+                String dadoTotalRamString = Conversor02.formatarBytes(dadoTotalMemoriaRam);
                 
                 lblProcessadorNome.setText(cpu.getNome());
                 lblRamNome.setText(String.format("%s", dadoTotalRamString));
@@ -64,15 +64,15 @@ public class Logado extends javax.swing.JFrame {
                 lblTipoSistemaNome.setText(sistema.getArquitetura() + "bits");
                 
                 //Tranformando os dados de "String" para "Double"
-                Double dadoRamDouble = Double.parseDouble(dadoRamString.substring(0, 1));
-                Double dadoTotalRamlDouble = Double.parseDouble(dadoTotalRamString.substring(0, 1));
+                Double dadoRamDouble = Double.valueOf(dadoRamString);
+                Double dadoTotalRamlDouble = Double.valueOf(dadoTotalRamString);
                 
                 // Realizando a conta para calcular a porcentagem de uso
                 Double totalRam = (dadoRamDouble * 100) / dadoTotalRamlDouble;
                 
                 //Inserindo os dados no banco
-//                String insertRam = "INSERT INTO dado_ram VALUES (null, ?, current_timestamp, null, 1, 1);";
-//                banco.update(insertRam, totalRam);
+                String insertRam = "INSERT INTO dado_ram VALUES (null, ?, current_timestamp, null, 1, 1);";
+                banco.update(insertRam, totalRam);
                 
                 //Exibindo os dados
                 System.out.println(String.format("Inserindo dado da Memória RAM: %.1f", totalRam));
@@ -103,8 +103,8 @@ public class Logado extends javax.swing.JFrame {
                     
                     System.out.println(String.format("Inserindo dado do Disco: %.1f", totalDisco));
                     lblDadoDisco.setText(String.format("%.1f %s", totalDisco, "%"));
-//                    String insertDisco = "INSERT INTO dado_disco VALUES (null, ?, current_timestamp, null, 1, 1);";
-//                    banco.update(insertDisco, totalDisco);
+                    String insertDisco = "INSERT INTO dado_disco VALUES (null, ?, current_timestamp, null, 1, 1);";
+                    banco.update(insertDisco, totalDisco);
 
                 }
                 
