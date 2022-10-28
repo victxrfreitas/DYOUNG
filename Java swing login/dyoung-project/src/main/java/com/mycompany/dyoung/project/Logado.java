@@ -2,7 +2,7 @@ package com.mycompany.dyoung.project;
 
 import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.discos.Disco;
-import com.github.britooo.looca.api.group.discos.DiscoGrupo;
+import com.github.britooo.looca.api.group.discos.DiscosGroup;
 import com.github.britooo.looca.api.group.memoria.Memoria;
 import com.github.britooo.looca.api.group.processador.Processador;
 import com.github.britooo.looca.api.group.sistema.Sistema;
@@ -29,7 +29,7 @@ public class Logado extends javax.swing.JFrame {
         Conversor convert = new Conversor();
         Processador cpu = new Processador();
         Memoria mem = new Memoria();
-        DiscoGrupo discoGrupo = new DiscoGrupo();
+        DiscosGroup discoGrupo = new DiscosGroup();
         Sistema sistema = new Sistema();
         
 
