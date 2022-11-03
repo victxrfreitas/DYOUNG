@@ -83,7 +83,7 @@
         <dependency>
             <groupId>org.json</groupId>
             <artifactId>json</artifactId>
-            <version>20220924</version>
+            <version>20201115</version>
         </dependency>
     </dependencies>
 </project>
