@@ -79,11 +79,5 @@
             <artifactId>azure-identity</artifactId>
             <version>1.4.3</version>
         </dependency>
-<!-- JavaObject para o Slack -->
-        <dependency>
-            <groupId>org.json</groupId>
-            <artifactId>json</artifactId>
-            <version>20201115</version>
-        </dependency>
     </dependencies>
 </project>
