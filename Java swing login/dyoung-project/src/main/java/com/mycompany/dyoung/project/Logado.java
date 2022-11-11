@@ -2,7 +2,8 @@ package com.mycompany.dyoung.project;
 
 import com.github.britooo.looca.api.core.Looca;
 import com.github.britooo.looca.api.group.discos.Disco;
-import com.github.britooo.looca.api.group.discos.DiscosGroup;
+import com.github.britooo.looca.api.group.discos.DiscoGrupo;
+//import com.github.britooo.looca.api.group.discos.DiscosGroup;
 import com.github.britooo.looca.api.group.memoria.Memoria;
 import com.github.britooo.looca.api.group.processador.Processador;
 import com.github.britooo.looca.api.group.sistema.Sistema;
@@ -29,7 +30,8 @@ public class Logado extends javax.swing.JFrame {
         Conversor convert = new Conversor();
         Processador cpu = new Processador();
         Memoria mem = new Memoria();
-        DiscosGroup discoGrupo = new DiscosGroup();
+        DiscoGrupo discoGrupo = new DiscoGrupo();
+//        DiscosGroup discoGrupo = new DiscosGroup();
         Sistema sistema = new Sistema();
         
 
@@ -41,7 +43,7 @@ public class Logado extends javax.swing.JFrame {
                 
                 //Pegando os dados da CPU = Processador exibindo e guardando no banco de dados
                 Double dadoCpu = cpu.getUso();
-                String insert = "INSERT INTO dado_cpu VALUES (null, ?, null, null, 1, 1);";
+                String insert = "INSERT INTO dado_cpu (uso_cpu, status_coleta, fk_totem, fk_posto)VALUES (?, 1, 1, 1);";
                 banco.update(insert, dadoCpu);
                 System.out.println(String.format("Inserindo dado CPU: %.1f", dadoCpu));
                 lblDadoCpu.setText(String.format("%.1f %s", dadoCpu, "%"));
@@ -71,7 +73,7 @@ public class Logado extends javax.swing.JFrame {
                 Double totalRam = (dadoRamDouble * 100) / dadoTotalRamlDouble;
                 
                 //Inserindo os dados no banco
-                String insertRam = "INSERT INTO dado_ram VALUES (null, ?, current_timestamp, null, 1, 1);";
+                String insertRam = "INSERT INTO dado_ram (uso_ram, status_coleta, fk_totem, fk_posto)VALUES (?, 1, 1, 1);";
                 banco.update(insertRam, totalRam);
                 
                 //Exibindo os dados
@@ -103,7 +105,7 @@ public class Logado extends javax.swing.JFrame {
                     
                     System.out.println(String.format("Inserindo dado do Disco: %.1f", totalDisco));
                     lblDadoDisco.setText(String.format("%.1f %s", totalDisco, "%"));
-                    String insertDisco = "INSERT INTO dado_disco VALUES (null, ?, current_timestamp, null, 1, 1);";
+                    String insertDisco = "INSERT INTO dado_disco (uso_disco, status_coleta, fk_totem, fk_posto)VALUES (?, 1, 1, 1);";
                     banco.update(insertDisco, totalDisco);
 
                 }
