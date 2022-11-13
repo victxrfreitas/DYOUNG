@@ -35,7 +35,7 @@ var myBarChart = new Chart(ctx, {
     labels: ["13:50:58", "13:50:59", "13:51:00", "13:51:01", "13:51:02", "13:51:03"],
     datasets: [{
       label: "Uso do Disco",
-      backgroundColor: "#e74a3b",
+      backgroundColor: "#00568F",
       hoverBackgroundColor: "#2e59d9",
       borderColor: "#4e73df",
       data: [70, 84, 59, 64, 78, 52],
