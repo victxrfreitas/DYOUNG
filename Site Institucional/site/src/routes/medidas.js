@@ -11,4 +11,5 @@ router.get("/tempo-real/:id_dado_cpu", function (req, res) {
     medidaController.buscarMedidasEmTempoReal(req, res);
 });
 
+
 module.exports = router;
