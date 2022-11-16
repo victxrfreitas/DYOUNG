@@ -62,8 +62,58 @@ function buscarMedidasEmTempoReal() {
     return database.executar(instrucaoSql);
 }
 
+function buscarDadosPostos(idPosto) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `SELECT 
+                            idTotem 'totemId',
+                            serie 'totemSerial',
+                            estado 'totemStatus',
+                            sistema_operacional 'totemSO',
+                            fk_posto 'fkPosto'
+                        FROM
+                            totem 
+                        WHERE 
+                            fk_posto = ${idPosto}
+                        ORDER BY idTotem DESC;`;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `SELECT 
+                            idTotem 'totemId',
+                            serie 'totemSerial',
+                            estado 'totemStatus',
+                            sistema_operacional 'totemSO',
+                            fk_posto 'fkPosto'
+                        FROM
+                            totem 
+                        WHERE 
+                            fk_posto = ${idPosto}
+                        ORDER BY idTotem DESC;`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function cadastrarTotem(serial, so, fkPosto) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", serial, so, fkPosto);
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao = `
+        INSERT INTO totem (serie, sistema_operacional, fk_posto) VALUES ('${serial}', '${so}', '${fkPosto}');
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
 
 module.exports = {
     buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    buscarMedidasEmTempoReal,
+    buscarDadosPostos,
+    cadastrarTotem
 }
