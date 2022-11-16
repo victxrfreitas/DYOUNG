@@ -1,57 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-    <title>Document</title>
-</head>
-<body>
-  <!-- <script src="teste.js"></script> -->
-    <div class="card-body" widht="50%">
-        <div class="chart-pie">
-            <canvas id="myPieChart"></canvas>
-        </div>
-        <hr>
-    
-    </div>
-</div>
-</body>
-</html>
-
-
-
-<script>
-  //   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
-  let proximaAtualizacao;
-
-  window.onload = obterDadosGrafico(1);
-
-  //   verificar_autenticacao();
-
-  //   function alterarTitulo(id_dado_cpu) {
-  //     var tituloTotem = document.getElementById("tituloAquario");
-  //     tituloAquario.innerHTML =
-  //       "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>Totem " +
-  //       id_dado_cpu +
-  //       "</span>";
-  //   }
-
-  // O gráfico é construído com três funções:
-  // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
-  // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
-  // 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco
-
-  // Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
-  // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
-  // A função *obterDadosGrafico* também invoca a função *plotarGrafico*
-
-  //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-  //     Para ajustar o "select", ajuste o comando sql em src/models
-  function obterDadosGrafico(id_dado_ram) {
+function obterDadosGrafico(id_dado_ram) {
     // alterarTitulo(id_da);
 
     if (proximaAtualizacao != undefined) {
@@ -208,4 +155,3 @@
         );
       });
   }
-</script>
