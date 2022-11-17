@@ -22,7 +22,7 @@ public class App {
     public static void main(String[] args)  throws IOException,InterruptedException {
         JSONObject json = new JSONObject();
         
-        JSONObject put = json.put("text", "Olá Mundo!");
+        json.put("text", "Bem vindo ao centro de notificações!");
         Slack.enviarMensagem(json);
     }
 }
