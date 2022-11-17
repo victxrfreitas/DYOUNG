@@ -1,0 +1,53 @@
+.container {
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.left {
+    margin: 0;
+    padding: 0;
+}
+
+.right {
+    margin: 0;
+    padding: 0;
+}
+
+.dropdown {
+    font-size: 25px;
+    font-weight: bold;
+    margin-left: 50px;
+    margin-top: 50px;
+}
+
+body>table {
+    width: 80%;
+}
+
+table {
+    border-collapse: collapse;
+    margin-top: 50px;
+    margin-left: 350px;
+}
+
+table .list {
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even), table.list thead>tr{
+    background-color: #dddddd;
+}
+
+.totemAdd{
+    margin-left: 100px;
+    
+    font-size: 20px;
+}
+

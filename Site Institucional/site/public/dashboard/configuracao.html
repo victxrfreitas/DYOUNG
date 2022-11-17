@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuração</title>
+
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/sb-admin-2.css">
+    <link rel="stylesheet" href="css/config.css">
+</head>
+
+<body onload="obterDados(idPosto)">
+    <div class="container">
+        <div class="left">
+            <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+
+                <!-- Sidebar - Brand -->
+                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+                    <div class="sidebar-brand-icon rotate-n-15">
+
+                    </div>
+                    <img src="img/Logo-DYoung.png" width="60%">
+                </a>
+
+                <!-- Divider -->
+                <hr class="sidebar-divider my-0">
+
+                <!-- Nav Item - Dashboard -->
+                <li class="nav-item">
+                    <a class="nav-link" href="#cards.html">
+                        <i class="fas fa-fw fa-tablet"></i>
+                        <span>Totens</span></a>
+                </li>
+
+
+                <!-- Divider -->
+                <hr class="sidebar-divider">
+
+                <!-- Nav Item - Charts -->
+
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span></a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="tables.html">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Tabela</span></a>
+                </li>
+
+                <li class="nav-item faq">
+                    <a class="nav-link" href="FAQ.html">
+                        <i class="fas fa-fw fa-question"></i>
+                        <span>FAQ</span></a>
+                </li>
+
+                <li class="nav-item active">
+                    <a class="nav-link" href="configuracao.html">
+                        <i class="fas fa-fw fa-question"></i>
+                        <span>Configuração</span></a>
+                </li>
+
+                <li class="nav-item faq">
+                    <a class="nav-link" href="helpdesk.html">
+                        <i class="fas fa-fw fa-headset"></i>
+                        <span>HelpDesk</span></a>
+                </li>
+
+
+                <!-- Divider -->
+                <hr class="sidebar-divider d-none d-md-block">
+
+                <!-- Sidebar Toggler (Sidebar) -->
+                <div class="text-center d-none d-md-inline">
+                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+                </div>
+            </ul>
+        </div>
+        <div class="right">
+            <div class="teste">
+                <details>
+                    <summary class="dropdown">Totem</summary>
+                    <a class="totemAdd" href="totemCreate.html">Adicionar totem</a>
+                    <table class="list" id="employeeList">
+                        <thead>
+                            <tr>
+                                <th id="totemId">ID</th>
+                                <th id="totemSerial">Nº de série</th>
+                                <th id="totemStatus">Estado</th>
+                                <th id="totemSO">Sis. Operacional</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                        </tbody>
+                    </table>
+                </details>
+                <details>
+                    <summary class="dropdown">Posto</summary>
+                    <span id="teste"></span>
+                </details>
+            </div>
+        </div>
+    </div>
+
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
+    <script src="../js/funcoes.js"></script>
+    <script src="crud.js "></script>
+</body>
+
+</html>
+
+<script>
+    var idPosto = sessionStorage.FK_USUARIO;
+
+    function obterDados(idPosto) {
+        fetch(`/medidas/dadosPosto/${idPosto}`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    console.log('foi')
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    resposta.reverse();
+
+                    insertNewRecord(resposta);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function insertNewRecord(resposta) {
+        for (i = 0; i <= resposta.length; i++) {
+            var table = document.getElementById("employeeList").getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow(table.length);
+            var data = {
+                totemId: resposta[i].totemId,
+                totemSerial: resposta[i].totemSerial,
+                totemStatus: resposta[i].totemStatus,
+                totemSO: resposta[i].totemSO
+            }
+            var cell1 = newRow.insertCell(0);
+            cell1.innerHTML = data.totemId;
+            var cell2 = newRow.insertCell(1);
+            cell2.innerHTML = data.totemSerial;
+            var cell3 = newRow.insertCell(2);
+            cell3.innerHTML = data.totemStatus;
+            var cell4 = newRow.insertCell(3);
+            cell4.innerHTML = data.totemSO;
+            var cell5 = newRow.insertCell(4);
+            cell5.innerHTML = `<a href="">Editar</a> <a onclick="deletar(totemId)">Deletar</a></tr>`;
+        }
+    }
+
+    function deletar(totemId){
+
+    }
+
+</script>

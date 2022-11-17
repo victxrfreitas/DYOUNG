@@ -1,68 +1,79 @@
+DROP DATABASE dyoung;
 CREATE DATABASE dyoung;
-
 USE dyoung;
 
-CREATE TABLE posto (
-	idPosto INT PRIMARY KEY AUTO_INCREMENT,
-    responsavelTi VARCHAR(80),
-    qtdTotem INT
-);
-
-
-CREATE TABLE cadastro_funcionario (
-	idFuncionario INT PRIMARY KEY AUTO_INCREMENT,
-    nome VARCHAR(100),
-    cpf CHAR(11),
-    cargo VARCHAR(50),
-    email VARCHAR(80),
-    senha VARCHAR(50),
-    statusCadastro CHAR(10),
-    fk_posto INT,
-    FOREIGN KEY (fk_posto) REFERENCES posto (idposto)
-);
-
-
 CREATE TABLE endereco_posto (
-	idEndereco INT PRIMARY KEY AUTO_INCREMENT,
-    rua VARCHAR(90),
-    numero INT,
-    localidade VARCHAR(90),
-    fk_posto INT,
-    FOREIGN KEY (fk_posto) REFERENCES posto (idposto)
+idEndereco_posto INT PRIMARY KEY auto_increment,
+rua VARCHAR(80),
+numero INT,
+localidade VARCHAR(80)
 );
+-- select * from endereco_posto;
+CREATE TABLE posto (
+idPosto INT PRIMARY KEY auto_increment,
+nomePosto VARCHAR(80),
+responsavelTI VARCHAR(80),
+fk_Endereco_posto INT, foreign key (fk_Endereco_posto) references endereco_posto(idEndereco_posto)
+);
+CREATE TABLE cadastro_funcionario (
+idFuncionario INT PRIMARY KEY AUTO_INCREMENT,
+nomeFuncionario VARCHAR(80),
+email VARCHAR(80),
+cpf CHAR(11),
+statusFuncionario VARCHAR(45),
+senha VARCHAR(45),
+cargo VARCHAR(45),
+fk_posto INT, FOREIGN KEY (fk_posto) REFERENCES posto(idPosto));
+
+-- insert into cadastro_funcionario values(10, 'Yuzo', 'yuzo@email.com', null, 'ativo', 123, null, null);
 
 CREATE TABLE totem (
-	idTotem INT AUTO_INCREMENT,
-    fk_posto INT,
-    FOREIGN KEY (fk_posto) REFERENCES posto (idposto),
-    PRIMARY KEY (idtotem, fk_posto),
-    numSerie INT,
-    estado VARCHAR(40),
-    sistema_operacional VARCHAR(40)    
+idTotem INT PRIMARY KEY AUTO_INCREMENT,
+fk_posto INT, FOREIGN KEY (fk_posto) REFERENCES posto(idPosto),
+serie VARCHAR(45),
+estado VARCHAR(45),
+sistema_operacional VARCHAR(45)
+);
+CREATE TABLE dado_cpu(
+id_dado_cpu INT PRIMARY KEY AUTO_INCREMENT,
+uso_cpu DOUBLE,
+data_hora_captura timestamp,
+status_coleta TINYINT,
+fk_totem INT, FOREIGN KEY (fk_totem) REFERENCES totem(idTotem),
+fk_posto INT, FOREIGN KEY (fk_posto) REFERENCES posto(idPosto)
+);
+CREATE TABLE dado_disco (
+id_dado_disco INT PRIMARY KEY AUTO_INCREMENT,
+uso_disco DOUBLE,
+data_hora_captura DATETIME,
+status_coleta TINYINT,
+fk_totem INT, FOREIGN KEY (fk_totem) REFERENCES totem(idTotem),
+fk_posto INT, FOREIGN KEY (fk_posto) REFERENCES posto(idPosto)
+);
+CREATE TABLE dado_ram (
+id_dado_ram INT PRIMARY KEY AUTO_INCREMENT,
+uso_ram DOUBLE,
+data_hora_captura DATETIME,
+status_coleta TINYINT,
+fk_totem INT, FOREIGN KEY (fk_totem) REFERENCES totem(idTotem),
+fk_posto INT, FOREIGN KEY (fk_posto) REFERENCES posto(idPosto)
 );
 
-CREATE TABLE dados_totem (
-	idDado INT,
-    fk_totem INT,
-    fk_posto INT,
-    FOREIGN KEY (fk_totem) REFERENCES totem (idTotem),
-    FOREIGN KEY (fk_posto) REFERENCES posto (idposto),
-    PRIMARY KEY (iddado, fk_totem, fk_posto),
-    cpu DOUBLE,
-    ram DOUBLE,
-    disco DOUBLE,
-    dtHora DATETIME
-);
+-- INSERT INTO endereco_posto  VALUES
+-- (null, 'Rua Santo André', 379, 'São Paulo'),
+-- (null, 'Rua Haddock Lobo', 595, 'São Paulo'),
+-- (null, 'Rua Jose', 555, 'São Paulo');
 
+-- INSERT INTO posto VALUES
+-- (null, 'Poupa Tempo São Caetano do Sul','Gustavo Carriel', 1),
+-- (null, 'Poupa Tempo Santo André','Maciel Victor', 2),
+-- (null, 'Poupa Tempo Lapa','Henrique Yuzo', 3);
 
+-- INSERT INTO cadastro_funcionario VALUES
+-- (null, 'Gustavo', 'gustavo@email.com', '12345678900', 'ATIVO', '123', 'Responsavel de TI', 1);
+-- select * from dado_cpu;
+-- INSERT INTO totem VALUES
+-- (null, 1, '5420', 'Ativo', 'Windows'),
+-- (null, 2, '2022', 'Ativo', 'Windows');
 
-
-
-
-
-
-
-
-
-
-
+-- select * from dado_cpu;
