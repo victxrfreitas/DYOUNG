@@ -16,6 +16,7 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/sb-admin-2.css">
     <link rel="stylesheet" href="css/config.css">
+    <link rel="stylesheet" href="css/crud.css">
 </head>
 
 <body>
@@ -35,13 +36,11 @@
                 <hr class="sidebar-divider my-0">
 
                 <!-- Nav Item - Dashboard -->
-                <li class="nav-item">
-                    <a class="nav-link" href="#cards.html">
+                <li class="nav-item active">
+                    <a class="nav-link" href="configuracao.html">
                         <i class="fas fa-fw fa-tablet"></i>
-                        <span>Totens</span></a>
+                        <span>Configurações</span></a>
                 </li>
-
-
                 <!-- Divider -->
                 <hr class="sidebar-divider">
 
@@ -59,16 +58,16 @@
                         <span>Tabela</span></a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="#cards.html">
+                        <i class="fas fa-fw fa-tablet"></i>
+                        <span>Totens</span></a>
+                </li>
+
                 <li class="nav-item faq">
                     <a class="nav-link" href="FAQ.html">
                         <i class="fas fa-fw fa-question"></i>
                         <span>FAQ</span></a>
-                </li>
-
-                <li class="nav-item active">
-                    <a class="nav-link" href="configuracao.html">
-                        <i class="fas fa-fw fa-question"></i>
-                        <span>Configuração</span></a>
                 </li>
 
                 <li class="nav-item faq">
@@ -88,19 +87,23 @@
             </ul>
         </div>
         <div class="right">
-            <div>
-                <div>
-                    Nº de série
-                    <input id="iptSerial" type="text">
+            <div class="crud">
+                <a class="back" href="configuracao.html">Voltar</a>
+                <div class="ipt">
+                    <div>
+                        Nº de série
+                        <input id="iptSerial" type="text">
+                    </div>
+                    <br>
+                    <div>
+                        Sistema Operacional:
+                        <select name="" id="selectSO">
+                            <option value="Windows">Windows</option>
+                            <option value="Linux">Linux</option>
+                        </select>
+                    </div>
+                    <button class="btn" onclick="adicionarTotem()">Adicionar</button>
                 </div>
-                <div>
-                    Sistema Operacional
-                    <select name="" id="selectSO">
-                        <option value="Windows">Windows</option>
-                        <option value="Linux">Linux</option>
-                    </select>
-                </div>
-                <button onclick="adicionarTotem()">Adicionar</button>
             </div>
         </div>
     </div>
@@ -121,48 +124,48 @@
 
 <script>
     function adicionarTotem() {
-            var serialVar = iptSerial.value;
-            var soVar = selectSO.value;
-            var fkPosto = sessionStorage.FK_USUARIO;
+        var serialVar = iptSerial.value;
+        var soVar = selectSO.value;
+        var fkPosto = sessionStorage.FK_USUARIO;
 
-            if (serialVar == "" || soVar == "") {
-                alert("Preencha todos os campos. ");
-                return false;
-            }
-
-            // Enviando o valor da nova input
-            fetch("/medidas/cadastrarTotem", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    // crie um atributo que recebe o valor recuperado aqui
-                    // Agora vá para o arquivo routes/usuario.js
-                    serialServer: serialVar,
-                    soServer: soVar,
-                    fkPosto: fkPosto
-                })
-            }).then(function (resposta) {
-
-                console.log("resposta: ", resposta);
-
-                if (resposta.ok) {
-                    // cardErro.style.display = "block";
-
-                    alert("Totem adicionado com sucesso! Redirecionando para tela de configuração...");
-
-                    setTimeout(() => {
-                        location.reload();
-                    }, "1500")
-                } else {
-                    throw ("Houve um erro ao tentar adicionar");
-                }
-            }).catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-            });
-
+        if (serialVar == "" || soVar == "") {
+            alert("Preencha todos os campos. ");
             return false;
-        
+        }
+
+        // Enviando o valor da nova input
+        fetch("/medidas/cadastrarTotem", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                serialServer: serialVar,
+                soServer: soVar,
+                fkPosto: fkPosto
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                // cardErro.style.display = "block";
+
+                alert("Totem adicionado com sucesso! Redirecionando para tela de configuração...");
+
+                setTimeout(() => {
+                    location.reload();
+                }, "1500")
+            } else {
+                throw ("Houve um erro ao tentar adicionar");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        return false;
+
     }
 </script>

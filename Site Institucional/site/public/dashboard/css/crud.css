@@ -1,0 +1,35 @@
+.crud{
+    width: 800px;
+    margin-left: 200px;
+    padding-top: 200px;
+    font-size: 19px;
+    color: black;
+}
+
+.ipt{
+    margin-left: 100px;
+    padding-bottom: 20px;
+}
+
+.btn{
+    border: 2px black solid;
+    font-weight: bold;
+    color: black;
+    font-size: 20px;
+    margin-top: 20px;
+}
+
+.back{
+    padding-right: 40px;
+}
+
+select{
+    padding: 6px;
+    border-radius: 4px;
+    border: 2px black solid;
+    cursor: pointer;
+}
+
+input{
+    border-radius: 4px;
+}

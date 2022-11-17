@@ -67,7 +67,7 @@ fk_posto INT, FOREIGN KEY (fk_posto) REFERENCES posto(idPosto)
 -- (null, 'Rua Haddock Lobo', 595, 'São Paulo'),
 -- (null, 'Rua Jose', 555, 'São Paulo');
 
--- INSERT INTO posto VALUES
+INSERT INTO posto VALUES
 -- (null, 'Poupa Tempo São Caetano do Sul','Gustavo Carriel', 1),
 -- (null, 'Poupa Tempo Santo André','Maciel Victor', 2),
 -- (null, 'Poupa Tempo Lapa','Henrique Yuzo', 3);
