@@ -15,8 +15,20 @@ router.get("/dadosPosto/:idPosto", function (req, res) {
     medidaController.buscarDadosPostos(req, res);
 });
 
+router.get("/dadosTotem/:idTotem", function (req, res) {
+    medidaController.buscarDadosTotem(req, res);
+});
+
 router.post("/cadastrarTotem", function (req, res) {
     medidaController.cadastrarTotem(req, res);
+})
+
+router.post("/deletarTotem", function (req, res) {
+    medidaController.deletarTotem(req, res);
+})
+
+router.post("/editarTotem", function (req, res) {
+    medidaController.editarTotem(req, res);
 })
 
 

@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="css/config.css">
 </head>
 
-<body onload="obterDados(idPosto)">
+<body onload="obterDadosTotem(idTotem)">
     <div class="container">
         <div class="left">
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -88,29 +88,19 @@
             </ul>
         </div>
         <div class="right">
-            <div class="teste">
-                <details>
-                    <summary class="dropdown">Totem</summary>
-                    <a class="totemAdd" href="totemCreate.html">Adicionar totem</a>
-                    <table class="list" id="employeeList">
-                        <thead>
-                            <tr>
-                                <th id="totemId">ID</th>
-                                <th id="totemSerial">Nº de série</th>
-                                <th id="totemStatus">Sis. Operacional</th>
-                                <th id="totemSO">Data instalação</th>
-                                <th>Função</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                        </tbody>
-                    </table>
-                </details>
-                <details>
-                    <summary class="dropdown">Posto</summary>
-                    <span id="teste"></span>
-                </details>
+            <div>
+                <div>
+                    Nº de série
+                    <input id="iptSerial">
+                </div>
+                <div>
+                    Sistema Operacional
+                    <select name="" id="selectSO">
+                        <option value="Windows">Windows</option>
+                        <option value="Linux">Linux</option>
+                    </select>
+                </div>
+                <button onclick="editarTotem(idTotem)">Editar</button>
             </div>
         </div>
     </div>
@@ -130,17 +120,24 @@
 </html>
 
 <script>
-    var idPosto = sessionStorage.FK_USUARIO;
 
-    function obterDados(idPosto) {
-        fetch(`/medidas/dadosPosto/${idPosto}`, { cache: 'no-store' }).then(function (response) {
+    let idTotem = location.hash.split("#")[1];
+    function obterDadosTotem(idTotem) {
+        fetch(`/medidas/dadosTotem/${idTotem}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {
                 response.json().then(function (resposta) {
                     console.log('foi')
                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                     resposta.reverse();
 
-                    insertNewRecord(resposta);
+                    // var data = {
+                    //     totemId: resposta[idTotem].totemId,
+                    //     totemSerial: resposta[idTotem].totemSerial,
+                    //     totemSO: resposta[idTotem].totemSO,
+                    //     totemData: resposta[idTotem].totemData
+                    // }
+                    mostrarDados(resposta);
+
                 });
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
@@ -150,36 +147,22 @@
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
     }
-
-    function insertNewRecord(resposta) {
-        for (i = 0; i <= resposta.length; i++) {
-            var table = document.getElementById("employeeList").getElementsByTagName('tbody')[0];
-            var newRow = table.insertRow(table.length);
-            var data = {
-                totemId: resposta[i].totemId,
-                totemSerial: resposta[i].totemSerial,
-                totemSO: resposta[i].totemSO,
-                totemData: resposta[i].totemData
-            }
-            var cell1 = newRow.insertCell(0);
-            cell1.innerHTML = data.totemId;
-            var cell2 = newRow.insertCell(1);
-            cell2.innerHTML = data.totemSerial;
-            var cell3 = newRow.insertCell(2);
-            cell3.innerHTML = data.totemSO;
-            var cell4 = newRow.insertCell(3);
-            cell4.innerHTML = data.totemData;
-            var cell5 = newRow.insertCell(4);
-            cell5.innerHTML = `<a class="btnDelete" onclick="editarTotem(${data.totemId})">Editar</a> <a class="btnDelete" onclick="deletarTotem(${data.totemId})">Deletar</a>`;
-        }
+    function mostrarDados(resposta){
+        console.log(resposta[0].totemSerial);
+        iptSerial.value = resposta[0].totemSerial;
+        selectSO.value = resposta[0].totemSO;
     }
-</script>
+    function editarTotem(idTotem) {
+            var serialVar = iptSerial.value;
+            var soVar = selectSO.value;
 
-<script>
-    function deletarTotem(idTotem) {
-        if(confirm("Tem certeza?")){
+            if (serialVar == "" || soVar == "") {
+                alert("Preencha todos os campos. ");
+                return false;
+            }
+
             // Enviando o valor da nova input
-            fetch("/medidas/deletarTotem", {
+            fetch("/medidas/editarTotem", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -187,7 +170,9 @@
                 body: JSON.stringify({
                     // crie um atributo que recebe o valor recuperado aqui
                     // Agora vá para o arquivo routes/usuario.js
-                    idTotemServer: idTotem
+                    serialServer: serialVar,
+                    soServer: soVar,
+                    idTotem: idTotem
                 })
             }).then(function (resposta) {
 
@@ -196,13 +181,12 @@
                 if (resposta.ok) {
                     // cardErro.style.display = "block";
 
-                    alert("Totem deletado com sucesso!...");
-
+                    alert("Totem editado com sucesso! Redirecionando para tela de configuração...");
                     setTimeout(() => {
-                        location.reload();
-                    }, "500")
+                        window.Location("configuracao.html");
+                    }, "1000")
                 } else {
-                    throw ("Houve um erro ao tentar deletars");
+                    throw ("Houve um erro ao tentar adicionar");
                 }
             }).catch(function (resposta) {
                 console.log(`#ERRO: ${resposta}`);
@@ -211,11 +195,4 @@
             return false;
         
     }
-}
-
-function editarTotem(idTotem){
-    console.log(idTotem);
-    location.assign("totemEdit.html#" + idTotem);
-}
-
 </script>

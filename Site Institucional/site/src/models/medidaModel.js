@@ -70,9 +70,9 @@ function buscarDadosPostos(idPosto) {
         instrucaoSql = `SELECT 
                             idTotem 'totemId',
                             serie 'totemSerial',
-                            estado 'totemStatus',
                             sistema_operacional 'totemSO',
-                            fk_posto 'fkPosto'
+                            fk_posto 'fkPosto',
+                            DATE_FORMAT(dtInstalacao, "%d/%m/%Y") 'totemData'
                         FROM
                             totem 
                         WHERE 
@@ -82,14 +82,48 @@ function buscarDadosPostos(idPosto) {
         instrucaoSql = `SELECT 
                             idTotem 'totemId',
                             serie 'totemSerial',
-                            estado 'totemStatus',
                             sistema_operacional 'totemSO',
-                            fk_posto 'fkPosto'
+                            fk_posto 'fkPosto',
+                            DATE_FORMAT(dtInstalacao, "%d/%m/%Y") 'totemData'
                         FROM
                             totem 
                         WHERE 
                             fk_posto = ${idPosto}
                         ORDER BY idTotem DESC;`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarDadosTotem(idTotem) {
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `SELECT 
+                            idTotem 'totemId',
+                            serie 'totemSerial',
+                            sistema_operacional 'totemSO',
+                            fk_posto 'fkPosto',
+                            DATE_FORMAT(dtInstalacao, "%d/%m/%Y") 'totemData'
+                        FROM
+                            totem 
+                        WHERE 
+                            idTotem = ${idTotem};`;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `SELECT 
+                            idTotem 'totemId',
+                            serie 'totemSerial',
+                            sistema_operacional 'totemSO',
+                            fk_posto 'fkPosto',
+                            DATE_FORMAT(dtInstalacao, "%d/%m/%Y") 'totemData'
+                        FROM
+                            totem 
+                        WHERE 
+                            idTotem = ${idTotem}`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -111,9 +145,36 @@ function cadastrarTotem(serial, so, fkPosto) {
     return database.executar(instrucao);
 }
 
+function deletarTotem(idTotem) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", idTotem);
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao = `
+        DELETE FROM totem WHERE idTotem = '${idTotem}';
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
+function editarTotem(serial, so, idTotem) {
+    console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", serial, so, idTotem);
+    
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
+    var instrucao = `
+        UPDATE totem SET serie = '${serial}', sistema_operacional = '${so}' WHERE idTotem = ${idTotem};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
     buscarDadosPostos,
-    cadastrarTotem
+    buscarDadosTotem,
+    cadastrarTotem,
+    deletarTotem,
+    editarTotem
 }

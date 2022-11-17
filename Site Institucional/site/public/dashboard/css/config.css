@@ -51,3 +51,7 @@ tr:nth-child(even), table.list thead>tr{
     font-size: 20px;
 }
 
+.btnDelete{
+    cursor: pointer;
+}
+
