@@ -13,6 +13,8 @@ var usuarioRouter = require("./src/routes/usuarios");
 var avisosRouter = require("./src/routes/avisos");
 var medidasRouter = require("./src/routes/medidas");
 var ramRouter = require("./src/routes/ram");
+var discoRouter = require("./src/routes/disco");
+
 
 
 app.use(express.json());
@@ -24,8 +26,10 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/avisos", avisosRouter);
-app.use("/medidas", medidasRouter)
-app.use("/ram", ramRouter)
+app.use("/medidas", medidasRouter);
+app.use("/ram", ramRouter);
+app.use("/disco", discoRouter);
+
 
 
 app.listen(PORTA, function () {
