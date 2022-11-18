@@ -1,6 +1,6 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidas(id_dado_ram , limite_linhas) {
+function buscarUltimasMedidasRam(id_dado_ram , limite_linhas) {
 
     instrucaoSqlRam = ''
 
@@ -32,7 +32,7 @@ function buscarUltimasMedidas(id_dado_ram , limite_linhas) {
     return database.executar(instrucaoSqlRam);
 }
 
-function buscarMedidasEmTempoReal() {
+function buscarMedidasEmTempoRealRam(id_dado_ram) {
 
     instrucaoSqlRam = ''
 
@@ -64,6 +64,6 @@ function buscarMedidasEmTempoReal() {
 
 
 module.exports = {
-    buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    buscarUltimasMedidasRam,
+    buscarMedidasEmTempoRealRam
 }

@@ -43,7 +43,7 @@ public class Logado extends javax.swing.JFrame {
                 
                 //Pegando os dados da CPU = Processador exibindo e guardando no banco de dados
                 Double dadoCpu = cpu.getUso();
-                String insert = "INSERT INTO dado_cpu (uso_cpu, status_coleta, fk_totem, fk_posto)VALUES (?, 1, 1, 1);";
+                String insert = "INSERT INTO dado_cpu (uso_cpu, status_coleta, fk_totem, fk_posto)VALUES (?, 1, 7, 4);";
                 banco.update(insert, dadoCpu);
                 System.out.println(String.format("Inserindo dado CPU: %.1f", dadoCpu));
                 lblDadoCpu.setText(String.format("%.1f %s", dadoCpu, "%"));
@@ -53,62 +53,62 @@ public class Logado extends javax.swing.JFrame {
                 //e guardando no banco de dados
                 //Os dados da memoria chegam em "LONG", porem temos que converter
                 //para double e fazer a conta para calcular a porcentagem de uso
-                Long dadoMemoriaRam = mem.getEmUso();
-                Long dadoTotalMemoriaRam = mem.getTotal();
+//                Long dadoMemoriaRam = mem.getEmUso();
+//                Long dadoTotalMemoriaRam = mem.getTotal();
                 
                 //Convertendo os dados para "String" para ficar mais faceis de transformar em double
-                String dadoRamString = Conversor02.formatarBytes(dadoMemoriaRam);
-                String dadoTotalRamString = Conversor02.formatarBytes(dadoTotalMemoriaRam);
-                
-                lblProcessadorNome.setText(cpu.getNome());
-                lblRamNome.setText(String.format("%s", dadoTotalRamString));
-                lblSistemaNome.setText(sistema.getSistemaOperacional());
-                lblTipoSistemaNome.setText(sistema.getArquitetura() + "bits");
+//                String dadoRamString = Conversor02.formatarBytes(dadoMemoriaRam);;;;;;;;
+//                String dadoTotalRamString = Conversor02.formatarBytes(dadoTotalMemoriaRam);
+//                
+//                lblProcessadorNome.setText(cpu.getNome());
+//                lblRamNome.setText(String.format("%s", dadoTotalRamString));
+//                lblSistemaNome.setText(sistema.getSistemaOperacional());
+//                lblTipoSistemaNome.setText(sistema.getArquitetura() + "bits");
                 
                 //Tranformando os dados de "String" para "Double"
-                Double dadoRamDouble = Double.valueOf(dadoRamString);
-                Double dadoTotalRamlDouble = Double.valueOf(dadoTotalRamString);
+//                Double dadoRamDouble = Double.valueOf(dadoRamString);
+//                Double dadoTotalRamlDouble = Double.valueOf(dadoTotalRamString);
                 
                 // Realizando a conta para calcular a porcentagem de uso
-                Double totalRam = (dadoRamDouble * 100) / dadoTotalRamlDouble;
+//                Double totalRam = (dadoRamDouble * 100) / dadoTotalRamlDouble;
                 
                 //Inserindo os dados no banco
-                String insertRam = "INSERT INTO dado_ram (uso_ram, status_coleta, fk_totem, fk_posto)VALUES (?, 1, 1, 1);";
-                banco.update(insertRam, totalRam);
-                
-                //Exibindo os dados
-                System.out.println(String.format("Inserindo dado da Memória RAM: %.1f", totalRam));
-//                    System.out.println(String.format("%s", dadoRamString));
-                lblDadoRam.setText(String.format("%.1f %s", totalRam, "%"));
+//                String insertRam = "INSERT INTO dado_ram (uso_ram, status_coleta, fk_totem, fk_posto)VALUES (?, 1, 1, 1);";
+//                banco.update(insertRam, totalRam);
+//                
+//                //Exibindo os dados
+//                System.out.println(String.format("Inserindo dado da Memória RAM: %.1f", totalRam));
+////                    System.out.println(String.format("%s", dadoRamString));
+//                lblDadoRam.setText(String.format("%.1f %s", totalRam, "%"));
 //                lblDadoRam.setText(String.format("%s", dadoRamString));
                 
                 //Pegando os dados do DISCO = Disco transformando, exibindo e guardando no banco de dados
-                List<Disco> discos = discoGrupo.getDiscos();
-                for (Disco disco : discos) {
-//                    System.out.println("Tamanho do disco: " + Conversor.formatarBytes(disco.getTamanho()));
-//                    System.out.println(Conversor.formatarBytes(disco.getBytesDeLeitura()));
-//                    System.out.println(Conversor.formatarBytes(disco.getLeituras()));
-//                    System.out.println(Conversor.formatarBytes(disco.getBytesDeEscritas()));
-//                    System.out.println(Conversor.formatarBytes(disco.getEscritas()));
-                    
-                    
-                    String dadoDiscoTotalString = convert.formatarBytes(disco.getTamanho());
-                    String dadoDiscoEcritaString = convert.formatarBytes(disco.getBytesDeEscritas());
-                    String dadoDiscoLeituraString = convert.formatarBytes(disco.getBytesDeLeitura());
-                    
-                    Double dadoDiscoTotalDouble = Double.parseDouble(dadoDiscoTotalString.substring(0, 3));
-                    Double dadoDiscoEcritaDouble = Double.parseDouble(dadoDiscoEcritaString.substring(0, 1));
-                    Double dadoDiscoLeituraDouble = Double.parseDouble(dadoDiscoLeituraString.substring(0, 1));
-                    
-                    Double totalUso = dadoDiscoEcritaDouble + dadoDiscoLeituraDouble;
-                    Double totalDisco = (totalUso * 100) / dadoDiscoTotalDouble;
-                    
-                    System.out.println(String.format("Inserindo dado do Disco: %.1f", totalDisco));
-                    lblDadoDisco.setText(String.format("%.1f %s", totalDisco, "%"));
-                    String insertDisco = "INSERT INTO dado_disco (uso_disco, status_coleta, fk_totem, fk_posto)VALUES (?, 1, 1, 1);";
-                    banco.update(insertDisco, totalDisco);
-
-                }
+//                List<Disco> discos = discoGrupo.getDiscos();
+//                for (Disco disco : discos) {
+////                    System.out.println("Tamanho do disco: " + Conversor.formatarBytes(disco.getTamanho()));
+////                    System.out.println(Conversor.formatarBytes(disco.getBytesDeLeitura()));
+////                    System.out.println(Conversor.formatarBytes(disco.getLeituras()));
+////                    System.out.println(Conversor.formatarBytes(disco.getBytesDeEscritas()));
+////                    System.out.println(Conversor.formatarBytes(disco.getEscritas()));
+//                    
+//                    
+//                    String dadoDiscoTotalString = convert.formatarBytes(disco.getTamanho());
+//                    String dadoDiscoEcritaString = convert.formatarBytes(disco.getBytesDeEscritas());
+//                    String dadoDiscoLeituraString = convert.formatarBytes(disco.getBytesDeLeitura());
+//                    
+//                    Double dadoDiscoTotalDouble = Double.parseDouble(dadoDiscoTotalString.substring(0, 3));
+//                    Double dadoDiscoEcritaDouble = Double.parseDouble(dadoDiscoEcritaString.substring(0, 1));
+//                    Double dadoDiscoLeituraDouble = Double.parseDouble(dadoDiscoLeituraString.substring(0, 1));
+//                    
+//                    Double totalUso = dadoDiscoEcritaDouble + dadoDiscoLeituraDouble;
+//                    Double totalDisco = (totalUso * 100) / dadoDiscoTotalDouble;
+//                    
+//                    System.out.println(String.format("Inserindo dado do Disco: %.1f", totalDisco));
+//                    lblDadoDisco.setText(String.format("%.1f %s", totalDisco, "%"));
+//                    String insertDisco = "INSERT INTO dado_disco (uso_disco, status_coleta, fk_totem, fk_posto)VALUES (?, 1, 1, 1);";
+//                    banco.update(insertDisco, totalDisco);
+//
+//                }
                 
             }
         }, 0, 2000);

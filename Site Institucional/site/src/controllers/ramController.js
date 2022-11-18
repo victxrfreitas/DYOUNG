@@ -1,6 +1,6 @@
 var ramModel = require("../models/ramModel");
 
-function buscarUltimasMedidas(req, res) {
+function buscarUltimasMedidasRam(req, res) {
 
     const limite_linhas = 7;
 
@@ -8,7 +8,7 @@ function buscarUltimasMedidas(req, res) {
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    ramModel.buscarUltimasMedidas(id_dado_ram, limite_linhas).then(function (resultado) {
+    ramModel.buscarUltimasMedidasRam(id_dado_ram, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -22,13 +22,13 @@ function buscarUltimasMedidas(req, res) {
 }
 
 
-function buscarMedidasEmTempoReal(req, res) {
+function buscarMedidasEmTempoRealRam(req, res) {
 
     var id_dado_ram = req.params.id_dado_ram;
     console.log("sdsdd"+id_dado_ram);
     console.log(`Recuperando medidas em tempo real`);
 
-    ramModel.buscarMedidasEmTempoReal(id_dado_ram).then(function (resultado) {
+    ramModel.buscarMedidasEmTempoRealRam(id_dado_ram).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -42,7 +42,7 @@ function buscarMedidasEmTempoReal(req, res) {
 }
 
 module.exports = {
-    buscarUltimasMedidas,
-    buscarMedidasEmTempoReal
+    buscarUltimasMedidasRam,
+    buscarMedidasEmTempoRealRam
 
 }

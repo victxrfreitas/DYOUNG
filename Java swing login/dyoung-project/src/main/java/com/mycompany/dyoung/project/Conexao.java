@@ -15,19 +15,19 @@ public class Conexao {
 
 //        dataSource​.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
-//        dataSource​.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        dataSource​.setDriverClassName("com.mysql.cj.jdbc.Driver");
 
-//        dataSource​.setUrl("jdbc:mysql://localhost:3306/dyoung");
+        dataSource​.setUrl("jdbc:mysql://localhost:3306/dyoung");
 
 //        dataSource​.setUrl("jdbc:sqlserver://dyoung-bd.database.windows.net:1433;database=dyoung-bd;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;");
 
 //        dataSource​.setUsername("admin-dyoung");
-
+//
 //        dataSource​.setPassword("#Gfgrupo6");
         
-//        dataSource​.setUsername("root");
+        dataSource​.setUsername("root");
 
-//        dataSource​.setPassword("@Gustavo08");
+        dataSource​.setPassword("#Gf49306955898");
 
 
 
@@ -35,13 +35,13 @@ public class Conexao {
 
 
         
-        dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-
-        dataSource.setUrl("jdbc:sqlserver://dyoung-project.database.windows.net:1433;database=dyoung-project;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;");
-
-        dataSource.setUsername("admin-dyoung");
-
-        dataSource.setPassword("#Gfgrupo6");
+//        dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");;
+//
+//        dataSource.setUrl("jdbc:sqlserver://dyoung-project.database.windows.net:1433;database=dyoung-project;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;");
+//
+//        dataSource.setUsername("admin-dyoung");
+//
+//        dataSource.setPassword("#Gfgrupo6");
 
 //dataSource.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 //
