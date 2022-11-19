@@ -32,7 +32,7 @@ function buscarUltimasMedidas(id_dado_cpu , limite_linhas) {
     return database.executar(instrucaoSql);
 }
 
-function buscarMedidasEmTempoReal() {
+function buscarMedidasEmTempoReal(id_dado_cpu) {
 
     instrucaoSql = ''
 

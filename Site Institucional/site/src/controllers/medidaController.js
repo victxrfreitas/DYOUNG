@@ -7,6 +7,7 @@ function buscarUltimasMedidas(req, res) {
     var id_dado_cpu = req.params.id_dado_cpu;
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
+    console.log(`############## ${id_dado_cpu}`);
 
     medidaModel.buscarUltimasMedidas(id_dado_cpu, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
