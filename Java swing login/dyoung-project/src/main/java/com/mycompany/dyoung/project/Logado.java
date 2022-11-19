@@ -45,7 +45,7 @@ public class Logado extends javax.swing.JFrame {
                 //Pegando os dados da CPU = Processador exibindo e guardando no banco de dados
                 Double dadoCpu = cpu.getUso();
                 
-                String insert = "INSERT INTO dado_cpu (uso_cpu, status_coleta, fk_totem, fk_posto)VALUES (?, 1, ?, 1);";
+                String insert = "INSERT INTO dado_cpu (uso_cpu, status_coleta, fk_totem, fk_posto)VALUES (?, 1, ?, 4);";
                 banco.update(insert, dadoCpu, totem.getIdTotem());
                 System.out.println(String.format("Inserindo dado CPU: %.1f ---- %d", dadoCpu, totem.getIdTotem()));
 
@@ -63,7 +63,7 @@ public class Logado extends javax.swing.JFrame {
                 Long dadoTotalMemoriaRam = mem.getTotal();
                 
                 //Convertendo os dados para "String" para ficar mais faceis de transformar em double
-                String dadoRamString = Conversor02.formatarBytes(dadoMemoriaRam);;;;;;;;
+                String dadoRamString = Conversor02.formatarBytes(dadoMemoriaRam);
                 String dadoTotalRamString = Conversor02.formatarBytes(dadoTotalMemoriaRam);
                
                lblProcessadorNome.setText(cpu.getNome());
