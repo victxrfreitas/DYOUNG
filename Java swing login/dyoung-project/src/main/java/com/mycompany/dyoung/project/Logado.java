@@ -33,6 +33,7 @@ public class Logado extends javax.swing.JFrame {
         DiscoGrupo discoGrupo = new DiscoGrupo();
 //        DiscosGroup discoGrupo = new DiscosGroup();
         Sistema sistema = new Sistema();
+        Totem totem = new Totem();
         
 
         
@@ -43,9 +44,9 @@ public class Logado extends javax.swing.JFrame {
                 
                 //Pegando os dados da CPU = Processador exibindo e guardando no banco de dados
                 Double dadoCpu = cpu.getUso();
-                String insert = "INSERT INTO dado_cpu (uso_cpu, status_coleta, fk_totem, fk_posto)VALUES (?, 1, 1, 1);";
-                banco.update(insert, dadoCpu);
-                System.out.println(String.format("Inserindo dado CPU: %.1f", dadoCpu));
+                String insert = "INSERT INTO dado_cpu (uso_cpu, status_coleta, fk_totem, fk_posto)VALUES (?, 1, ?, 1);";
+                banco.update(insert, dadoCpu, totem.getIdTotem());
+                System.out.println(String.format("Inserindo dado CPU: %.1f ---- %d", dadoCpu, totem.getIdTotem()));
                 lblDadoCpu.setText(String.format("%.1f %s", dadoCpu, "%"));
                 
                 

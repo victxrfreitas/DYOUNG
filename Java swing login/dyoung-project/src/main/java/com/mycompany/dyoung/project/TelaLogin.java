@@ -186,11 +186,14 @@ public class TelaLogin extends javax.swing.JFrame {
         String usuario = txtEmail.getText();
         String senha = txtSenha.getText();
         
-        List<Usuario> buscarFuncionario = banco.query("SELECT * FROM cadastro_funcionario", 
-                new BeanPropertyRowMapper<>(Usuario.class));
+        List<Totem> buscarFuncionario = banco.query("SELECT * FROM totem", 
+                new BeanPropertyRowMapper<>(Totem.class));
         
-        for(Usuario busca: buscarFuncionario){
-            if(busca.getEmail().equals(usuario) && busca.getSenha().equals(senha)){
+        for(Totem busca: buscarFuncionario){
+            System.out.println(busca.getLoginTotem());
+            System.out.println("=======");
+            System.out.println(busca.getSenhaTotem());
+            if(busca.getLoginTotem().equals(usuario) && busca.getSenhaTotem().equals(senha)){
                 tela.setVisible(true);
             } else {
                 String resultado = "Usuario ou Senha incorretos!!";
