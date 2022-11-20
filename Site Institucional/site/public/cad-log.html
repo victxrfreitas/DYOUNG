@@ -29,7 +29,15 @@
 			<span>or use your email for registration</span> -->
 				<input type="text" placeholder="Nome" id="ipt_nome_cadastro" />
 				<input type="number" placeholder="CPF" id="ipt_cpf_cadastro" />
-				<input type="text" placeholder="Cargo" id="ipt_cargo_cadastro" />
+				<select id="ipt_cargo_cadastro"placeholder="Cargo">
+					<option value="cargo">Cargo</option>
+					<option value="gerente">Gerente</option>
+					<option value="tecnico">Técnico de TI</option>
+					
+
+					
+				</select>
+				<!-- <input type="text" placeholder="Cargo" id="ipt_cargo_cadastro"/> -->
 				<input type="email" placeholder="E-mail" id="ipt_email_cadastro" />
 				<input type="password" placeholder="Senha" id="ipt_senha_cadastro" />
 				<input type="password" placeholder="Confirmar senha" id="ipt_ConfSenha_cadastro" />
@@ -190,6 +198,8 @@
 					sessionStorage.EMAIL_USUARIO = json.email;
 					sessionStorage.NOME_USUARIO = json.nomeFuncionario;
 					sessionStorage.FK_USUARIO = json.fk_posto;
+					
+
 
 					setTimeout(function () {
 						window.location = "./dashboard/index.html";

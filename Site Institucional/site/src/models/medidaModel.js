@@ -66,6 +66,8 @@ function buscarDadosPostos(idPosto) {
 
     instrucaoSql = ''
 
+  
+
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `SELECT 
                             idTotem 'totemId',
