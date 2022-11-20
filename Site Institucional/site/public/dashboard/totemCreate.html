@@ -86,44 +86,32 @@
                 </div>
             </ul>
         </div>
-        <div class="modal-container">
-            <div class="modal">
-              <form>
-                <label for="m-nome">Nome</label>
-                <input id="m-nome" type="text" required />
         
-                <label for="m-funcao">Função</label>
-                <input id="m-funcao" type="text" required />
-        
-                <label for="m-salario">Salário</label>
-                <input id="m-salario" type="number" required />
-                <button id="btnSalvar">Salvar</button>
-              </form>
-            </div>
-          </div>
-      
-        </div>
         <div class="right">
-            <div class="crud">
-                <a class="back" href="configuracao.html">Voltar</a>
-                <div class="ipt">
-                    <div>
-                        Nº de série
-                        <input id="iptSerial" type="text">
-                    </div>
-                    <br>
-                    <div>
-                        Sistema Operacional:
-                        <select name="" id="selectSO">
-                            <option value="Windows">Windows</option>
-                            <option value="Linux">Linux</option>
-                        </select>
-                    </div>
-                    <button class="btn" onclick="adicionarTotem()">Adicionar</button>
-                </div>
-            </div>
-        </div>
-    </div>
+            <div class="botaoVoltar">
+             <a class="back" href="configuracao.html">Voltar</a>
+         </div>
+
+         <div class="crud">
+
+             <div class="ipt">
+                 <div>
+
+                     <input id="iptSerial" type="text" placeholder="Nº de série">
+                 </div>
+                 <br>
+                 <div class="label">
+                     Sistema Operacional:
+                     <select name="" id="selectSO">
+                         <option value="Windows">Windows</option>
+                         <option value="Linux">Linux</option>
+                     </select>
+                 </div>
+                 <button class="btn" onclick="adicionarTotem()">Adicionar</button>
+             </div>
+         </div>
+     </div>
+ </div>
 
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

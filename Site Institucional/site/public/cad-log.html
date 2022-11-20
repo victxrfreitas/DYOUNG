@@ -29,8 +29,8 @@
 			<span>or use your email for registration</span> -->
 				<input type="text" placeholder="Nome" id="ipt_nome_cadastro" />
 				<input type="number" placeholder="CPF" id="ipt_cpf_cadastro" />
-				<select id="ipt_cargo_cadastro"placeholder="Cargo">
-					<option value="cargo">Cargo</option>
+				<select type="text" id="ipt_cargo_cadastro"placeholder="Cargo">
+					<option>Cargo</option>
 					<option value="gerente">Gerente</option>
 					<option value="tecnico">Técnico de TI</option>
 					
@@ -76,7 +76,17 @@
 			</div>
 		</div>
 	</div>
+
+	<br>
+    <div class="alerta_erro">
+        <div class="card_erro" id="cardErro">
+            <span id="mensagem_erro"></span>
+        </div>
+    </div>
+
 	<script src="./js/cad-log.js"></script>
+
+
 </body>
 
 </html>
@@ -96,12 +106,12 @@
 
 		if (nomeVar == "" || cpfVar == "" || cargoVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
 			// cardErro.style.display = "block"
-			alert("Preencha todos os campos. ");
+			mensagem_erro.innerHTML = "Preencha todos os campos. ";
 
 			// finalizarAguardar();
 			return false;
 		} else if (senhaVar != confirmacaoSenhaVar) {
-			alert("As senhas não são iguais.");
+			mensagem_erro.innerHTML = "As senhas não são iguais.";
 			return false;
 		}
 		// else {
@@ -161,6 +171,7 @@
 
 		var emailVar = ipt_email_login.value;
 		var senhaVar = ipt_senha_login.value;
+		// var cargoVar = ipt_cargo_cadastro.value;
 
 		if (emailVar == "" || senhaVar == "") {
 			cardErro.style.display = "block"
@@ -174,6 +185,7 @@
 
 		console.log("FORM LOGIN: ", emailVar);
 		console.log("FORM SENHA: ", senhaVar);
+		// console.log("FORM CARGO: ", cargoVar);
 
 		fetch("/usuarios/autenticar", {
 			method: "POST",
@@ -182,7 +194,8 @@
 			},
 			body: JSON.stringify({
 				emailServer: emailVar,
-				senhaServer: senhaVar
+				senhaServer: senhaVar,
+				// cargoServer: cargoVar,
 			})
 		}).then(function (resposta) {
 			console.log("ESTOU NO THEN DO entrar()!")
@@ -197,13 +210,22 @@
 					sessionStorage.ID_USUARIO = json.idFuncionario;
 					sessionStorage.EMAIL_USUARIO = json.email;
 					sessionStorage.NOME_USUARIO = json.nomeFuncionario;
+					// sessionStorage.CARGO_USUARIO = json.cargo;
 					sessionStorage.FK_USUARIO = json.fk_posto;
 					
+					console.log(json.cargo);
 
+					if(json.cargo == "gerente"){
+                            setTimeout(function () {
+                        window.location = "./dashboard/index.html";
+                       }, 1000); // apenas para exibir o loading
 
-					setTimeout(function () {
-						window.location = "./dashboard/index.html";
-					}, 1000); // apenas para exibir o loading
+                        }
+                        else if(json.cargo == "tecnico"){
+                            setTimeout(function () {
+                        window.location = "./dashboard/dash_resp_ti.html";
+                       }, 1000); // apenas para exibir o loading
+                        }
 
 				});
 

@@ -1,21 +1,28 @@
 .crud{
-    width: 800px;
-    margin-left: 200px;
-    padding-top: 200px;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 400px;
+
+    margin-left: -50px;
+    padding-top: 40px;
     font-size: 19px;
-    color: black;
+    color:rgb(80,80,80);
+
 }
 
 .ipt{
     margin-left: 100px;
     padding-bottom: 20px;
+
+
 }
 
 .btn{
-    border: 2px black solid;
+    border: 1.5px #00568f solid;
     font-weight: bold;
-    color: black;
-    font-size: 20px;
+    color: #00568f;
+    font-size: 16px;
     margin-top: 20px;
 }
 
@@ -24,12 +31,82 @@
 }
 
 select{
-    padding: 6px;
+    padding: 4px;
     border-radius: 4px;
-    border: 2px black solid;
+    border: 1.5px #00568f solid;
     cursor: pointer;
+    font-size: 13px;
 }
 
 input{
-    border-radius: 4px;
+ 
+    width: 100%;
+    padding: 5px;
+    border: 0;
+    border-bottom: 2px solid rgb(200,200,200);
+    outline: 0;
+    font-size: 16px;
+    color: #00568f;
+    transition: 0.5s ease-in-out;
+}
+.right{
+    margin-top: 5%;
+    margin-left: 20%;
+    background-color: #fff;
+    width: 50%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3%;
+    box-shadow: 0 0.15rem 1.75rem 0 rgb(58 59 69 / 15%) !important;
+}
+
+
+
+
+
+
+.single-input{
+    position: relative;
+    margin: 30px 0;
+}
+.single-input label{
+    position: absolute;
+    bottom: 5px;
+    left: 0;
+    color: rgb(150,150,150);
+    cursor: text;
+    transition: 0.5s ease-in-out;
+}
+
+.input{
+    width: 100%;
+    padding: 5px;
+    border: 0;
+    border-bottom: 2px solid rgb(200,200,200);
+    outline: 0;
+    font-size: 16px;
+    color: rgb(80,80,80);
+    transition: 0.5s ease-in-out;
+}
+
+.input:focus,
+.input:valid{
+    border-bottom: 2px solid cornflowerblue;
+}
+.input:focus ~ label,
+.input:valid ~ label{
+    transform: translateY(-24px);
+    font-size: 12px;
+    color: cornflowerblue;
+}
+.botaoVoltar{
+    margin-top: -300px;
+    margin-left: 30px;
+}
+
+.label{
+    font-size: 16px;
+
 }
