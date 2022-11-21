@@ -1,6 +1,0 @@
-Fazendo um log simples
-Usuario: Joãozinho Fez uma alteração neste hora: Thursday, November 10, 2022
-LOG - D'Young
-Usuario: PoupaTempo Pinheiros, Máquina 02 Fez uma alteração neste hora: Thursday, November 10, 2022
-LOG - D'Young
-Usuario: PoupaTempo Pinheiros, Máquina 02 Fez uma alteração neste hora: Thursday, November 10, 2022

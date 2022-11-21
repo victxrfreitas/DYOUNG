@@ -4,43 +4,37 @@
  */
 package com.mycompany.dyoung.project;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.FormatStyle;
-
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Scanner;
+import java.io.FileWriter;
 /**
  *
  * @author XY379RX
  */
 public class Log2 {
-//    DaoLogin login = new DaoLogin();
-// String user = login.usuario;
-// String data = LocalDateTime.now().format(DateTimeFormatter.BASIC_ISO_DATE.ofLocalizedDate(FormatStyle.FULL));
-//
-//    // Método Salvar    
-//     public void Salvar (BeansUsuario beansus){
-//         conex.conectar();
-//    try {
-//        PreparedStatement pst = conex.con.prepareStatement
-//            ("insert into usuario(nome, usuario, senha)"
-//                    + " values(?,?,?)");
-//            pst.setString(1, beansus.getNome());
-//            pst.setString(2, beansus.getUsuario());
-//            pst.setString(3, beansus.getSenha());
-//            pst.execute();
-//            //
-//        PreparedStatement pst2 = conex.con.prepareStatement
-//            ("insert into atividades(usuario, acao, campo, data)"
-//                    + " values(?,?,?,?)"); 
-//            pst2.setString(1, user);
-//            pst2.setString(2, "Salvou o novo Usuario:");
-//            pst2.setString(3, beansus.getNome());
-//            pst2.setString(4, data);
-//            pst2.execute();
-//            JOptionPane.showMessageDialog(null, "Dados inseridos com Sucesso");
-//    } catch (SQLException ex) {
-//        JOptionPane.showMessageDialog(null, "Erro ao inserir Dados.\n Erro:"+ex);
-//    }
-//     conex.desconetar();
-// }
+
+
+  public static void main(String[] args) throws IOException {
+    Scanner ler = new Scanner(System.in);
+    int i, n;
+
+    System.out.printf("Informe o número para a tabuada:\n");
+    n = ler.nextInt();
+
+    FileWriter arq = new FileWriter("LOG.txt");
+    PrintWriter gravarArq = new PrintWriter(arq);
+
+    gravarArq.printf("+--Resultado--+%n");
+    for (i=1; i<=10; i++) {
+      gravarArq.printf("| %2d X %d = %2d |%n", i, n, (i*n));
+    }
+    gravarArq.printf("+-------------+%n");
+
+    arq.close();
+
+    System.out.printf("\nTabuada do %d foi gravada com sucesso em \"d:\\tabuada.txt\".\n", n);
+  }
+
 }
+
