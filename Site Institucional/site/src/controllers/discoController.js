@@ -2,13 +2,13 @@ var medidaModel = require("../models/discoModel");
 
 function buscarUltimasMedidas(req, res) {
 
-    const limite_linhas = 7;
+    const limite_linhas = 1;
 
-    var id_dado_disco = req.params.id_dado_disco;
+    var idTotem = req.params.idTotem;
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    medidaModel.buscarUltimasMedidas(id_dado_disco, limite_linhas).then(function (resultado) {
+    medidaModel.buscarUltimasMedidas(idTotem, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -24,11 +24,11 @@ function buscarUltimasMedidas(req, res) {
 
 function buscarMedidasEmTempoReal(req, res) {
 
-    var id_dado_disco = req.params.id_dado_disco;
-    console.log("sdsdd"+id_dado_disco);
+    var idTotem = req.params.idTotem;
+    console.log("sdsdd"+idTotem);
     console.log(`Recuperando medidas em tempo real`);
 
-    medidaModel.buscarMedidasEmTempoReal(id_dado_disco).then(function (resultado) {
+    medidaModel.buscarMedidasEmTempoReal(idTotem).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
