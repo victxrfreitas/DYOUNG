@@ -38,6 +38,7 @@ public class Logado extends javax.swing.JFrame {
 
         
         new Timer().scheduleAtFixedRate(new TimerTask(){
+            @Override
             public void run(){
                 
                 
@@ -84,9 +85,9 @@ public class Logado extends javax.swing.JFrame {
 //                
 //                //Exibindo os dados
                System.out.println(String.format("Inserindo dado da Memória RAM: %.1f", totalRam));
-                    System.out.println(String.format("%s", dadoRamString));
+//                    System.out.println(String.format("%s", dadoRamString));
               lblDadoRam.setText(String.format("%.1f %s", totalRam, "%"));
-             lblDadoRam.setText(String.format("%s", dadoRamString));
+//             lblDadoRam.setText(String.format("%s", dadoRamString));
                 
                 //Pegando os dados do DISCO = Disco transformando, exibindo e guardando no banco de dados
                 List<Disco> discos = discoGrupo.getDiscos();
@@ -98,13 +99,13 @@ public class Logado extends javax.swing.JFrame {
 //                    System.out.println(Conversor.formatarBytes(disco.getEscritas()));
                     
                     
-                    String dadoDiscoTotalString = convert.formatarBytes(disco.getTamanho());
-                    String dadoDiscoEcritaString = convert.formatarBytes(disco.getBytesDeEscritas());
-                    String dadoDiscoLeituraString = convert.formatarBytes(disco.getBytesDeLeitura());
+                    String dadoDiscoTotalString = Conversor.formatarBytes(disco.getTamanho());
+                    String dadoDiscoEcritaString = Conversor.formatarBytes(disco.getBytesDeEscritas());
+                    String dadoDiscoLeituraString = Conversor.formatarBytes(disco.getBytesDeLeitura());
                     
-                    Double dadoDiscoTotalDouble = Double.parseDouble(dadoDiscoTotalString.substring(0, 3));
-                    Double dadoDiscoEcritaDouble = Double.parseDouble(dadoDiscoEcritaString.substring(0, 1));
-                    Double dadoDiscoLeituraDouble = Double.parseDouble(dadoDiscoLeituraString.substring(0, 1));
+                    Double dadoDiscoTotalDouble = Double.valueOf(dadoDiscoTotalString.substring(0, 3));
+                    Double dadoDiscoEcritaDouble = Double.valueOf(dadoDiscoEcritaString.substring(0, 1));
+                    Double dadoDiscoLeituraDouble = Double.valueOf(dadoDiscoLeituraString.substring(0, 1));
                     
                     Double totalUso = dadoDiscoEcritaDouble + dadoDiscoLeituraDouble;
                     Double totalDisco = (totalUso * 100) / dadoDiscoTotalDouble;

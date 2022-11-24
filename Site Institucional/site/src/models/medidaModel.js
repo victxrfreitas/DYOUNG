@@ -98,7 +98,87 @@ function buscarDadosPostos(idPosto) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+/////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+// INDEX
+function buscarTodosDados(idTotem) {
 
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `SELECT COUNT(idTotem) from totem;`;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `SELECT COUNT(idTotem)'qtdTotem' FROM totem;`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarTodosDadosFuncionamento(idTotem) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `SELECT COUNT(idTotem) from totem;`;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `SELECT count(id_dado_cpu)'dadoCpu',count(id_dado_ram)'dadoRam',count(id_dado_disco)'dadoDisco' 
+        FROM dado_ram, dado_cpu, dado_disco 
+        JOIN totem as maquina on fk_totem = maquina.idTotem
+        where uso_ram <= 39 AND uso_disco <= 39 AND uso_cpu <= 39;`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarTodosDadosCritico(idTotem) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `SELECT COUNT(idTotem) from totem;`;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `SELECT count(id_dado_cpu)'dadoCpu',count(id_dado_ram)'dadoRam',count(id_dado_disco)'dadoDisco' 
+        FROM dado_ram, dado_cpu, dado_disco 
+        JOIN totem as maquina on fk_totem = maquina.idTotem
+        where uso_ram >= 80 AND uso_disco >= 80 AND uso_cpu >= 80;`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarTodosDadosAlerta(idTotem) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `SELECT COUNT(idTotem) from totem;`;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `SELECT count(id_dado_cpu)'dadoCpu',count(id_dado_ram)'dadoRam',count(id_dado_disco)'dadoDisco' 
+        FROM dado_ram, dado_cpu, dado_disco 
+        JOIN totem as maquina on fk_totem = maquina.idTotem
+        where uso_ram >= 40 AND uso_disco >= 40 AND uso_cpu >= 40;`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
 function buscarDadosTotem(idTotem) {
     instrucaoSql = ''
 
@@ -176,5 +256,9 @@ module.exports = {
     buscarDadosTotem,
     cadastrarTotem,
     deletarTotem,
-    editarTotem
+    editarTotem,
+    buscarTodosDados,
+    buscarTodosDadosFuncionamento,
+    buscarTodosDadosAlerta,
+    buscarTodosDadosCritico
 }
