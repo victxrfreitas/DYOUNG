@@ -23,7 +23,7 @@
 
 </head>
 
-<body id="page-top" onload="obterDadosGrafico(id_dado_cpu), obterDadosGraficoRam(id_dado_ram)">
+<body id="page-top" onload="obterDadosGrafico(idTotem), obterDadosGraficoRam(idTotemRam),obterDadosGraficoDisco(idTotem)">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -352,35 +352,39 @@
 
 
 <script>
+  
+
+
+  function queryString(parameter) {
+              var loc = location.search.substring(1, location.search.length);
+              var param_value = false;
+              var params = loc.split("&");
+              for (i=0; i<params.length;i++) {
+                  param_name = params[i].substring(0,params[i].indexOf('='));
+                  if (param_name == parameter) {
+                      param_value = params[i].substring(params[i].indexOf('=')+1)
+                  }
+              }
+              if (param_value) {
+                  return param_value;
+              }
+              else {
+                  return undefined;
+              }
+        }
+  var idTotem = queryString("id");
+  console.log("abacate" + idTotem);
   //   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
   let proximaAtualizacao;
 
-  //   verificar_autenticacao();
+  // var id_dado_cpu = location.hash.split("#")[1];
+  // window.onload = obterDadosGrafico(idTotem);
+  // var id_dado_cpu = sessionStorage.idTotem;
 
-  //   function alterarTitulo(id_dado_cpu) {
-  //     var tituloTotem = document.getElementById("tituloAquario");
-  //     tituloAquario.innerHTML =
-  //       "Últimas medidas de Temperatura e Umidade do <span style='color: #e6005a'>Totem " +
-  //       id_dado_cpu +
-  //       "</span>";
-  //   }
+  obterDadosGrafico(idTotem);
 
-  // O gráfico é construído com três funções:
-  // 1. obterDadosGrafico -> Traz dados do Banco de Dados para montar o gráfico da primeira vez
-  // 2. plotarGrafico -> Monta o gráfico com os dados trazidos e exibe em tela
-  // 3. atualizarGrafico -> Atualiza o gráfico, trazendo novamente dados do Banco
-
-  // Esta função *obterDadosGrafico* busca os últimos dados inseridos em tabela de medidas.
-  // para, quando carregar o gráfico da primeira vez, já trazer com vários dados.
-  // A função *obterDadosGrafico* também invoca a função *plotarGrafico*
-
-  //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
-  //     Para ajustar o "select", ajuste o comando sql em src/models
-
-  var id_dado_cpu = location.hash.split("#")[1];
-
-  function obterDadosGrafico(id_dado_cpu) {
+  function obterDadosGrafico(idTotem) {
     // alterarTitulo(id_da);
   console.log("testeste");
 
@@ -388,15 +392,16 @@
       clearTimeout(proximaAtualizacao);
     }
 
+    console.log(idTotem);
 
-    fetch(`/medidas/ultimas/${id_dado_cpu}`, { cache: "no-store" })
+    fetch(`/medidas/ultimasTotem/${idTotem}`, { cache: "no-store" })
       .then(function (response) {
         if (response.ok) {
           response.json().then(function (resposta) {
             console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
             resposta.reverse();
             console.log("PLOTARCPU");
-            plotarGrafico(resposta, id_dado_cpu);
+            plotarGrafico(resposta, idTotem);
           });
         } else {
           console.error("Nenhum dado encontrado ou erro na API");
@@ -408,35 +413,15 @@
         );
       });
 
-    // if (proximaAtualizacaoRam != undefined) {
-    //   clearTimeout(proximaAtualizacaoRam);
-    // }
-    // fetch(`/ram/ultimasRam/${id_dado_ram}`, { cache: "no-store" })
-    //   .then(function (response) {
-    //     if (response.ok) {
-    //       response.json().then(function (respostaRam) {
-    //         console.log(`Dados recebidos: ${JSON.stringify(respostaRam)}`);
-    //         respostaRam.reverse();
-
-    //         plotarGrafico(id_dado_ram);
-    //       });
-    //     } else {
-    //       console.error("Nenhum dado encontrado ou erro na API");
-    //     }
-    //   })
-    //   .catch(function (error) {
-    //     console.error(
-    //       `Erro na obtenção dos dados p/ gráfico: ${error.message}`
-    //     );
-    //   });
+    
   }
 
   // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
   // Configura o gráfico (cores, tipo, etc), materializa-o na página e,
   // A função *plotarGrafico* também invoca a função *atualizarGrafico*
-  function plotarGrafico(resposta, id_dado_cpu) {
+  function plotarGrafico(resposta, idTotem) {
     console.log("iniciando plotagem do gráfico...");
-    console.log("POITASD== " + id_dado_cpu);
+    // console.log("POITASD== " + id_dado_cpu);
     // Criando estrutura para plotar gráfico - labels
     let labels = [];
 
@@ -499,8 +484,8 @@
     // Adicionando gráfico criado em div na tela
     let myAreaChart = new Chart(document.getElementById("myAreaChart"), config);
 
-    setTimeout(() => atualizarGrafico(id_dado_cpu, dados, myAreaChart), 2000);
-    console.log("ASDASFSDA==" + id_dado_cpu);
+    setTimeout(() => atualizarGrafico(idTotem, dados, myAreaChart), 2000);
+    // console.log("ASDASFSDA==" + id_dado_cpu);
   }
 
   // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
@@ -508,9 +493,9 @@
 
   //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
   //     Para ajustar o "select", ajuste o comando sql em src/models
-  function atualizarGrafico(id_dado_cpu, dados, myAreaChart) {
-    console.log("testASDASD== " + id_dado_cpu);
-    fetch(`/medidas/tempo-real/${id_dado_cpu}`, { cache: "no-store" })
+  function atualizarGrafico( idTotem,dados, myAreaChart) {
+    // console.log("testASDASD== " + id_dado_cpu);
+    fetch(`/medidas/tempo-realTotem/${idTotem}`, { cache: "no-store" })
       .then(function (response) {
         if (response.ok) {
           response.json().then(function (novoRegistro) {
@@ -519,7 +504,7 @@
             console.log(dados);
 
 
-            document.getElementById("avisoCaptura").innerHTML = "";
+            // document.getElementById("avisoCaptura").innerHTML = "";
 
             if (
               novoRegistro[0].momento_grafico ==
@@ -531,8 +516,8 @@
               console.log(
                 "Como não há dados novos para captura, o gráfico não atualizará."
               );
-              document.getElementById("avisoCaptura").innerHTML =
-                "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará.";
+              // document.getElementById("avisoCaptura").innerHTML =
+              //   "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará.";
               console.log("Horário do novo dado capturado:");
               console.log(novoRegistro[0].momento_grafico);
               console.log("Horário do último dado capturado:");
@@ -564,7 +549,7 @@
             }
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
             setTimeout(
-              () => atualizarGrafico(id_dado_cpu, dados, myAreaChart),
+              () => atualizarGrafico(idTotem, dados, myAreaChart),
               5000
             );
 
@@ -586,24 +571,25 @@
 <!-- DADO RAM -->
 <script>
 
-var id_dado_ram = location.hash.split("#")[1];
-  console.log(id_dado_ram);
+// var idTotemRam = location.hash.split("=")[1];
+  var idTotemRam = queryString("id");
+  console.log(idTotemRam);
 
-function obterDadosGraficoRam(id_dado_ram) {
+function obterDadosGraficoRam(idTotemRam) {
     // alterarTitulo(id_da);
 
     if (proximaAtualizacao != undefined) {
-      clearTimeout(proximaAtualizacao);
+      clearTimeout(proximaAtualizacao); 	
     }
 
-    fetch(`/ram/ultimasRam/${id_dado_ram}`, { cache: "no-store" })
+    fetch(`/ram/ultimasRam/${idTotemRam}`, { cache: "no-store" })
       .then(function (response) {
         if (response.ok) {
           response.json().then(function (resposta) {
             console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
             resposta.reverse();
 
-            plotarGraficoRam(resposta,id_dado_ram);
+            plotarGraficoRam(resposta,idTotemRam);
           });
         } else {
           console.error("Nenhum dado encontrado ou erro na API");
@@ -616,7 +602,7 @@ function obterDadosGraficoRam(id_dado_ram) {
       });
   }
 
-  function plotarGraficoRam(resposta, id_dado_ram) {
+  function plotarGraficoRam(resposta, idTotemRam) {
     console.log("iniciando plotagem do gráfico...");
 
     // Criando estrutura para plotar gráfico - labels
@@ -627,16 +613,24 @@ function obterDadosGraficoRam(id_dado_ram) {
       labels: labels,
       datasets: [
         {
-          label: "Uso RAM",
+          label: "Uso Ram",
           data: [],
-          // fill: false,
-          backgroundColor: [
-      'rgb(255, 99, 132)',
-      'rgb(54, 162, 235)',
-      'rgb(255, 205, 86)'
-    ],
-    hoverOffset: 4
-  }]
+          fill: false,
+          borderColor: "#00568F",
+          tension: 0.1,
+        },
+        {
+
+          label: "  ",
+          data: [],
+          fill: false,
+          borderColor: "#fff",
+          tension: 0.1,
+
+
+
+        },
+      ],
     };
 
     console.log("----------------------------------------------");
@@ -663,18 +657,18 @@ function obterDadosGraficoRam(id_dado_ram) {
 
     // Criando estrutura para plotar gráfico - config
     const config = {
-  type: 'pie',
+  type: 'line',
   data: dadosRam,
 };
     // Adicionando gráfico criado em div na tela
     let myPieChart = new Chart(document.getElementById("myPieChart"), config);
 
-    setTimeout(() => atualizarGraficoRam(id_dado_ram, dadosRam, myPieChart), 2000);
+    setTimeout(() => atualizarGraficoRam(idTotemRam, dadosRam, myPieChart), 2000);
   }
 
-  function atualizarGraficoRam(id_dado_ram,dadosRam, myPieChart) {
-    console.log(id_dado_ram);
-    fetch(`/ram/tempo-realRam/${id_dado_ram}`, { cache: "no-store" })
+  function atualizarGraficoRam(idTotemRam,dadosRam, myPieChart) {
+    console.log(idTotemRam);
+    fetch(`/ram/tempo-realRam/${idTotemRam}`, { cache: "no-store" })
       .then(function (response) {
         if (response.ok) {
           response.json().then(function (novoRegistro) {
@@ -682,7 +676,7 @@ function obterDadosGraficoRam(id_dado_ram) {
             console.log(`Dados atuais do gráfico:`);
             console.log(dadosRam);
 
-            document.getElementById("avisoCaptura").innerHTML = "";
+            //document.getElementById("avisoCaptura").innerHTML = "";
 
             if (
               novoRegistro[0].momento_grafico ==
@@ -694,8 +688,8 @@ function obterDadosGraficoRam(id_dado_ram) {
               console.log(
                 "Como não há dados novos para captura, o gráfico não atualizará."
               );
-              document.getElementById("avisoCaptura").innerHTML =
-                "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará.";
+              //document.getElementById("avisoCaptura").innerHTML =
+              //  "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará.";
               console.log("Horário do novo dado capturado:");
               console.log(novoRegistro[0].momento_grafico);
               console.log("Horário do último dado capturado:");
@@ -719,7 +713,7 @@ function obterDadosGraficoRam(id_dado_ram) {
 
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
             proximaAtualizacao = setTimeout(
-              () => atualizarGrafico(id_dado_ram, dadosRam, myPieChart ),
+              () => atualizarGrafico(idTotemRam, dadosRam, myPieChart ),
               2000
             );
           });
@@ -727,7 +721,7 @@ function obterDadosGraficoRam(id_dado_ram) {
           console.error("Nenhum dado encontrado ou erro na API");
           // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
           proximaAtualizacao = setTimeout(
-            () => atualizarGrafico(id_dado_ram, dadosRam, myPieChart ),
+            () => atualizarGrafico(idTotemRam, dadosRam, myPieChart ),
             2000
           );
         }
@@ -739,4 +733,171 @@ function obterDadosGraficoRam(id_dado_ram) {
       });
   }
 
+</script>
+
+
+<script>
+  //   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+ 
+
+
+
+  function obterDadosGraficoDisco(idTotem) {
+    // alterarTitulo(id_da);
+
+    if (proximaAtualizacao != undefined) {
+      clearTimeout(proximaAtualizacao);
+    }
+
+    fetch(`/disco/ultimasDisco/${idTotem}`, { cache: "no-store" })
+      .then(function (response) {
+        if (response.ok) {
+          response.json().then(function (resposta) {
+            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+            resposta.reverse();
+
+            plotarGraficoDisco(resposta,idTotem);
+          });
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+        }
+      })
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+        );
+      });
+  }
+
+  // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
+  // Configura o gráfico (cores, tipo, etc), materializa-o na página e,
+  // A função *plotarGrafico* também invoca a função *atualizarGrafico*
+  function plotarGraficoDisco(resposta, idTotem) {
+    console.log("##############");
+    console.log("iniciando plotagem do gráfico de disco...");
+
+    // Criando estrutura para plotar gráfico - labels
+    let labels = [];
+
+    // Criando estrutura para plotar gráfico - dados
+    let dadosDisco = {
+      labels: labels,
+      datasets: [
+        {
+          label: "Uso Disco",
+          data: [],
+          // fill: false,
+          backgroundColor: [
+          "#00568F"
+    ],
+    borderWidth: 1
+  }]
+    };
+
+
+    console.log("----------------------------------------------");
+    console.log(
+      'Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":'
+    );
+    console.log(resposta);
+
+    // Inserindo valores recebidos em estrutura para plotar o gráfico
+    for (i = 0; i < resposta.length; i++) {
+      var registro = resposta[i];
+      labels.push(registro.momento_grafico);
+      dadosDisco.datasets[0].data.push(registro.usoDisco);
+      // dados.datasets[1].data.push(registro.temperatura);
+    }
+
+    console.log("----------------------------------------------");
+    console.log("O gráfico será plotado com os respectivos valores:");
+    console.log("Labels:");
+    console.log(labels);
+    console.log("Dados:");
+    console.log(dadosDisco.datasets);
+    console.log("----------------------------------------------");
+
+    // Criando estrutura para plotar gráfico - config
+    const config = {
+  type: 'bar',
+  data: dadosDisco,
+};
+    // Adicionando gráfico criado em div na tela
+    let myBarChart = new Chart(document.getElementById("myBarChart"), config);
+
+    setTimeout(() => atualizarGrafico(idTotem, dadosDisco, myBarChart), 2000);
+  }
+
+  // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
+  // buscando a última medida inserida em tabela contendo as capturas,
+
+  //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
+  //     Para ajustar o "select", ajuste o comando sql em src/models
+  function atualizarGraficoDisco(idTotem,dadosDisco, myBarChart) {
+    console.log(idTotem);
+    fetch(`/disco/tempo-realDisco/${idTotem}`, { cache: "no-store" })
+      .then(function (response) {
+        if (response.ok) {
+          response.json().then(function (novoRegistro) {
+            console.log(`Dados recebidos: ${JSON.stringify(novoRegistro)}`);
+            console.log(`Dados atuais do gráfico:`);
+            console.log(dadosDisco);
+
+            document.getElementById("avisoCaptura").innerHTML = "";
+
+            if (
+              novoRegistro[0].momento_grafico ==
+              dadosDisco.labels[dadosDisco.labels.length - 1]
+            ) {
+              console.log(
+                "---------------------------------------------------------------"
+              );
+              console.log(
+                "Como não há dados novos para captura, o gráfico não atualizará."
+              );
+              document.getElementById("avisoCaptura").innerHTML =
+                "<i class='fa-solid fa-triangle-exclamation'></i> Foi trazido o dado mais atual capturado pelo sensor. <br> Como não há dados novos a exibir, o gráfico não atualizará.";
+              console.log("Horário do novo dado capturado:");
+              console.log(novoRegistro[0].momento_grafico);
+              console.log("Horário do último dado capturado:");
+              console.log(dadosDisco.labels[dadosDisco.labels.length - 1]);
+              console.log(
+                "---------------------------------------------------------------"
+              );
+            } else {
+              // tirando e colocando valores no gráfico
+              dadosDisco.labels.shift(); // apagar o primeiro
+              dadosDisco.labels.push(novoRegistro[0].momento_grafico); // incluir um novo momento
+
+              dadosDisco.datasets[0].data.shift(); // apagar o primeiro de umidade
+              dadosDisco.datasets[0].data.push(novoRegistro[0].usoDisco); // incluir uma nova medida de umidade
+
+            //   dados.datasets[1].data.shift(); // apagar o primeiro de temperatura
+            //   dados.datasets[1].data.push(novoRegistro[0].statusCpu); // incluir uma nova medida de temperatura
+
+              myPieChart.update();
+            }
+
+            // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+            proximaAtualizacao = setTimeout(
+              () => atualizarGrafico(idTotem, dadosDisco, myBarChart ),
+              2000
+            );
+          });
+        } else {
+          console.error("Nenhum dado encontrado ou erro na API");
+          // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
+          proximaAtualizacao = setTimeout(
+            () => atualizarGrafico(idTotem, dadosDisco, myBarChart ),
+            2000
+          );
+        }
+      })
+      .catch(function (error) {
+        console.error(
+          `Erro na obtenção dos dados p/ gráfico: ${error.message}`
+        );
+      });
+  }
 </script>

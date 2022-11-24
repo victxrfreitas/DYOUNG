@@ -3,11 +3,21 @@ var router = express.Router();
 
 var medidaController = require("../controllers/medidaController");
 
-router.get("/ultimas/:id_dado_cpu", function (req, res) {
+// router.get("/ultimas/:id_dado_cpu", function (req, res) {
+//     medidaController.buscarUltimasMedidas(req, res);
+// });
+
+// router.get("/tempo-real/:id_dado_cpu", function (req, res) {
+//     medidaController.buscarMedidasEmTempoReal(req, res);
+// });
+
+router.get("/ultimasTotem/:idTotem", function (req, res) {
+    console.log("rotaaa");
     medidaController.buscarUltimasMedidas(req, res);
+   
 });
 
-router.get("/tempo-real/:id_dado_cpu", function (req, res) {
+router.get("/tempo-realTotem/:idTotem", function (req, res) {
     medidaController.buscarMedidasEmTempoReal(req, res);
 });
 

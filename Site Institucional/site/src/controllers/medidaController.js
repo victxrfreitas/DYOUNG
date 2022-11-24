@@ -4,12 +4,15 @@ function buscarUltimasMedidas(req, res) {
 
     const limite_linhas = 7;
 
-    var id_dado_cpu = req.params.id_dado_cpu;
+    // var id_dado_cpu = req.params.id_dado_cpu;
+    var idTotem = req.params.idTotem;
+
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
-    console.log(`############## ${id_dado_cpu}`);
+    // console.log(`############## ${id_dado_cpu}`);
+    console.log(`totem  ${idTotem}`);
 
-    medidaModel.buscarUltimasMedidas(id_dado_cpu, limite_linhas).then(function (resultado) {
+    medidaModel.buscarUltimasMedidas(limite_linhas,idTotem).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -25,11 +28,14 @@ function buscarUltimasMedidas(req, res) {
 
 function buscarMedidasEmTempoReal(req, res) {
 
-    var id_dado_cpu = req.params.id_dado_cpu;
-    console.log("sdsdd"+id_dado_cpu);
+    // var id_dado_cpu = req.params.id_dado_cpu;
+    var idTotem = req.params.idTotem;
+    // console.log("sdsdd"+id_dado_cpu);
+    console.log("teste totemmm "+idTotem);
+
     console.log(`Recuperando medidas em tempo real`);
 
-    medidaModel.buscarMedidasEmTempoReal(id_dado_cpu).then(function (resultado) {
+    medidaModel.buscarMedidasEmTempoReal(idTotem).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

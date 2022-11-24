@@ -4,11 +4,12 @@ function buscarUltimasMedidasRam(req, res) {
 
     const limite_linhas = 7;
 
-    var id_dado_ram = req.params.id_dado_ram;
+    // var id_dado_ram = req.params.id_dado_ram;
+    var idTotemRam = req.params.idTotemRam;
 
     console.log(`Recuperando as ultimas ${limite_linhas} medidas`);
 
-    ramModel.buscarUltimasMedidasRam(id_dado_ram, limite_linhas).then(function (resultado) {
+    ramModel.buscarUltimasMedidasRam(idTotemRam, limite_linhas).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -24,11 +25,12 @@ function buscarUltimasMedidasRam(req, res) {
 
 function buscarMedidasEmTempoRealRam(req, res) {
 
-    var id_dado_ram = req.params.id_dado_ram;
-    console.log("sdsdd"+id_dado_ram);
+    // var id_dado_ram = req.params.id_dado_ram;
+    var idTotemRam = req.params.idTotemRam;
+    console.log("sdsdd"+idTotemRam);
     console.log(`Recuperando medidas em tempo real`);
 
-    ramModel.buscarMedidasEmTempoRealRam(id_dado_ram).then(function (resultado) {
+    ramModel.buscarMedidasEmTempoRealRam(idTotemRam).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

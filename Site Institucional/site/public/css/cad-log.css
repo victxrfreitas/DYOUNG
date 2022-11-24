@@ -131,6 +131,22 @@ input {
 	width: 100%;
 }
 
+select{
+	background-color: #eee;
+	color: rgb(114, 114, 114);
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 100%;
+}
+
+.card_erro #mensagem_erro{
+    font-weight: 600;
+    font-size: 20px;
+    color: red;
+
+}
+
 .container {
 	background-color: #fff;
 	border-radius: 10px;

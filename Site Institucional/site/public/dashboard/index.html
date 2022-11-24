@@ -20,6 +20,7 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/sb-admin-2.css">
+    <script src="../js/funcoes.js"></script>
 
 </head>
 
@@ -236,7 +237,7 @@
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Logout
+                                    Sair
                                 </a>
                             </div>
                         </li>
@@ -511,15 +512,15 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tem certeza que deseja sair?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Selecione o botão "Sair" se você estiver preparado para sair desta sessão.</div>
                 <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <button  class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <a onclick="limparSessao()" class="btn btn-primary">Sair</a>
                 </div>
             </div>
         </div>
@@ -541,10 +542,12 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
+    
 
 </body>
 
 </html>
+<<<<<<< HEAD
 <script>
     var idTotem = queryString("id");
     var idPosto = sessionStorage.FK_USUARIO;
@@ -745,3 +748,7 @@
             });
     }
 </script>
+=======
+
+
+>>>>>>> a17837399559b0e9d48cd21b381ae4fdba41c51e

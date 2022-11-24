@@ -1,6 +1,6 @@
 var database = require("../database/config");
 
-function buscarUltimasMedidas(id_dado_disco , limite_linhas) {
+function buscarUltimasMedidas(idTotem , limite_linhas) {
 
     instrucaoSql = ''
 
@@ -10,8 +10,7 @@ function buscarUltimasMedidas(id_dado_disco , limite_linhas) {
         status_coleta as statusDisco,
         data_hora_captura,
                         DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
-                    from dado_disco
-                    where fk_totem = ${id_dado_disco}
+                    from dado_disco join totem on fk_totem = idTotem WHere fk_totem = ${idTotem}
                     order by id_dado_disco desc limit ${limite_linhas}`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select 
@@ -19,8 +18,7 @@ function buscarUltimasMedidas(id_dado_disco , limite_linhas) {
         status_coleta as statusDisco,
         data_hora_captura,
                         DATE_FORMAT(data_hora_captura,'%H:%i:%s') as momento_grafico
-                    from dado_disco
-                    where fk_totem = ${id_dado_disco}
+                        from dado_disco join totem on fk_totem = idTotem WHere fk_totem = ${idTotem}
                     order by id_dado_disco desc limit ${limite_linhas}`;
                     console.log("to no model")
     } else {
@@ -42,7 +40,7 @@ function buscarMedidasEmTempoReal() {
         status_coleta as statusDisco,  
                         CONVERT(varchar, data_hora_captura, 108) as momento_grafico, 
                         fk_totem 
-                        from dado_disco where fk_totem = ${id_dado_disco} 
+                        from dado_disco join totem on fk_totem = idTotem WHere fk_totem = ${idTotem}
                     order by id_dado_disco desc`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
@@ -51,7 +49,7 @@ function buscarMedidasEmTempoReal() {
         status_coleta as statusDisco,  
                         DATE_FORMAT(data_hora_captura,'%H:%i:%s') as momento_grafico, 
                         fk_totem 
-                        from dado_disco where fk_totem = ${id_dado_disco} 
+                        from dado_disco join totem on fk_totem = idTotem WHere fk_totem = ${idTotem}
                     order by id_dado_disco desc limit 1`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
