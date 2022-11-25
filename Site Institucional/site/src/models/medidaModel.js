@@ -148,6 +148,121 @@ function buscarDadosPostos(idPosto) {
     return database.executar(instrucaoSql);
 }
 
+function buscarNomesPosto(idPosto) {
+    
+// console.log("Acesse o nomesPosto model id=" + idPosto);
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao"){
+
+        instrucaoSql = `SELECT
+                postoId as idPosto,
+                            nomePosto
+                        FROM
+                             posto
+                        WHERE postoId = ${idPosto};`
+
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento"){
+
+        instrucaoSql = `SELECT
+                             idPosto 'postoId',
+                            nomePosto 'postoNome'
+                         FROM 
+                            posto
+                        WHERE 
+                            idPosto = ${idPosto};`;
+
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+    
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+
+}
+/////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////
+// INDEX
+function buscarTodosDados(idTotem) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `SELECT COUNT(idTotem) from totem;`;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `SELECT COUNT(idTotem)'qtdTotem' FROM totem;`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarTodosDadosFuncionamento(idTotem) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `SELECT COUNT(idTotem) from totem;`;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `SELECT count(id_dado_cpu)'dadoCpu',count(id_dado_ram)'dadoRam',count(id_dado_disco)'dadoDisco' 
+        FROM dado_ram, dado_cpu, dado_disco 
+        JOIN totem as maquina on fk_totem = maquina.idTotem
+        where uso_ram <= 39 AND uso_disco <= 39 AND uso_cpu <= 39;`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarTodosDadosCritico(idTotem) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `SELECT COUNT(idTotem) from totem;`;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `SELECT count(id_dado_cpu)'dadoCpu',count(id_dado_ram)'dadoRam',count(id_dado_disco)'dadoDisco' 
+        FROM dado_ram, dado_cpu, dado_disco 
+        JOIN totem as maquina on fk_totem = maquina.idTotem
+        where uso_ram >= 80 AND uso_disco >= 80 AND uso_cpu >= 80;`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function buscarTodosDadosAlerta(idTotem) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `SELECT COUNT(idTotem) from totem;`;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `SELECT count(id_dado_cpu)'dadoCpu',count(id_dado_ram)'dadoRam',count(id_dado_disco)'dadoDisco' 
+        FROM dado_ram, dado_cpu, dado_disco 
+        JOIN totem as maquina on fk_totem = maquina.idTotem
+        where uso_ram >= 40 AND uso_disco >= 40 AND uso_cpu >= 40;`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
 function buscarDadosTotem(idTotem) {
     instrucaoSql = ''
 
@@ -222,9 +337,18 @@ module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
     buscarDadosPostos,
+    buscarNomesPosto,
     buscarDadosTotem,
     cadastrarTotem,
     deletarTotem,
     editarTotem,
+<<<<<<< HEAD
     buscarqtdTotem
+=======
+    buscarTodosDados,
+    buscarTodosDadosFuncionamento,
+    buscarTodosDadosAlerta,
+    buscarTodosDadosCritico
+    
+>>>>>>> 91b454de1b0c116f45412e743ffbc35d2e4aa141
 }

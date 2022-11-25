@@ -29,6 +29,38 @@ router.get("/dadosPosto/:idPosto", function (req, res) {
     medidaController.buscarDadosPostos(req, res);
 });
 
+////////// LISTAGEM E CRIAÇÃO DE CARDS
+
+router.get("/nomesPosto/:idPosto", function (req, res) {
+    // console.log("rota nomes posto"+idPosto)
+    medidaController.buscarNomesPosto(req,res);
+})
+
+
+///////////////////////////////////////////////////////
+///////////////////////////////////////////////////////
+// INDEX
+router.get("/dadosTotem-qtd/:idTotem", function (req, res) {
+    medidaController.buscarTodosDados(req, res);
+    console.log("Rota");
+});
+
+router.get("/dadosTotem-alerta/:idTotem", function (req, res) {
+    medidaController.buscarTodosDadosAlerta(req, res);
+    console.log("Rota");
+});
+
+router.get("/dadosTotem-funcionamento/:idTotem", function (req, res) {
+    medidaController.buscarTodosDadosFuncionamento(req, res);
+    console.log("Rota Ideal");
+});
+
+router.get("/dadosTotem-critico/:idTotem", function (req, res) {
+    medidaController.buscarTodosDadosCritico(req, res);
+    console.log("Rota");
+});
+///////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
 router.get("/dadosTotem/:idTotem", function (req, res) {
     medidaController.buscarDadosTotem(req, res);
 });

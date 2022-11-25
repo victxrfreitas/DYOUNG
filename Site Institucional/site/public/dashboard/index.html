@@ -24,7 +24,7 @@
 
 </head>
 
-<body id="page-top">
+<body id="page-top" onload=" atualizacaoPeriodica(), atualizacaoPeriodicaEmFuncionamento(), atualizacaoPeriodicaAlerta(), atualizacaoPeriodicaCritico()">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -259,8 +259,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                EM Risco DE atingir A CAPACIDADE TOTAL </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">10%</div>
+                                                Em alerta</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="alerta">10%</div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-alert fa-2x text-gray-300"></i>
@@ -277,8 +277,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                                                Estão sem serviços</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">10%</div>
+                                                Estado Crítico</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="critico">10%</div>
                                         </div>
                                         
                                         <!-- <div class="col-auto">
@@ -294,8 +294,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                               Em funcionamento</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">10%</div>
+                                               Ideal</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="ideal">10%</div>
                                         </div>
                                         
                                         <!-- <div class="col-auto">
@@ -316,7 +316,11 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Total de TOTENS</div>
+<<<<<<< HEAD
                                             <div class="h5 mb-0 font-weight-bold text-gray-800" id="count_totem"></div>
+=======
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" ><span id="count"></span></div>
+>>>>>>> 91b454de1b0c116f45412e743ffbc35d2e4aa141
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -593,4 +597,204 @@
     }
 </script>
 
+<script>
+    var idTotem = queryString("id");
+    var idPosto = sessionStorage.FK_USUARIO;
+    function queryString(parameter) {
+              var loc = location.search.substring(1, location.search.length);
+              var param_value = false;
+              var params = loc.split("&");
+              for (i=0; i<params.length;i++) {
+                  param_name = params[i].substring(0,params[i].indexOf('='));
+                  if (param_name == parameter) {
+                      param_value = params[i].substring(params[i].indexOf('=')+1)
+                  }
+              }
+              if (param_value) {
+                  return param_value;
+              }
+              else {
+                  return undefined;
+              }
+        }
+
+    function atualizacaoPeriodica() {
+        obterdados(idTotem);
+
+        // function sendData() {
+        // 	var http = new XMLHttpRequest();
+        // 	http.open('POST', 'http://localhost:3000/api/sendData', false);
+        // 	http.send(null);
+        // }
+
+        setInterval(() => {
+            // sendData();
+        }, 2000);
+        setTimeout(atualizacaoPeriodica, 5000);
+    }
+
+    function obterdados(idTotem) {
+        fetch(`/medidas/dadosTotem-qtd/${idTotem}`)
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    resposta.json().then(resposta => {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        var dados = {
+                            qtdTotem: resposta[0].qtdTotem,
+                        }
+
+                        // alertar(resposta[0].idTotem, idTotem);
+                        count.innerHTML = dados.qtdTotem;
+                    });
+                } else {
+
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////
+
+    function atualizacaoPeriodicaEmFuncionamento() {
+        obterdadosEmFuncionamento(idTotem);
+
+        // function sendData() {
+        // 	var http = new XMLHttpRequest();
+        // 	http.open('POST', 'http://localhost:3000/api/sendData', false);
+        // 	http.send(null);
+        // }
+
+        setInterval(() => {
+            // sendData();
+        }, 2000);
+        setTimeout(atualizacaoPeriodicaEmFuncionamento, 5000);
+    }
+
+    function obterdadosEmFuncionamento(idTotem) {
+        fetch(`/medidas/dadosTotem-funcionamento/${idTotem}`)
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    resposta.json().then(resposta => {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        var dados = {
+                            dadoRam: resposta[0].dadoRam,
+                            dadoCpu: resposta[0].dadoCpu,
+                            dadoDisco: resposta[0].dadoDisco,
+                        }
+
+                        // alertar(resposta[0].idTotem, idTotem);
+                        ideal.innerHTML = dados.dadoCpu;
+                    });
+                } else {
+
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+    }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////
+
+    function atualizacaoPeriodicaCritico() {
+        obterdadosCritico(idTotem);
+
+        // function sendData() {
+        // 	var http = new XMLHttpRequest();
+        // 	http.open('POST', 'http://localhost:3000/api/sendData', false);
+        // 	http.send(null);
+        // }
+
+        setInterval(() => {
+            // sendData();
+        }, 2000);
+        setTimeout(atualizacaoPeriodicaCritico, 5000);
+    }
+
+    function obterdadosCritico(idTotem) {
+        fetch(`/medidas/dadosTotem-critico/${idTotem}`)
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    resposta.json().then(resposta => {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        var dados = {
+                            dadoRam: resposta[0].dadoRam,
+                            dadoCpu: resposta[0].dadoCpu,
+                            dadoDisco: resposta[0].dadoDisco,
+                        }
+
+                        // alertar(resposta[0].idTotem, idTotem);
+                        critico.innerHTML = dados.dadoCpu;
+                    });
+                } else {
+
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////
+
+    function atualizacaoPeriodicaAlerta() {
+        obterdadosAlerta(idTotem);
+
+        // function sendData() {
+        // 	var http = new XMLHttpRequest();
+        // 	http.open('POST', 'http://localhost:3000/api/sendData', false);
+        // 	http.send(null);
+        // }
+
+        setInterval(() => {
+            // sendData();
+        }, 2000);
+        setTimeout(atualizacaoPeriodicaAlerta, 5000);
+    }
+
+    function obterdadosAlerta(idTotem) {
+        fetch(`/medidas/dadosTotem-alerta/${idTotem}`)
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    resposta.json().then(resposta => {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        var dados = {
+                            dadoRam: resposta[0].dadoRam,
+                            dadoCpu: resposta[0].dadoCpu,
+                            dadoDisco: resposta[0].dadoDisco,
+                        }
+
+                        // alertar(resposta[0].idTotem, idTotem);
+                        alerta.innerHTML = dados.dadoCpu;
+                    });
+                } else {
+
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+    }
+</script>
 

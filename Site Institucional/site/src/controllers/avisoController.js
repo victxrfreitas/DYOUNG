@@ -5,8 +5,13 @@ function testar(req, res) {
     res.send("ENTRAMOS NO AVISO CONTROLLER");
 }
 
-function listar(req, res) {
-    avisoModel.listar().then(function (resultado) {
+// Listagem e criação dos cards de totem
+function listarTotensPorPosto(req, res) {
+
+    
+    var idPosto = req.params.idPosto;
+
+    avisoModel.listarTotensPorPosto(idPosto).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -133,7 +138,7 @@ function deletar(req, res) {
 
 module.exports = {
     testar,
-    listar,
+    listarTotensPorPosto,
     listarPorUsuario,
     pesquisarDescricao,
     publicar,
