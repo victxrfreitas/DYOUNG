@@ -31,4 +31,9 @@ router.delete("/deletar/:idAviso", function (req, res) {
     avisoController.deletar(req, res);
 });
 
+///Listar e criar totens por posto
+router.get("/listarTotensPorPosto/:idPosto", function (req, res) {
+    avisoController.listarTotensPorPosto(req, res);
+})
+
 module.exports = router;

@@ -24,6 +24,15 @@ router.get("/tempo-realTotem/:idTotem", function (req, res) {
 router.get("/dadosPosto/:idPosto", function (req, res) {
     medidaController.buscarDadosPostos(req, res);
 });
+
+////////// LISTAGEM E CRIAÇÃO DE CARDS
+
+router.get("/nomesPosto/:idPosto", function (req, res) {
+    // console.log("rota nomes posto"+idPosto)
+    medidaController.buscarNomesPosto(req,res);
+})
+
+
 ///////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////
 // INDEX

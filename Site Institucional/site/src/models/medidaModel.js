@@ -116,6 +116,41 @@ function buscarDadosPostos(idPosto) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+
+function buscarNomesPosto(idPosto) {
+    
+// console.log("Acesse o nomesPosto model id=" + idPosto);
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao"){
+
+        instrucaoSql = `SELECT
+                postoId as idPosto,
+                            nomePosto
+                        FROM
+                             posto
+                        WHERE postoId = ${idPosto};`
+
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento"){
+
+        instrucaoSql = `SELECT
+                             idPosto 'postoId',
+                            nomePosto 'postoNome'
+                         FROM 
+                            posto
+                        WHERE 
+                            idPosto = ${idPosto};`;
+
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+    
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+
+}
 /////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 // INDEX
@@ -271,6 +306,7 @@ module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
     buscarDadosPostos,
+    buscarNomesPosto,
     buscarDadosTotem,
     cadastrarTotem,
     deletarTotem,
@@ -279,4 +315,5 @@ module.exports = {
     buscarTodosDadosFuncionamento,
     buscarTodosDadosAlerta,
     buscarTodosDadosCritico
+    
 }

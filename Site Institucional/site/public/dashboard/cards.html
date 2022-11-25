@@ -23,7 +23,7 @@
 
 </head>
 
-<body id="page-top">
+<body onload="atualizacaoPeriodica(),obterDados(idPosto), validarSessao()" id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -242,10 +242,24 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Totens</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Totens -
+                            <span id="spn_nomePosto" class="h3 mb-0 text-gray-800">
+                                
+                            </span>
+                        </h1>
+                    </div>
+
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800"> 
+                            <span id="msg_erro_listagemTotem" class="h3 mb-0 text-gray-800"></span>
+                        </h1>
                     </div>
 
                     <div class="row">
+
+                        <div id="feed_container" class="feed-container">
+                            
+                        </div>
 
                         <!-- Earnings (Monthly) Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -457,7 +471,10 @@
                                 </div>
                             </div>
                         </div>
+                            <div class="div_card" id="card">
 
+
+                            </div>
 
                         <!-- Tasks Card Example -->
                         <div class="col-xl-3 col-md-6 mb-4">
@@ -557,9 +574,159 @@
 </html>
 
 <script>
+
+var idPosto = queryString("id");
+function queryString(parameter) {
+              var loc = location.search.substring(1, location.search.length);
+              var param_value = false;
+              var params = loc.split("&");
+              for (i=0; i<params.length;i++) {
+                  param_name = params[i].substring(0,params[i].indexOf('='));
+                  if (param_name == parameter) {
+                      param_value = params[i].substring(params[i].indexOf('=')+1)
+                  }
+              }
+              if (param_value) {
+                  return param_value;
+              }
+              else {
+                  return undefined;
+              }
+        }
+
+
+
+
+function atualizarTotens() {
+        //aguardar();
+        fetch("/avisos/listarTotensPorPosto").then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    var feed = document.getElementById("feed_container");
+                    var mensagem = document.createElement("span");
+                    mensagem.innerHTML = "Nenhum resultado encontrado."
+                    feed.appendChild(mensagem);
+                    throw "Nenhum resultado encontrado!!";
+                }
+
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
+
+                    var feed = document.getElementById("feed_container");
+                    feed.innerHTML = "";
+                    for (let i = 0; i < resposta.length; i++) {
+                        var publicacao = resposta[i];
+
+                        // criando e manipulando elementos do HTML via JavaScript
+                        var divPublicacao = document.createElement("div");
+                        var spanID = document.createElement("span");
+                        var spanTitulo = document.createElement("span");
+                        var spanNome = document.createElement("span");
+                        var divDescricao = document.createElement("div");
+                        var divButtons = document.createElement("div");
+                        var btnEditar = document.createElement("button");
+                        var btnDeletar = document.createElement("button");
+
+
+                        spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
+                        spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
+                        spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
+                        divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
+                        btnEditar.innerHTML = "Editar";
+                        btnDeletar.innerHTML = "Deletar";
+
+                        divPublicacao.className = "publicacao";
+                        spanTitulo.id = "inputNumero" + publicacao.idAviso;
+                        spanNome.className = "publicacao-nome";
+                        spanTitulo.className = "publicacao-titulo";
+                        divDescricao.className = "publicacao-descricao";
+
+                        divButtons.className = "div-buttons"
+
+                        btnEditar.className = "publicacao-btn-editar"
+                        btnEditar.id = "btnEditar" + publicacao.idAviso;
+                        btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
+
+                        btnDeletar.className = "publicacao-btn-editar"
+                        btnDeletar.id = "btnDeletar" + publicacao.idAviso;
+                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
+
+                        divPublicacao.appendChild(spanID);
+                        divPublicacao.appendChild(spanNome);
+                        divPublicacao.appendChild(spanTitulo);
+                        divPublicacao.appendChild(divDescricao);
+                        divPublicacao.appendChild(divButtons);
+                        divButtons.appendChild(btnEditar);
+                        divButtons.appendChild(btnDeletar);
+                        feed.appendChild(divPublicacao);
+                    }
+
+                    finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            finalizarAguardar();
+        });
+    }
+
+function atualizacaoPeriodica() {
+        obterdados(idPosto);
+
+        // function sendData() {
+		// 	var http = new XMLHttpRequest();
+		// 	http.open('POST', 'http://localhost:3000/api/sendData', false);
+		// 	http.send(null);
+		// }
+
+        setInterval(() => {
+			// sendData();
+		}, 2000);
+        setTimeout(atualizacaoPeriodica, 5000);
+    }
+
+    function obterdados(idPosto) {
+        // console.log("id posto " + idPosto);
+        fetch(`/medidas/nomesPosto/${idPosto}`)
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    resposta.json().then(resposta => {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        var dados = {
+                            postoNome: resposta[0].postoNome,
+                        }
+
+                        // alertar(resposta[0].nomePosto, idPosto);
+                        spn_nomePosto.innerHTML = dados.postoNome;
+                    });
+                } else {
+
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+    // function alertar(temperatura, idAquario) {
+ 
+    //     // alterando
+    //     card.className = classe_temperatura;
+
+    // }
+
+  
     function verTotem(idTotem){
         location.assign("charts.html?id=" + idTotem);
     }
+
 
 
 </script>

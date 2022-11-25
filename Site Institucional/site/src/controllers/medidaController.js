@@ -65,6 +65,27 @@ function buscarDadosPostos(req, res) {
     });
 }
 
+///////Listagem e criação dos Cards
+
+function buscarNomesPosto(req, res) {
+
+    console.log("nomes medida controller");
+    var idPosto = req.params.idPosto;
+    
+    medidaModel.buscarNomesPosto(idPosto).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+            
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os nomes dos postos.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
 function buscarTodosDados(req, res) {
@@ -250,6 +271,7 @@ module.exports = {
     buscarUltimasMedidas,
     buscarMedidasEmTempoReal,
     buscarDadosPostos,
+    buscarNomesPosto,
     buscarDadosTotem,
     cadastrarTotem,
     deletarTotem,
