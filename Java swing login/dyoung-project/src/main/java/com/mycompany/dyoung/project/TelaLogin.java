@@ -190,11 +190,13 @@ public class TelaLogin extends javax.swing.JFrame {
                 new BeanPropertyRowMapper<>(Totem.class));
         
         for(Totem busca: buscarFuncionario){
-            System.out.println(busca.getLoginTotem());
-            System.out.println("=======");
-            System.out.println(busca.getSenhaTotem());
+//            System.out.println(busca.getLoginTotem());
+//            System.out.println("=======");
+//            System.out.println(busca.getSenhaTotem());
             if(busca.getLoginTotem().equals(usuario) && busca.getSenhaTotem().equals(senha)){
                 tela.setVisible(true);
+                tela.setId_totem(busca.getIdTotem());
+                tela.setFk_Posto(busca.getFk_posto());
             } else {
                 String resultado = "Usuario ou Senha incorretos!!";
                 lblResultado.setVisible(true);
@@ -237,7 +239,6 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEntrar;
     private javax.swing.JLabel jLabel1;

@@ -8,6 +8,7 @@ import com.github.britooo.looca.api.group.memoria.Memoria;
 import com.github.britooo.looca.api.group.processador.Processador;
 import com.github.britooo.looca.api.group.sistema.Sistema;
 import com.github.britooo.looca.api.util.Conversor;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -18,7 +19,25 @@ import org.springframework.jdbc.core.JdbcTemplate;
  * @author gutyc
  */
 public class Logado extends javax.swing.JFrame {
+    private Integer id_totem = 0;
+    private Integer fk_Posto = 0;
 
+    public Integer getId_totem() {
+        return id_totem;
+    }
+
+    public void setId_totem(Integer id_totem) {
+        this.id_totem = id_totem;
+    }
+
+    public Integer getFk_Posto() {
+        return fk_Posto;
+    }
+
+    public void setFk_Posto(Integer fk_Posto) {
+        this.fk_Posto = fk_Posto;
+    }
+    
     /**
      * Creates new form 
      */
@@ -34,6 +53,7 @@ public class Logado extends javax.swing.JFrame {
 //        DiscosGroup discoGrupo = new DiscosGroup();
         Sistema sistema = new Sistema();
         Totem totem = new Totem();
+        DecimalFormat df = new DecimalFormat("##.00");
         
 
         
@@ -45,9 +65,10 @@ public class Logado extends javax.swing.JFrame {
                 //Pegando os dados da CPU = Processador exibindo e guardando no banco de dados
                 Double dadoCpu = cpu.getUso();
                 
-                String insert = "INSERT INTO dado_cpu (uso_cpu, status_coleta, fk_totem, fk_posto)VALUES (?, 1, ?, 4);";
-                banco.update(insert, dadoCpu, totem.getIdTotem());
-                System.out.println(String.format("Inserindo dado CPU: %.1f ---- %d", dadoCpu, totem.getIdTotem()));
+                String insert = "INSERT INTO dado_cpu (uso_cpu, status_coleta, fk_totem, fk_posto)VALUES (?, 1, ?, ?);";
+                banco.update(insert, df.format(dadoCpu), getId_totem(), getFk_Posto());
+                System.out.println(String.format("Inserindo dado CPU: %.1f ---- ID: %d ---- fkPosto: %d",
+                        dadoCpu, getId_totem(), getFk_Posto()));
 
 //                String insert = "INSERT INTO dado_cpu (uso_cpu, status_coleta, fk_totem, fk_posto)VALUES (?, 1, 7, 4);";
 //                banco.update(insert, dadoCpu);
@@ -79,8 +100,8 @@ public class Logado extends javax.swing.JFrame {
                Double totalRam = (dadoRamDouble * 100) / dadoTotalRamlDouble;
                 
                 //Inserindo os dados no banco
-                String insertRam = "INSERT INTO dado_ram (uso_ram, status_coleta, fk_totem, fk_posto)VALUES (?, 1, 1, 1);";
-                banco.update(insertRam, totalRam);
+                String insertRam = "INSERT INTO dado_ram (uso_ram, status_coleta, fk_totem, fk_posto)VALUES (?, 1, ?, ?);";
+                banco.update(insertRam, df.format(totalRam), getId_totem(), getFk_Posto());
 //                
 //                //Exibindo os dados
                System.out.println(String.format("Inserindo dado da Memória RAM: %.1f", totalRam));
@@ -111,8 +132,8 @@ public class Logado extends javax.swing.JFrame {
                     
                     System.out.println(String.format("Inserindo dado do Disco: %.1f", totalDisco));
                     lblDadoDisco.setText(String.format("%.1f %s", totalDisco, "%"));
-                    String insertDisco = "INSERT INTO dado_disco (uso_disco, status_coleta, fk_totem, fk_posto)VALUES (?, 1, 1, 1);";
-                    banco.update(insertDisco, totalDisco);
+                    String insertDisco = "INSERT INTO dado_disco (uso_disco, status_coleta, fk_totem, fk_posto)VALUES (?, 1, ?, ?);";
+                    banco.update(insertDisco, df.format(totalDisco), getId_totem(), getFk_Posto());
 //
 //                }
                 

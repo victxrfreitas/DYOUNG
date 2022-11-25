@@ -316,7 +316,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Total de TOTENS</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="count_totem"></div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
@@ -547,5 +547,50 @@
 </body>
 
 </html>
+<script>
+    function atualizacaoPeriodica() {
+        obterdados(1);
+
+        // function sendData() {
+        // 	var http = new XMLHttpRequest();
+        // 	http.open('POST', 'http://localhost:3000/api/sendData', false);
+        // 	http.send(null);
+        // }
+
+        setInterval(() => {
+            // sendData();
+        }, 2000);
+        setTimeout(atualizacaoPeriodica, 5000);
+    }
+    function obterdados(statusTotem) {
+        fetch(`/medidas/tempo-real-qtd/${statusTotem}`)
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    resposta.json().then(resposta => {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        var dados = {
+                            statusTotem: resposta[0],
+                        }
+
+                        alertar(resposta[0].statusTotem);
+                    });
+                } else {
+
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+    function alertar(statusTotem){
+        count_totem.innerHTML = statusTotem;
+    }
+</script>
 
 

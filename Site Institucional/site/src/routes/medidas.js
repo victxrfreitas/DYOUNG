@@ -21,6 +21,10 @@ router.get("/tempo-realTotem/:idTotem", function (req, res) {
     medidaController.buscarMedidasEmTempoReal(req, res);
 });
 
+router.get("/tempo-real-qtd/:statusTotem", function (req, res) {
+    medidaController.buscarqtdTotem(req, res);
+});
+
 router.get("/dadosPosto/:idPosto", function (req, res) {
     medidaController.buscarDadosPostos(req, res);
 });

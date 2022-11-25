@@ -78,6 +78,37 @@ function buscarMedidasEmTempoReal(idTotem) {
     return database.executar(instrucaoSql);
 }
 
+function buscarqtdTotem(statusTotem) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `select top 1
+        uso_cpu as usoCpu, 
+        status_coleta as statusCpu,  
+                        CONVERT(varchar, data_hora_captura, 108) as momento_grafico, 
+                        fk_totem 
+                        from dado_cpu join totem on fk_totem = idTotem WHere fk_totem = ${idTotem}
+                    order by id_dado_cpu desc`;
+
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `SELECT COUNT(statusTotem) FROM totem WHERE statusTotem = ${statusTotem};`;
+        // instrucaoSql = `select 
+        // uso_cpu as usoCpu, 
+        // status_coleta as statusCpu,  
+        //                 DATE_FORMAT(data_hora_captura,'%H:%i:%s') as momento_grafico, 
+        //                 fk_totem 
+        //                 from dado_cpu where fk_totem = ${id_dado_cpu} 
+        //             order by id_dado_cpu desc limit 1`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
 function buscarDadosPostos(idPosto) {
 
     instrucaoSql = ''
@@ -194,5 +225,6 @@ module.exports = {
     buscarDadosTotem,
     cadastrarTotem,
     deletarTotem,
-    editarTotem
+    editarTotem,
+    buscarqtdTotem
 }
