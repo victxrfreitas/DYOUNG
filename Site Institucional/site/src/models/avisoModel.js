@@ -1,10 +1,11 @@
 var database = require("../database/config");
 
-function listarTotensPorPosto() {
+function listarTotensPorPosto(idPosto) {
+    console.log("to no model");
     console.log("ACESSEI O AVISO  MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucao = `
         SELECT 
-            idTotem 'totemId'
+            idTotem 'publicacao'
         FROM 
             totem
         WHERE 

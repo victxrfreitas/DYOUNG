@@ -263,6 +263,30 @@ function buscarTodosDadosAlerta(idTotem) {
 }
 //////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////
+
+
+// ################################TABLES###################################
+
+function buscarQtdTotens(idPosto) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `SELECT COUNT(idTotem) 'qtd' from totem where fk_posto = ${idPosto}`;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `SELECT COUNT(idTotem) 'qtd' from totem where fk_posto = ${idPosto}`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+//////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////
+
 function buscarDadosTotem(idTotem) {
     instrucaoSql = ''
 
@@ -342,13 +366,11 @@ module.exports = {
     cadastrarTotem,
     deletarTotem,
     editarTotem,
-<<<<<<< HEAD
-    buscarqtdTotem
-=======
+    buscarqtdTotem,
     buscarTodosDados,
     buscarTodosDadosFuncionamento,
     buscarTodosDadosAlerta,
-    buscarTodosDadosCritico
-    
->>>>>>> 91b454de1b0c116f45412e743ffbc35d2e4aa141
+    buscarTodosDadosCritico,
+    buscarQtdTotens
+
 }

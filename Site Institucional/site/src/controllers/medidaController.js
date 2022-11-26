@@ -87,6 +87,29 @@ function buscarDadosPostos(req, res) {
     });
 }
 
+function buscarQtdTotens(req, res) {
+
+    var idPosto = req.params.idPosto;
+   
+
+    medidaModel.buscarQtdTotens(idPosto).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
+
+
+
+
 ///////Listagem e criação dos Cards
 
 function buscarNomesPosto(req, res) {
@@ -298,13 +321,11 @@ module.exports = {
     cadastrarTotem,
     deletarTotem,
     editarTotem,
-<<<<<<< HEAD
-    buscarqtdTotem
-=======
+    buscarqtdTotem,
     buscarTodosDados,
     buscarTodosDadosFuncionamento,
     buscarTodosDadosCritico,
+    buscarTodosDadosAlerta,
+    buscarQtdTotens,
     buscarTodosDadosAlerta
->>>>>>> 91b454de1b0c116f45412e743ffbc35d2e4aa141
-
 }

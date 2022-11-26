@@ -23,7 +23,7 @@
 
 </head>
 
-<body onload="atualizacaoPeriodica(),obterDados(idPosto), validarSessao()" id="page-top">
+<body onload="atualizacaoPeriodica(), atualizarTotens()" id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -255,277 +255,37 @@
                         </h1>
                     </div>
 
-                    <div class="row">
+                        <!-- <div class="testeCard"> -->
 
-                        <div id="feed_container" class="feed-container">
-                            
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-danger shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-
-                                            <!-- <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Totem 1</div> -->
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"> <a onclick="verTotem(1)"
-                                                    style="text-decoration: none; color: rgb(95, 94, 94);">Totem 1</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-exclamation-triangle fa-2x text-danger"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Annual) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
+                    <div id="feed_cards" class="row">
+                     
+                        
+                        <!-- <div class="col-xl-3 col-md-6 mb-4">
+                            <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                             </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"> <a onclick="verTotem(2)"
-                                                    style="text-decoration: none; color: rgb(95, 94, 94);">Totem 2</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-check fa-2x text-success"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Tasks Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"> <a onclick="verTotem(3)"
-                                                    style="text-decoration: none; color: rgb(95, 94, 94);">Totem 3</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-check fa-2x text-success"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a onclick="verTotem(4)"
-                                                    style="text-decoration: none; color: rgb(95, 94, 94);">Totem 4</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-exclamation-triangle fa-2x text-warning"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- /.container-fluid -->
-
-                    <div class="row2">
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-danger shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="charts.html"
-                                                    style="text-decoration: none; color: rgb(95, 94, 94);">Totem 5</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-exclamation-triangle fa-2x text-danger"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Annual) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="charts.html"
-                                                    style="text-decoration: none; color: rgb(95, 94, 94);">Totem 6</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-check fa-2x text-success"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Tasks Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"> <a onclick="verTotem(7)"
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800"> 
+                                                <a onclick="verTotem(7)"
                                                     style="text-decoration: none; color: rgb(95, 94, 94);">Totem 7</a>
                                             </div>
                                         </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-check fa-2x text-success"></i>
-                                        </div>
+                                        <div class="col-auto"> -->
+                                            <!-- <i class="fas fa-check fa-2x text-success"></i> -->
+                                        <!-- </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="charts.html"
-                                                    style="text-decoration: none; color: rgb(95, 94, 94);">Totem 8</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-exclamation-triangle fa-2x text-warning"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                       
+                        <!-- </div> -->
+
+                        <!-- end row -->
                     </div>
 
-
-                    <div class="row2">
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-danger shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="charts.html"
-                                                    style="text-decoration: none; color: rgb(95, 94, 94);">Totem 9</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-exclamation-triangle fa-2x text-danger"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Annual) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="charts.html"
-                                                    style="text-decoration: none; color: rgb(95, 94, 94);">Totem 10</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-check fa-2x text-success"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                            <div class="div_card" id="card">
-
-
-                            </div>
-
-                        <!-- Tasks Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"> <a href="charts.html"
-                                                    style="text-decoration: none; color: rgb(95, 94, 94);">Totem 11</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-check fa-2x text-success"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                            </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"><a href="charts.html"
-                                                    style="text-decoration: none; color: rgb(95, 94, 94);">Totem 12</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-auto">
-                                            <i class="fas fa-exclamation-triangle fa-2x text-warning"></i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <!-- /.container-fluid -->
-
-                </div>
-                <!-- End of Main Content -->
-
-                <!-- Footer -->
-
-                <!-- End of Footer -->
 
             </div>
             <!-- End of Content Wrapper -->
@@ -575,6 +335,8 @@
 
 <script>
 
+    
+
 var idPosto = queryString("id");
 function queryString(parameter) {
               var loc = location.search.substring(1, location.search.length);
@@ -599,7 +361,7 @@ function queryString(parameter) {
 
 function atualizarTotens() {
         //aguardar();
-        fetch("/avisos/listarTotensPorPosto").then(function (resposta) {
+        fetch(`/avisos/listarTotensPorPosto/${idPosto}`).then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {
                     var feed = document.getElementById("feed_container");
@@ -612,63 +374,71 @@ function atualizarTotens() {
                 resposta.json().then(function (resposta) {
                     console.log("Dados recebidos: ", JSON.stringify(resposta));
 
-                    var feed = document.getElementById("feed_container");
-                    feed.innerHTML = "";
+                    // var feed = document.getElementById("feed_container");
+                    // feed.innerHTML = "";
                     for (let i = 0; i < resposta.length; i++) {
-                        var publicacao = resposta[i];
+                        var publicacao = resposta[i].publicacao;
 
                         // criando e manipulando elementos do HTML via JavaScript
-                        var divPublicacao = document.createElement("div");
-                        var spanID = document.createElement("span");
-                        var spanTitulo = document.createElement("span");
-                        var spanNome = document.createElement("span");
-                        var divDescricao = document.createElement("div");
-                        var divButtons = document.createElement("div");
-                        var btnEditar = document.createElement("button");
-                        var btnDeletar = document.createElement("button");
+                        // Ordem de criação dos cards dos totens:
+                        
 
+                       
+                        //feed pai
+                        var feed = document.getElementById("feed_cards");
+                        //filhos
+                        var divXl3 = document.createElement("div");
+                        var divCardBorder = document.createElement("div");
+                        var divCardBody = document.createElement("div");
+                        var divRow = document.createElement("div");
+                        // divs criadas abaixo serao implementadas dentro da divRow
+                        var divMr2 = document.createElement("div");
+                        var divColAuto = document.createElement("div");
+                        // Divs abaixo serao implementadas dentro da Mr2
+                        var divTextXs = document.createElement("div");
+                        var divH5 = document.createElement("div");
+                        // elemento <a> abaixo sera implementado dentro da divH5
+                        var aStyle = document.createElement("a");
 
-                        spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
-                        spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
-                        spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
-                        divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
-                        btnEditar.innerHTML = "Editar";
-                        btnDeletar.innerHTML = "Deletar";
+                        // adicionando texto aos elementos
+                        aStyle.innerHTML = "Totem " + publicacao;
+                        
+                            //adicionando as classes aos elementos
+                            divXl3.className = "col-xl-3 col-md-6 mb-4";
+                            divCardBorder.className = "card border-left-primary shadow h-100 py-2";
+                            divCardBody.className="card-body";
+                            divRow.className="row no-gutters align-items-center";
+                            divMr2.className="col mr-2";
+                            divColAuto.className="col-auto";
+                            divTextXs.className="text-xs font-weight-bold text-success text-uppercase mb-1";
+                            divH5.className="h5 mb-0 font-weight-bold text-gray-800";
+                            aStyle.style="text-decoration: none; color: rgb(95, 94, 94);";
 
-                        divPublicacao.className = "publicacao";
-                        spanTitulo.id = "inputNumero" + publicacao.idAviso;
-                        spanNome.className = "publicacao-nome";
-                        spanTitulo.className = "publicacao-titulo";
-                        divDescricao.className = "publicacao-descricao";
+                            //inserindo atributo no card
+                            aStyle.setAttribute("onclick", `verTotem(${publicacao})`)
 
-                        divButtons.className = "div-buttons"
+                            //Adicionando os elementos criados no feed
 
-                        btnEditar.className = "publicacao-btn-editar"
-                        btnEditar.id = "btnEditar" + publicacao.idAviso;
-                        btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
-
-                        btnDeletar.className = "publicacao-btn-editar"
-                        btnDeletar.id = "btnDeletar" + publicacao.idAviso;
-                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
-
-                        divPublicacao.appendChild(spanID);
-                        divPublicacao.appendChild(spanNome);
-                        divPublicacao.appendChild(spanTitulo);
-                        divPublicacao.appendChild(divDescricao);
-                        divPublicacao.appendChild(divButtons);
-                        divButtons.appendChild(btnEditar);
-                        divButtons.appendChild(btnDeletar);
-                        feed.appendChild(divPublicacao);
+                            feed.appendChild(divXl3);
+                            divXl3.appendChild(divCardBorder);
+                            divCardBorder.appendChild(divCardBody);
+                            divCardBody.appendChild(divRow);
+                            divRow.appendChild(divMr2);
+                            divRow.appendChild(divColAuto);
+                            divMr2.appendChild(divTextXs);
+                            divMr2.appendChild(divH5);
+                            divH5.appendChild(aStyle);
+                        
                     }
 
-                    finalizarAguardar();
+                    // finalizarAguardar();
                 });
             } else {
                 throw ('Houve um erro na API!');
             }
         }).catch(function (resposta) {
             console.error(resposta);
-            finalizarAguardar();
+            // finalizarAguardar();
         });
     }
 

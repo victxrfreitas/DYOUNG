@@ -27,7 +27,7 @@
 
 </head>
 
-<body id="page-top" onload="validarSessao(), obterDados(idPosto),atualizacaoPeriodica()">
+<body id="page-top" onload="atualizacaoPeriodica(), atualizacaoPeriodicaPosto()">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -38,7 +38,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-             
+
                 </div>
                 <img src="img/Logo-DYoung.png" width="60%">
             </a>
@@ -46,13 +46,13 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-      
+
             <li class="nav-item active">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tabela</span></a>
             </li>
-          
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
@@ -61,11 +61,7 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
-            <li class="nav-item faq">
-                <a class="nav-link" href="cards.html">
-                    <i class="fas fa-fw fa-tablet"></i>
-                    <span>Totens</span></a>
-            </li>
+    
             <li class="nav-item faq">
                 <a class="nav-link" href="FAQ.html">
                     <i class="fas fa-fw fa-question"></i>
@@ -73,7 +69,8 @@
             </li>
 
             <li class="nav-item faq">
-                <a class="nav-link" href="https://dyoung.tomticket.com?account=3823360P15112022021213" target="_blank" rel="noopener noreferrer">
+                <a class="nav-link" href="https://dyoung.tomticket.com?account=3823360P15112022021213" target="_blank"
+                    rel="noopener noreferrer">
                     <i class="fas fa-fw fa-headset"></i>
                     <span>HelpDesk</span></a>
             </li>
@@ -85,7 +82,7 @@
             </li>
 
             <!-- Nav Item - Tables -->
-           
+
 
 
             <!-- Sidebar Toggler (Sidebar) -->
@@ -141,8 +138,7 @@
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
                                         <input type="text" class="form-control bg-light border-0 small"
-                                            placeholder="Buscar..." aria-label="Search"
-                                            aria-describedby="basic-addon2">
+                                            placeholder="Buscar..." aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
                                                 <i class="fas fa-search fa-sm"></i>
@@ -204,9 +200,9 @@
                                 <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
                             </div>
                         </li> -->
-                        
+
                         <!-- Nav Item - Messages -->
-                      
+
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
@@ -214,13 +210,12 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Leonardo</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                               
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -239,7 +234,7 @@
 
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">Postos do Poupa Tempo</h1>
-                  
+
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
@@ -254,39 +249,63 @@
                                             <th>Poupa Tempo</th>
                                             <th>Total de Totens</th>
                                             <th>Situação do Posto</th>
-                                            <th>Quantidade</th>
-                                           
+
+
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <td> <a onclick="verPosto(6)">Lapa</td>
-                                            <td>3</td>
+                                            <td> <a onclick="verPosto(6)" id="spn_nomePosto3"></td>
+                                            <td><span id="count1"></span> </td>
                                             <td> <b style="color:#e74a3b;">Estado crítico</b></td>
-                                            <td>2</td>
+
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <tr>
-                                            <td> <a onclick="verPosto(3)">São Caetano do Sul</a></td>
-                                            <td>4</td>
+                                            <td> <a onclick="verPosto(4)"id="spn_nomePosto"></td>
+                                            <td>
+                                                <div id="count2"> </div>
+                                            </td>
                                             <td> <b style="color:#f6c23e;">Em alerta</b></td>
-                                            <td>2</td>
+
                                         </tr>
                                         <tr>
-                                            <td><a href="cards.html">Osasco</a></td>
-                                            <td>5</td>
+                                            <td><a onclick="verPosto(5)" id="spn_nomePosto2"></a></td>
+                                            <td>
+                                                <div id="count3"> </div>
+                                            </td>
                                             <td><b style="color:#1cc88a;">Ideal</b></td>
-                                            <td>5</td>
+
                                         </tr>
                                         <tr>
-                                            <td><a href="cards.html">Sé</a></td>
-                                            <td>5</td>
+                                            <td><a onclick="verPosto(15)" id="spn_nomePosto6"></a></td>
+                                            <td>
+                                                <div id="count4"> </div>
+                                            </td>
                                             <td><b style="color:#1cc88a;">Ideal</b></td>
-                                            <td>5</td>
-                                        
+
+
                                         </tr>
-                                     
+                                        <tr>
+                                            <td><a onclick="verPosto(13)" id="spn_nomePosto4"></a></td>
+                                            <td>
+                                                <div id="count5"> </div>
+                                            </td>
+                                            <td><b style="color:#1cc88a;">Ideal</b></td>
+
+
+                                        </tr>
+                                        <tr>
+                                            <td><a onclick="verPosto(14)" id="spn_nomePosto5"></a></td>
+                                            <td>
+                                                <div id="count6"> </div>
+                                            </td>
+                                            <td><b style="color:#1cc88a;">Ideal</b></td>
+
+
+                                        </tr>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -301,7 +320,7 @@
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
-              
+
             </footer>
             <!-- End of Footer -->
 
@@ -359,26 +378,196 @@
 
 <script>
 
-var idPosto = queryString("id");
-function queryString(parameter) {
-              var loc = location.search.substring(1, location.search.length);
-              var param_value = false;
-              var params = loc.split("&");
-              for (i=0; i<params.length;i++) {
-                  param_name = params[i].substring(0,params[i].indexOf('='));
-                  if (param_name == parameter) {
-                      param_value = params[i].substring(params[i].indexOf('=')+1)
-                  }
-              }
-              if (param_value) {
-                  return param_value;
-              }
-              else {
-                  return undefined;
-              }
+    var idPosto = queryString("id");
+    function queryString(parameter) {
+        var loc = location.search.substring(1, location.search.length);
+        var param_value = false;
+        var params = loc.split("&");
+        for (i = 0; i < params.length; i++) {
+            param_name = params[i].substring(0, params[i].indexOf('='));
+            if (param_name == parameter) {
+                param_value = params[i].substring(params[i].indexOf('=') + 1)
+            }
         }
+        if (param_value) {
+            return param_value;
+        }
+        else {
+            return undefined;
+        }
+    }
 
-function verPosto(idPosto){
+    function verPosto(idPosto) {
         location.assign("cards.html?id=" + idPosto);
     }
+
+
+    function atualizacaoPeriodica() {
+
+
+        obterdados(6);
+        obterdados(4);
+        obterdados(5);
+        obterdados(13);
+        obterdados(14);
+        obterdados(15);
+
+
+
+        // function sendData() {
+        // 	var http = new XMLHttpRequest();
+        // 	http.open('POST', 'http://localhost:3000/api/sendData', false);
+        // 	http.send(null);
+        // }
+
+        setInterval(() => {
+            // sendData();
+        }, 2000);
+        setTimeout(atualizacaoPeriodica, 5000);
+    }
+
+    function obterdados(idPosto) {
+        fetch(`/medidas/qtdTotens/${idPosto}`)
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    resposta.json().then(resposta => {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        var dados = {
+                            qtd: resposta[0].qtd,
+
+                        }
+                        alertar(resposta[0].qtd, idPosto);
+
+
+                    });
+                } else {
+
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+    }
+
+
+    function atualizacaoPeriodicaPosto() {
+        obterdadosPosto(6);
+        obterdadosPosto(4);
+        obterdadosPosto(5);
+        obterdadosPosto(13);
+        obterdadosPosto(14);
+        obterdadosPosto(15);
+
+
+        // function sendData() {
+        // 	var http = new XMLHttpRequest();
+        // 	http.open('POST', 'http://localhost:3000/api/sendData', false);
+        // 	http.send(null);
+        // }
+
+        setInterval(() => {
+            // sendData();
+        }, 2000);
+        setTimeout(atualizacaoPeriodica, 5000);
+    }
+
+    function obterdadosPosto(idPosto) {
+        // console.log("id posto " + idPosto);
+        fetch(`/medidas/nomesPosto/${idPosto}`)
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    resposta.json().then(resposta => {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        var dados = {
+                            postoNome: resposta[0].postoNome,
+                        }
+
+                        alertarPosto(resposta[0].postoNome, idPosto);
+
+                    });
+                } else {
+
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+
+    }
+
+
+    function alertar(qtd, idPosto) {
+
+        var card;
+
+        if (idPosto == 4) {
+            count2.innerHTML = qtd;
+
+        } else if (idPosto == 5) {
+            count3.innerHTML = qtd;
+
+        } else if (idPosto == 6) {
+            count1.innerHTML = qtd;
+
+        } else if (idPosto == 13) {
+            count5.innerHTML = qtd;
+
+
+        } else if (idPosto == 14) {
+            count4.innerHTML = qtd;
+
+        }
+        else if (idPosto == 15) {
+            count6.innerHTML = qtd;
+
+        }
+
+
+    }
+
+    function alertarPosto(postoNome, idPosto) {
+
+        var card;
+
+        if (idPosto == 4) {
+            spn_nomePosto.innerHTML = postoNome;
+
+        } else if (idPosto == 5) {
+            spn_nomePosto2.innerHTML = postoNome;
+
+
+        } else if (idPosto == 6) {
+            spn_nomePosto3.innerHTML = postoNome;
+
+
+        } else if (idPosto == 13) {
+            spn_nomePosto4.innerHTML = postoNome;
+
+
+
+        } else if (idPosto == 14) {
+            spn_nomePosto5.innerHTML = postoNome;
+
+
+        }
+        else if (idPosto == 15) {
+            spn_nomePosto6.innerHTML = postoNome;
+
+
+        }
+
+
+
+    }
+
+
+
 </script>

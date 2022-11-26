@@ -3,13 +3,6 @@ var router = express.Router();
 
 var medidaController = require("../controllers/medidaController");
 
-// router.get("/ultimas/:id_dado_cpu", function (req, res) {
-//     medidaController.buscarUltimasMedidas(req, res);
-// });
-
-// router.get("/tempo-real/:id_dado_cpu", function (req, res) {
-//     medidaController.buscarMedidasEmTempoReal(req, res);
-// });
 
 router.get("/ultimasTotem/:idTotem", function (req, res) {
     console.log("rotaaa");
@@ -59,6 +52,13 @@ router.get("/dadosTotem-critico/:idTotem", function (req, res) {
     medidaController.buscarTodosDadosCritico(req, res);
     console.log("Rota");
 });
+
+// ####################### TABLE #############################
+router.get("/qtdTotens/:idPosto", function (req, res) {
+    medidaController.buscarQtdTotens(req, res);
+    console.log("Rota");
+});
+
 ///////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
 router.get("/dadosTotem/:idTotem", function (req, res) {

@@ -584,10 +584,14 @@ pre code {
     max-width: 1140px;
   }
 }
+.testeCard{
+  display: flex;
+  justify-content: space-evenly;
 
+}
 .row {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   margin-right: -0.75rem;
   margin-left: -0.75rem;
   
@@ -595,7 +599,7 @@ pre code {
 }
 .row2 {
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   margin-right: -0.75rem;
   margin-left: -0.75rem;
 }
