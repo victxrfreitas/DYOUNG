@@ -11,14 +11,15 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import org.json.JSONObject;
 
+
 /**
  *
  * @author MU993HT
  */
 public class Slack {
 
-    private static final HttpClient client = HttpClient.newHttpClient();
-    private static final String URL=  "https://hooks.slack.com/services/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";
+    private static  HttpClient client = HttpClient.newHttpClient();
+    private static final String URL=  "https://hooks.slack.com/services/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";
 
     public static void enviarMensagem(JSONObject content) throws IOException,InterruptedException {
         HttpRequest request =  HttpRequest.newBuilder(URI.create(URL))

@@ -13,12 +13,7 @@ import org.json.JSONObject;
  */
 public class App {
 
-    /**
-     *
-     * @param args
-     * @throws IOException
-     * @throws InterruptedException
-     */
+    
     public static void main(String[] args)  throws IOException,InterruptedException {
         JSONObject json = new JSONObject();
         
