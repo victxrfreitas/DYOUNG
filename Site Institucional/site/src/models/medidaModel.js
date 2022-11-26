@@ -15,14 +15,6 @@ function buscarUltimasMedidas(limite_linhas,idTotem) {
                         DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
                     from dado_cpu join totem on fk_totem = idTotem Where fk_totem = ${idTotem}
                     order by id desc limit ${limite_linhas}`;
-        // instrucaoSql = `select top ${limite_linhas}
-        // uso_cpu as usoCpu, 
-        // status_coleta as statusCpu,
-        // data_hora_captura,
-        //                 DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
-        //             from dado_cpu
-        //             where fk_totem = ${id_dado_cpu}
-        //             order by id desc limit ${limite_linhas}`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select 
         uso_cpu as usoCpu, 
@@ -209,10 +201,7 @@ function buscarTodosDadosFuncionamento(idTotem) {
     if (process.env.AMBIENTE_PROCESSO == "producao") {
         instrucaoSql = `SELECT COUNT(idTotem) from totem;`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `SELECT count(id_dado_cpu)'dadoCpu',count(id_dado_ram)'dadoRam',count(id_dado_disco)'dadoDisco' 
-        FROM dado_ram, dado_cpu, dado_disco 
-        JOIN totem as maquina on fk_totem = maquina.idTotem
-        where uso_ram <= 39 AND uso_disco <= 39 AND uso_cpu <= 39;`;
+        instrucaoSql = ``;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -242,17 +231,49 @@ function buscarTodosDadosCritico(idTotem) {
     return database.executar(instrucaoSql);
 }
 
-function buscarTodosDadosAlerta(idTotem) {
+function AlertarRamTotem(idTotem) {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `SELECT COUNT(idTotem) from totem;`;
+        instrucaoSql = `select uso_ram 'dadoRam' from dado_ram where fk_totem = ${idTotem};`;
+
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `SELECT count(id_dado_cpu)'dadoCpu',count(id_dado_ram)'dadoRam',count(id_dado_disco)'dadoDisco' 
-        FROM dado_ram, dado_cpu, dado_disco 
-        JOIN totem as maquina on fk_totem = maquina.idTotem
-        where uso_ram >= 40 AND uso_disco >= 40 AND uso_cpu >= 40;`;
+        instrucaoSql = `select uso_ram 'dadoRam' from dado_ram where fk_totem = ${idTotem};`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function AlertarDiscoTotem(idTotem) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `select uso_disco 'dadoDisco' from dado_disco where fk_totem = ${idTotem};`;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `select uso_disco 'dadoDisco' from dado_disco where fk_totem = ${idTotem};`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function AlertarCpuTotem(idTotem) {
+
+    instrucaoSql = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSql = `select temperatura, uso_cpu 'dadoCpu' from dado_cpu where fk_totem = ${idTotem};`;
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSql = `select temperatura, uso_cpu 'dadoCpu' from dado_cpu where fk_totem = ${idTotem};`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -369,8 +390,10 @@ module.exports = {
     buscarqtdTotem,
     buscarTodosDados,
     buscarTodosDadosFuncionamento,
-    buscarTodosDadosAlerta,
     buscarTodosDadosCritico,
-    buscarQtdTotens
+    buscarQtdTotens,
+    AlertarRamTotem,
+    AlertarDiscoTotem,
+    AlertarRamTotem
 
 }

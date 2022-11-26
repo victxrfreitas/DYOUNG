@@ -87,6 +87,57 @@ function buscarDadosPostos(req, res) {
     });
 }
 
+function AlertarDiscoTotem(req, res) {
+
+    var idTotem = req.params.idTotem;
+
+    medidaModel.buscarDadosPostos(idTotem).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+function AlertarRamTotem(req, res) {
+
+    var idTotem = req.params.idTotem;
+
+    medidaModel.buscarDadosPostos(idTotem).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+function AlertarCpuTotem(req, res) {
+
+    var idTotem = req.params.idTotem;
+
+    medidaModel.buscarDadosPostos(idTotem).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
+
 function buscarQtdTotens(req, res) {
 
     var idPosto = req.params.idPosto;
@@ -327,5 +378,8 @@ module.exports = {
     buscarTodosDadosCritico,
     buscarTodosDadosAlerta,
     buscarQtdTotens,
-    buscarTodosDadosAlerta
+    buscarTodosDadosAlerta,
+    AlertarCpuTotem,
+    AlertarRamTotem,
+    AlertarDiscoTotem
 }

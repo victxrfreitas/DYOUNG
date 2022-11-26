@@ -38,21 +38,19 @@ router.get("/dadosTotem-qtd/:idTotem", function (req, res) {
     console.log("Rota");
 });
 
-router.get("/dadosTotem-alerta/:idTotem", function (req, res) {
-    medidaController.buscarTodosDadosAlerta(req, res);
-    console.log("Rota");
+router.get("/AlertarDiscoTotem/:idTotem", function (req, res) {
+    medidaController.AlertarDiscoTotem(req, res);
+    console.log("Rota222222222222222");
 });
 
-router.get("/dadosTotem-funcionamento/:idTotem", function (req, res) {
-    medidaController.buscarTodosDadosFuncionamento(req, res);
-    console.log("Rota Ideal");
+router.get("/AlertarRamTotem/:idTotem", function (req, res) {
+    medidaController.AlertarRamTotem(req, res);
+    console.log("Rota2222222222222222");
 });
-
-router.get("/dadosTotem-critico/:idTotem", function (req, res) {
-    medidaController.buscarTodosDadosCritico(req, res);
-    console.log("Rota");
+router.get("/AlertarCpuTotem/:idTotem", function (req, res) {
+    medidaController.AlertarCpuTotem(req, res);
+    console.log("Rota2222222222222");
 });
-
 // ####################### TABLE #############################
 router.get("/qtdTotens/:idPosto", function (req, res) {
     medidaController.buscarQtdTotens(req, res);
