@@ -24,7 +24,7 @@
 
 </head>
 
-<body id="page-top" onload=" atualizacaoPeriodica(), atualizacaoPeriodicaEmFuncionamento(), atualizacaoPeriodicaAlerta(), atualizacaoPeriodicaCritico(), atualizacaoPeriodicaDosTotens()">
+<body id="page-top" onload=" atualizacaoPeriodica(), atualizacaoPeriodicaDosTotens()">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -547,55 +547,11 @@
 </body>
 
 </html>
-<script>
-    function atualizacaoPeriodica() {
-        obterdados(1);
-
-        // function sendData() {
-        // 	var http = new XMLHttpRequest();
-        // 	http.open('POST', 'http://localhost:3000/api/sendData', false);
-        // 	http.send(null);
-        // }
-
-        setInterval(() => {
-            // sendData();
-        }, 2000);
-        setTimeout(atualizacaoPeriodica, 5000);
-    }
-    function obterdados(statusTotem) {
-        fetch(`/medidas/tempo-real-qtd/${statusTotem}`)
-            .then(resposta => {
-
-                if (resposta.ok) {
-                    resposta.json().then(resposta => {
-
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                        var dados = {
-                            statusTotem: resposta[0],
-                        }
-
-                        alertar(resposta[0].statusTotem);
-                    });
-                } else {
-
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
-            });
-
-    }
-
-    function alertar(statusTotem){
-        count_totem.innerHTML = statusTotem;
-    }
-</script>
 
 <script>
     var idTotem = queryString("id");
     var idPosto = sessionStorage.FK_USUARIO;
+    
     function queryString(parameter) {
               var loc = location.search.substring(1, location.search.length);
               var param_value = false;
@@ -616,6 +572,10 @@
 
     function atualizacaoPeriodica() {
         obterdados(idTotem);
+        obterdadosCpu(1);
+        obterdadoDisco(1);
+        obterdadosRam(1);
+        console.log("atualizacão")
 
         // function sendData() {
         // 	var http = new XMLHttpRequest();
@@ -658,22 +618,23 @@
     //////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////
 
-    function atualizacaoPeriodicaDosTotens() {
-        obterdadosCpu(idTotem);
-        obterdadoDisco(idTotem);
-        obterdadosRam(idTotem);
+    // function atualizacaoPeriodicaDosTotens() {
+    //     obterdadosCpu(idTotem);
+    //     obterdadoDisco(idTotem);
+    //     obterdadosRam(idTotem);
+    //     console.log("atualizacão");
 
-        // function sendData() {
-        // 	var http = new XMLHttpRequest();
-        // 	http.open('POST', 'http://localhost:3000/api/sendData', false);
-        // 	http.send(null);
-        // }
+    //     // function sendData() {
+    //     // 	var http = new XMLHttpRequest();
+    //     // 	http.open('POST', 'http://localhost:3000/api/sendData', false);
+    //     // 	http.send(null);
+    //     // }
 
-        setInterval(() => {
-            // sendData();
-        }, 2000);
-        setTimeout(atualizacaoPeriodicaDosTotens, 5000);
-    }
+    //     setInterval(() => {
+    //         // sendData();
+    //     }, 2000);
+    //     setTimeout(atualizacaoPeriodicaDosTotens, 5000);
+    // }
 
     function obterdadosCpu(idTotem) {
         fetch(`/medidas/AlertarCpuTotem/${idTotem}`)
@@ -686,9 +647,10 @@
 
                         var dados = {
                             dadoCpu: resposta[0].dadoCpu,
+                            dadoTemperatura: resposta[0].dadoTemperatura,
                         }
 
-                        alertar(resposta[0].dadoCpu, idTotem);
+                        alertar2(resposta[0].dadoCpu,resposta[0].dadoTemperatura, idTotem);
                     });
                 } else {
 
@@ -712,7 +674,7 @@
                             dadoDisco: resposta[0].dadoDisco,
                         }
 
-                        alertar(resposta[0].dadoDisco, idTotem);
+                        alertar2(resposta[0].dadoDisco, idTotem);
                     });
                 } else {
 
@@ -736,7 +698,7 @@
                             dadoRam: resposta[0].dadoRam,
                         }
 
-                        alertar(resposta[0].dadoRam, idTotem);
+                        alertar2(resposta[0].dadoRam, idTotem);
                     });
                 } else {
 
@@ -751,7 +713,7 @@
         //////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////
 
-    function alertar(dadoCpu, dadoDisco, dadoRam, idTotem) {
+    function alertar2(dadoCpu, dadoTemperatura, dadoDisco, dadoRam, idTotem) {
         var limitesCritico = {
             metrica: 80,
         };
@@ -772,23 +734,23 @@
 
         var card;
 
-        if (idJogador == 1) {
-            temp_aquario_1.innerHTML = fkJogador;
-            // card = card_1
-        }
-        else if (idJogador == 2) {
-            temp_aquario_2.innerHTML = fkJogador;''
-            // card = card_2
-        } else if (idJogador == 3) {
-            temp_aquario_3.innerHTML = fkJogador;
-            // card = card_3
-        } else if (idJogador == 4) {
-            temp_aquario_4.innerHTML = fkJogador;
-            // card = card_4
-        } else if (idJogador == 5) {
-            temp_aquario_5.innerHTML = fkJogador;
-            // card = card_4
-        }
+        // if (idJogador == 1) {
+        //     temp_aquario_1.innerHTML = fkJogador;
+        //     // card = card_1
+        // }
+        // else if (idJogador == 2) {
+        //     temp_aquario_2.innerHTML = fkJogador;''
+        //     // card = card_2
+        // } else if (idJogador == 3) {
+        //     temp_aquario_3.innerHTML = fkJogador;
+        //     // card = card_3
+        // } else if (idJogador == 4) {
+        //     temp_aquario_4.innerHTML = fkJogador;
+        //     // card = card_4
+        // } else if (idJogador == 5) {
+        //     temp_aquario_5.innerHTML = fkJogador;
+        //     // card = card_4
+        // }
 
         // alterando
         // card.className = classe_temperatura;

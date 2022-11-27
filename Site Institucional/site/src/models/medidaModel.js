@@ -194,50 +194,12 @@ function buscarTodosDados(idTotem) {
     return database.executar(instrucaoSql);
 }
 
-function buscarTodosDadosFuncionamento(idTotem) {
-
-    instrucaoSql = ''
-
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `SELECT COUNT(idTotem) from totem;`;
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = ``;
-    } else {
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-        return
-    }
-
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-
-function buscarTodosDadosCritico(idTotem) {
-
-    instrucaoSql = ''
-
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `SELECT COUNT(idTotem) from totem;`;
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `SELECT count(id_dado_cpu)'dadoCpu',count(id_dado_ram)'dadoRam',count(id_dado_disco)'dadoDisco' 
-        FROM dado_ram, dado_cpu, dado_disco 
-        JOIN totem as maquina on fk_totem = maquina.idTotem
-        where uso_ram >= 80 AND uso_disco >= 80 AND uso_cpu >= 80;`;
-    } else {
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-        return
-    }
-
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
-}
-
 function AlertarRamTotem(idTotem) {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select uso_ram 'dadoRam' from dado_ram where fk_totem = ${idTotem};`;
-
+        instrucaoSql = `select uso_disco 'dadoDisco' from dado_disco where fk_totem = ${idTotem};`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select uso_ram 'dadoRam' from dado_ram where fk_totem = ${idTotem};`;
     } else {
@@ -248,6 +210,7 @@ function AlertarRamTotem(idTotem) {
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
 }
+
 
 function AlertarDiscoTotem(idTotem) {
 
@@ -271,9 +234,9 @@ function AlertarCpuTotem(idTotem) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select temperatura, uso_cpu 'dadoCpu' from dado_cpu where fk_totem = ${idTotem};`;
+        instrucaoSql = `select temp_cpu, uso_cpu 'dadoCpu' from dado_cpu where fk_totem = ${idTotem};`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select temperatura, uso_cpu 'dadoCpu' from dado_cpu where fk_totem = ${idTotem};`;
+        instrucaoSql = `select temp_cpu 'dadoTemperatura', uso_cpu 'dadoCpu' from dado_cpu where fk_totem = ${idTotem};`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -389,11 +352,9 @@ module.exports = {
     editarTotem,
     buscarqtdTotem,
     buscarTodosDados,
-    buscarTodosDadosFuncionamento,
-    buscarTodosDadosCritico,
     buscarQtdTotens,
     AlertarRamTotem,
     AlertarDiscoTotem,
-    AlertarRamTotem
+    AlertarCpuTotem
 
 }
