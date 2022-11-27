@@ -256,7 +256,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                                 Em alerta</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="alerta">10%</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="alerta"><span id="count_alerta"></span></div>
                                         </div>
                                         <!-- <div class="col-auto">
                                             <i class="fas fa-alert fa-2x text-gray-300"></i>
@@ -274,7 +274,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                                 Estado Crítico</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="critico">10%</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="critico"><span id="count_critico"></span></div>
                                         </div>
                                         
                                         <!-- <div class="col-auto">
@@ -291,7 +291,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                                Ideal</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="ideal">10%</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="ideal"><span id="count_ideal"></span></div>
                                         </div>
                                         
                                         <!-- <div class="col-auto">
@@ -551,6 +551,10 @@
 <script>
     var idTotem = queryString("id");
     var idPosto = sessionStorage.FK_USUARIO;
+         obterdados(idTotem);
+        obterdadosCpu(idPosto);
+        obterdadosDisco(1);
+        obterdadosRam(7);
     
     function queryString(parameter) {
               var loc = location.search.substring(1, location.search.length);
@@ -570,24 +574,21 @@
               }
         }
 
-    function atualizacaoPeriodica() {
-        obterdados(idTotem);
-        obterdadosCpu(1);
-        obterdadoDisco(1);
-        obterdadosRam(1);
-        console.log("atualizacão")
+    // function atualizacaoPeriodica() {
+      
+    //     console.log("atualizacão")
 
-        // function sendData() {
-        // 	var http = new XMLHttpRequest();
-        // 	http.open('POST', 'http://localhost:3000/api/sendData', false);
-        // 	http.send(null);
-        // }
+    //     // function sendData() {
+    //     // 	var http = new XMLHttpRequest();
+    //     // 	http.open('POST', 'http://localhost:3000/api/sendData', false);
+    //     // 	http.send(null);
+    //     // }
 
-        setInterval(() => {
-            // sendData();
-        }, 2000);
-        setTimeout(atualizacaoPeriodica, 5000);
-    }
+    //     setInterval(() => {
+    //         // sendData();
+    //     }, 2000);
+    //     setTimeout(atualizacaoPeriodica, 5000);
+    // }
 
     function obterdados(idTotem) {
         fetch(`/medidas/dadosTotem-qtd/${idTotem}`)
@@ -636,8 +637,8 @@
     //     setTimeout(atualizacaoPeriodicaDosTotens, 5000);
     // }
 
-    function obterdadosCpu(idTotem) {
-        fetch(`/medidas/AlertarCpuTotem/${idTotem}`)
+    function obterdadosCpu(idPosto) {
+        fetch(`/medidas/AlertarCpuTotem/${idPosto}`)
             .then(resposta => {
 
                 if (resposta.ok) {
@@ -650,7 +651,7 @@
                             dadoTemperatura: resposta[0].dadoTemperatura,
                         }
 
-                        alertar2(resposta[0].dadoCpu,resposta[0].dadoTemperatura, idTotem);
+                        alertar2(resposta[0].dadoCpu,resposta[0].dadoTemperatura, idPosto);
                     });
                 } else {
 
@@ -661,8 +662,8 @@
                 console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
             });
     }
-    function obterdadosDisco(idTotem) {
-        fetch(`/medidas/AlertarDiscoTotem/${idTotem}`)
+    function obterdadosDisco(idPosto) {
+        fetch(`/medidas/AlertarDiscoTotem/${idPosto}`)
             .then(resposta => {
 
                 if (resposta.ok) {
@@ -685,8 +686,8 @@
                 console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
             });
     }
-    function obterdadosRam(idTotem) {
-        fetch(`/medidas/AlertarRamTotem/${idTotem}`)
+    function obterdadosRam(idPosto) {
+        fetch(`/medidas/AlertarRamTotem/${idPosto}`)
             .then(resposta => {
 
                 if (resposta.ok) {
@@ -698,7 +699,8 @@
                             dadoRam: resposta[0].dadoRam,
                         }
 
-                        alertar2(resposta[0].dadoRam, idTotem);
+                        alertar3(resposta[0].dadoRam, idTotem);
+                        console.log("testeeee raammmmmmmmm")
                     });
                 } else {
 
@@ -713,48 +715,91 @@
         //////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////
 
-    function alertar2(dadoCpu, dadoTemperatura, dadoDisco, dadoRam, idTotem) {
-        var limitesCritico = {
-            metrica: 80,
-        };
-        var ideal = {
-            metrica: 39,
-        };
 
-        if (dadoCpu >= limitesCritico.metrica || dadoDisco >= limitesCritico.metrica || dadoRam >= limitesCritico.metrica) {
-            console.log("caiu no 1")
-        }
-        else if (dadoCpu <= ideal.metrica || dadoDisco <= ideal.metrica || dadoRam <= ideal.metrica) {
-            console.log("caiu no 2")
-        }
-        else if (dadoCpu <= limitesCritico.metrica || dadoDisco <= limitesCritico.metrica || dadoRam <= limitesCritico.metrica &&
-        dadoCpu >= ideal.metrica || dadoDisco >= ideal.metrica || dadoRam >= ideal.metrica) {
-            console.log("caiu no 3")
+       var qtdIdeal = 0;
+        var qtdAlerta = 0;
+        var qtdCritico = 0;
+    
+    function alertar2(dadoCpu, dadoTemperatura, dadoDisco, dadoRam, idPosto,idTotem) {
+        var qtdIdeal = 0;
+        var qtdAlerta = 0;
+        var qtdCritico = 0;
+
+
+        var limites ={
+            critico: 80,
+            alerta : 39
         }
 
-        var card;
+       
+        if(dadoCpu >= limites.critico){
+            console.log("teste")
+        }
 
-        // if (idJogador == 1) {
-        //     temp_aquario_1.innerHTML = fkJogador;
-        //     // card = card_1
+
+        // if (dadoCpu >= limitesCritico.metrica || dadoDisco >= limitesCritico.metrica || dadoRam >= limitesCritico.metrica) {
+        //     console.log("caiu no 1")
+        //     count_critico.innerHTML =  qtdCritico++;
+        
+ 
+
         // }
-        // else if (idJogador == 2) {
-        //     temp_aquario_2.innerHTML = fkJogador;''
-        //     // card = card_2
-        // } else if (idJogador == 3) {
-        //     temp_aquario_3.innerHTML = fkJogador;
-        //     // card = card_3
-        // } else if (idJogador == 4) {
-        //     temp_aquario_4.innerHTML = fkJogador;
-        //     // card = card_4
-        // } else if (idJogador == 5) {
-        //     temp_aquario_5.innerHTML = fkJogador;
-        //     // card = card_4
+        // else if (dadoCpu <= ideal.metrica || dadoDisco <= ideal.metrica || dadoRam <= ideal.metrica) {
+        //     console.log("caiu no 2")
+        //     count_ideal.innerHTML =  qtdIdeal++;
+      
+      
+        // }
+        // else if (dadoCpu <= limitesCritico.metrica || dadoDisco <= limitesCritico.metrica || dadoRam <= limitesCritico.metrica &&
+        // dadoCpu >= ideal.metrica || dadoDisco >= ideal.metrica || dadoRam >= ideal.metrica) {
+        //     console.log("caiu no 3")
+        //     count_alerta.innerHTML =  qtdAlerta++;
+        
         // }
 
-        // alterando
-        // card.className = classe_temperatura;
+        
+
+    }
+    
+    function alertar3(dadoRam, idTotem) {
+
+
+
+        var limites ={
+            critico: 80,
+            alerta : 39
+        }
+
+       
+        if(dadoRam <= limites.alerta){
+            console.log("teste")
+            qtdIdeal ++;
+        }
+
+
+        // if (dadoCpu >= limitesCritico.metrica || dadoDisco >= limitesCritico.metrica || dadoRam >= limitesCritico.metrica) {
+        //     console.log("caiu no 1")
+        //     count_critico.innerHTML =  qtdCritico++;
+        
+ 
+
+        // }
+        // else if (dadoCpu <= ideal.metrica || dadoDisco <= ideal.metrica || dadoRam <= ideal.metrica) {
+        //     console.log("caiu no 2")
+        //     count_ideal.innerHTML =  qtdIdeal++;
+      
+      
+        // }
+        // else if (dadoCpu <= limitesCritico.metrica || dadoDisco <= limitesCritico.metrica || dadoRam <= limitesCritico.metrica &&
+        // dadoCpu >= ideal.metrica || dadoDisco >= ideal.metrica || dadoRam >= ideal.metrica) {
+        //     console.log("caiu no 3")
+        //     count_alerta.innerHTML =  qtdAlerta++;
+        
+        // }
+
+        
 
     }
 </script>
+
 

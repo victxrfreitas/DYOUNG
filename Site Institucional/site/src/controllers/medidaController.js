@@ -89,9 +89,9 @@ function buscarDadosPostos(req, res) {
 
 function AlertarDiscoTotem(req, res) {
 
-    var idTotem = req.params.idTotem;
+    var idPosto = req.params.idPosto;
 
-    medidaModel.AlertarDiscoTotem(idTotem).then(function (resultado) {
+    medidaModel.AlertarDiscoTotem(idPosto).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -106,9 +106,9 @@ function AlertarDiscoTotem(req, res) {
 
 function AlertarRamTotem(req, res) {
 
-    var idTotem = req.params.idTotem;
+    var idPosto = req.params.idPosto;
 
-    medidaModel.AlertarRamTotem(idTotem).then(function (resultado) {
+    medidaModel.AlertarRamTotem(idPosto).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -122,9 +122,9 @@ function AlertarRamTotem(req, res) {
 }
 function AlertarCpuTotem(req, res) {
 
-    var idTotem = req.params.idTotem;
+    var idPosto = req.params.idPosto;
 
-    medidaModel.AlertarCpuTotem(idTotem).then(function (resultado) {
+    medidaModel.AlertarCpuTotem(idPosto).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {

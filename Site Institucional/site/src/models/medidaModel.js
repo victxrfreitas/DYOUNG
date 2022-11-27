@@ -194,14 +194,21 @@ function buscarTodosDados(idTotem) {
     return database.executar(instrucaoSql);
 }
 
-function AlertarRamTotem(idTotem) {
+function AlertarRamTotem(idPosto) {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select uso_disco 'dadoDisco' from dado_disco where fk_totem = ${idTotem};`;
+        instrucaoSql = `SELECT uso_ram 'dadoRam'
+        FROM cadastro_funcionario c 
+        JOIN posto p on c.fk_posto = p.idPosto 
+        JOIN dado_ram d ON p.idPosto = c.fk_posto;`;
+
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select uso_ram 'dadoRam' from dado_ram where fk_totem = ${idTotem};`;
+        instrucaoSql = `SELECT uso_ram 'dadoRam'
+        FROM cadastro_funcionario c 
+        JOIN posto p on c.fk_posto = p.idPosto 
+        JOIN dado_ram d ON p.idPosto = c.fk_posto;`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -212,14 +219,20 @@ function AlertarRamTotem(idTotem) {
 }
 
 
-function AlertarDiscoTotem(idTotem) {
+function AlertarDiscoTotem(idPosto) {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select uso_disco 'dadoDisco' from dado_disco where fk_totem = ${idTotem};`;
+        instrucaoSql = `SELECT uso_disco 'dadoDisco'
+        FROM cadastro_funcionario c 
+        JOIN posto p on c.fk_posto = p.idPosto 
+        JOIN dado_disco d ON p.idPosto = c.fk_posto;`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select uso_disco 'dadoDisco' from dado_disco where fk_totem = ${idTotem};`;
+        instrucaoSql = `SELECT uso_disco 'dadoDisco'
+        FROM cadastro_funcionario c 
+        JOIN posto p on c.fk_posto = p.idPosto 
+        JOIN dado_disco d ON p.idPosto = c.fk_posto;`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -229,14 +242,21 @@ function AlertarDiscoTotem(idTotem) {
     return database.executar(instrucaoSql);
 }
 
-function AlertarCpuTotem(idTotem) {
+function AlertarCpuTotem(idPosto) {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select temp_cpu, uso_cpu 'dadoCpu' from dado_cpu where fk_totem = ${idTotem};`;
+        instrucaoSql = `SELECT uso_cpu, temp_cpu 
+        FROM cadastro_funcionario c 
+        JOIN posto p on c.fk_posto = p.idPosto
+        JOIN dado_cpu d ON p.idPosto = c.fk_posto`; 
+
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select temp_cpu 'dadoTemperatura', uso_cpu 'dadoCpu' from dado_cpu where fk_totem = ${idTotem};`;
+        instrucaoSql = `SELECT uso_cpu, temp_cpu 
+        FROM cadastro_funcionario c 
+        JOIN posto p on c.fk_posto = p.idPosto 
+        JOIN dado_cpu d ON p.idPosto = c.fk_posto`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
