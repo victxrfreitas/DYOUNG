@@ -74,9 +74,9 @@ function buscarqtdTotem(req, res) {
 
 function AlertarDiscoTotem(req, res) {
 
-    var idTotem = req.params.idTotem;
+    var idPosto = req.params.idPosto;
 
-    medidaModel.buscarDadosPostos(idTotem).then(function (resultado) {
+    medidaModel.AlertarDiscoTotem(idPosto).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -91,9 +91,9 @@ function AlertarDiscoTotem(req, res) {
 
 function AlertarRamTotem(req, res) {
 
-    var idTotem = req.params.idTotem;
+    var idPosto = req.params.idPosto;
 
-    medidaModel.buscarDadosPostos(idTotem).then(function (resultado) {
+    medidaModel.AlertarRamTotem(idPosto).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -107,9 +107,9 @@ function AlertarRamTotem(req, res) {
 }
 function AlertarCpuTotem(req, res) {
 
-    var idTotem = req.params.idTotem;
+    var idPosto = req.params.idPosto;
 
-    medidaModel.buscarDadosPostos(idTotem).then(function (resultado) {
+    medidaModel.AlertarCpuTotem(idPosto).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -186,56 +186,56 @@ function buscarTodosDados(req, res) {
     });
 }
 
-function buscarTodosDadosFuncionamento(req, res) {
+// function buscarTodosDadosFuncionamento(req, res) {
 
-    var idTotem = req.params.idTotem;
+//     var idTotem = req.params.idTotem;
 
-    medidaModel.buscarTodosDadosFuncionamento(idTotem).then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!")
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
+//     medidaModel.buscarTodosDadosFuncionamento(idTotem).then(function (resultado) {
+//         if (resultado.length > 0) {
+//             res.status(200).json(resultado);
+//         } else {
+//             res.status(204).send("Nenhum resultado encontrado!")
+//         }
+//     }).catch(function (erro) {
+//         console.log(erro);
+//         console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+//         res.status(500).json(erro.sqlMessage);
+//     });
+// }
 
-function buscarTodosDadosCritico(req, res) {
+// function buscarTodosDadosCritico(req, res) {
 
-    var idTotem = req.params.idTotem;
+//     var idTotem = req.params.idTotem;
 
-    medidaModel.buscarTodosDadosCritico(idTotem).then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!")
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
+//     medidaModel.buscarTodosDadosCritico(idTotem).then(function (resultado) {
+//         if (resultado.length > 0) {
+//             res.status(200).json(resultado);
+//         } else {
+//             res.status(204).send("Nenhum resultado encontrado!")
+//         }
+//     }).catch(function (erro) {
+//         console.log(erro);
+//         console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+//         res.status(500).json(erro.sqlMessage);
+//     });
+// }
 
-function buscarTodosDadosAlerta(req, res) {
+// function buscarTodosDadosAlerta(req, res) {
 
-    var idTotem = req.params.idTotem;
+//     var idTotem = req.params.idTotem;
 
-    medidaModel.buscarTodosDadosAlerta(idTotem).then(function (resultado) {
-        if (resultado.length > 0) {
-            res.status(200).json(resultado);
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!")
-        }
-    }).catch(function (erro) {
-        console.log(erro);
-        console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
-        res.status(500).json(erro.sqlMessage);
-    });
-}
+//     medidaModel.buscarTodosDadosAlerta(idTotem).then(function (resultado) {
+//         if (resultado.length > 0) {
+//             res.status(200).json(resultado);
+//         } else {
+//             res.status(204).send("Nenhum resultado encontrado!")
+//         }
+//     }).catch(function (erro) {
+//         console.log(erro);
+//         console.log("Houve um erro ao buscar as ultimas medidas.", erro.sqlMessage);
+//         res.status(500).json(erro.sqlMessage);
+//     });
+// }
 ////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////
 
@@ -381,11 +381,7 @@ module.exports = {
     editarTotem,
     buscarqtdTotem,
     buscarTodosDados,
-    buscarTodosDadosFuncionamento,
-    buscarTodosDadosCritico,
-    buscarTodosDadosAlerta,
     buscarQtdTotens,
-    buscarTodosDadosAlerta,
     AlertarCpuTotem,
     AlertarRamTotem,
     AlertarDiscoTotem

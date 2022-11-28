@@ -1,0 +1,6 @@
+Log iniciado em 28/11/2022 gravando...
+ CPU: 6 | RAM: 16 GB | 14:35:41 
+ CPU: 6 | RAM: 16 GB | 14:35:42 
+ CPU: 6 | RAM: 16 GB | 14:35:43 
+ CPU: 6 | RAM: 16 GB | 14:35:44 
+ CPU: 6 | RAM: 16 GB | 14:35:45 

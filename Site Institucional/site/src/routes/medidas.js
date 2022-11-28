@@ -34,16 +34,16 @@ router.get("/dadosTotem-qtd/:idTotem", function (req, res) {
     console.log("Rota");
 });
 
-router.get("/AlertarDiscoTotem/:idTotem", function (req, res) {
+router.get("/AlertarDiscoTotem/:idPosto", function (req, res) {
     medidaController.AlertarDiscoTotem(req, res);
     console.log("Rota222222222222222");
 });
 
-router.get("/AlertarRamTotem/:idTotem", function (req, res) {
+router.get("/AlertarRamTotem/:idPosto", function (req, res) {
     medidaController.AlertarRamTotem(req, res);
     console.log("Rota2222222222222222");
 });
-router.get("/AlertarCpuTotem/:idTotem", function (req, res) {
+router.get("/AlertarCpuTotem/:idPosto", function (req, res) {
     medidaController.AlertarCpuTotem(req, res);
     console.log("Rota2222222222222");
 });

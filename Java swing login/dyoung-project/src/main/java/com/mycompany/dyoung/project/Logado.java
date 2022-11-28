@@ -8,6 +8,7 @@ import com.github.britooo.looca.api.group.memoria.Memoria;
 import com.github.britooo.looca.api.group.processador.Processador;
 import com.github.britooo.looca.api.group.sistema.Sistema;
 import com.github.britooo.looca.api.util.Conversor;
+import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Timer;
@@ -354,7 +355,7 @@ public class Logado extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IOException, InterruptedException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -385,6 +386,8 @@ public class Logado extends javax.swing.JFrame {
             }
         });
         
+        LogBackup logBackup = new LogBackup();
+        logBackup.gerarLog();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
