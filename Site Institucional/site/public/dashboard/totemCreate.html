@@ -66,7 +66,8 @@
                 </li>
 
                 <li class="nav-item faq">
-                    <a class="nav-link" href="https://dyoung.tomticket.com?account=3823360P15112022021213" target="_blank" rel="noopener noreferrer">
+                    <a class="nav-link" href="https://dyoung.tomticket.com?account=3823360P15112022021213"
+                        target="_blank" rel="noopener noreferrer">
                         <i class="fas fa-fw fa-headset"></i>
                         <span>HelpDesk</span></a>
                 </li>
@@ -81,32 +82,48 @@
                 </div>
             </ul>
         </div>
-        
+
         <div class="right">
             <div class="botaoVoltar">
-             <a class="back" href="configuracao.html">Voltar</a>
-         </div>
+                <a class="back" href="configuracao.html">Voltar</a>
+            </div>
 
-         <div class="crud">
+            <div class="crud">
 
-             <div class="ipt">
-                 <div>
-
-                     <input id="iptSerial" type="text" placeholder="Nº de série">
-                 </div>
-                 <br>
-                 <div class="label">
-                     Sistema Operacional:
-                     <select name="" id="selectSO">
-                         <option value="Windows">Windows</option>
-                         <option value="Linux">Linux</option>
-                     </select>
-                 </div>
-                 <button class="btn" onclick="adicionarTotem()">Adicionar</button>
-             </div>
-         </div>
-     </div>
- </div>
+                <div class="ipt">
+                    <div>
+                        <input id="iptSerial" type="text" placeholder="Nº de série">
+                    </div>
+                    <br>
+                    <div class="label">
+                        Sistema Operacional:
+                        <select name="" id="selectSO">
+                            <option value="Windows">Windows</option>
+                            <option value="Linux">Linux</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div>
+                        <input id="iptLogin" type="text" placeholder="Login totem">
+                    </div>
+                    <br>
+                    <div>
+                        <input id="iptSenha" type="password" placeholder="Senha do totem">
+                    </div>
+                    <br>
+                    <div class="label">
+                        Unidade:
+                        <select name="" id="selectUnidade">
+                            <option value="2">Santo André</option>
+                            <option value="1">São Caetano do Sul</option>
+                            <option value="3">Lapa</option>
+                        </select>
+                    </div>
+                    <button class="btn" onclick="adicionarTotem()">Adicionar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -116,20 +133,19 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
-    <script src="../js/funcoes.js"></script>
-    <script src="crud.js "></script>
 </body>
-
 </html>
 
 <script>
     function adicionarTotem() {
         var serialVar = iptSerial.value;
         var soVar = selectSO.value;
-        var fkPosto = sessionStorage.FK_USUARIO;
+        var loginVar = iptLogin.value;
+        var senhaVar = iptSenha.value;
+        var unidadeVar = selectUnidade.value;
 
-        if (serialVar == "" || soVar == "") {
-            alert("Preencha todos os campos. ");
+        if (serialVar == "" || soVar == "" || loginVar == "" || senhaVar == "" || unidadeVar == "") {
+            alert("Preencha todos os campos...");
             return false;
         }
 
@@ -144,7 +160,9 @@
                 // Agora vá para o arquivo routes/usuario.js
                 serialServer: serialVar,
                 soServer: soVar,
-                fkPosto: fkPosto
+                loginServer: loginVar,
+                senhaServer: senhaVar,
+                unidadeServer: unidadeVar,
             })
         }).then(function (resposta) {
 
@@ -169,3 +187,4 @@
 
     }
 </script>
+

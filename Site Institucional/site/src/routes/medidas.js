@@ -18,10 +18,6 @@ router.get("/tempo-real-qtd/:statusTotem", function (req, res) {
     medidaController.buscarqtdTotem(req, res);
 });
 
-router.get("/dadosPosto/:idPosto", function (req, res) {
-    medidaController.buscarDadosPostos(req, res);
-});
-
 ////////// LISTAGEM E CRIAÇÃO DE CARDS
 
 router.get("/nomesPosto/:idPosto", function (req, res) {
@@ -59,6 +55,11 @@ router.get("/qtdTotens/:idPosto", function (req, res) {
 
 ///////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////
+
+router.get("/dadosPosto/", function (req, res) {
+    medidaController.buscarDadosPostos(req, res);
+});
+
 router.get("/dadosTotem/:idTotem", function (req, res) {
     medidaController.buscarDadosTotem(req, res);
 });

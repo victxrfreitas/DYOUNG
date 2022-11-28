@@ -54,3 +54,9 @@ tr:nth-child(even), table.list thead>tr{
     cursor: pointer;
 }
 
+.left{
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+

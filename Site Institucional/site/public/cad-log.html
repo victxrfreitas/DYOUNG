@@ -29,18 +29,11 @@
 			<span>or use your email for registration</span> -->
 				<input type="text" placeholder="Nome" id="ipt_nome_cadastro" />
 				<input type="number" placeholder="CPF" id="ipt_cpf_cadastro" />
-				<select type="text" id="ipt_cargo_cadastro"placeholder="Cargo">
-					<option>Cargo</option>
-					<option value="gerente">Gerente</option>
-					<option value="tecnico">Técnico de TI</option>
-					
-
-					
-				</select>
 				<!-- <input type="text" placeholder="Cargo" id="ipt_cargo_cadastro"/> -->
 				<input type="email" placeholder="E-mail" id="ipt_email_cadastro" />
 				<input type="password" placeholder="Senha" id="ipt_senha_cadastro" />
 				<input type="password" placeholder="Confirmar senha" id="ipt_ConfSenha_cadastro" />
+				<br>
 				<button onclick="cadastrar()">Cadastrar</button>
 			</div>
 		</div>
@@ -55,7 +48,7 @@
 			<span>or use your account</span> -->
 				<input type="email" placeholder="Email" id="ipt_email_login" />
 				<input type="password" placeholder="Senha" id="ipt_senha_login" />
-				<a href="#">Esqueceu a senha?</a>
+				<br>
 				<button onclick="entrar()">Entrar</button>
 			</div>
 		</div>
@@ -99,12 +92,12 @@
 		// Agora vá para o método fetch logo abaixo
 		var nomeVar = ipt_nome_cadastro.value;
 		var cpfVar = ipt_cpf_cadastro.value;
-		var cargoVar = ipt_cargo_cadastro.value;
+		var cargoVar = "gerente";
 		var emailVar = ipt_email_cadastro.value;
 		var senhaVar = ipt_senha_cadastro.value;
 		var confirmacaoSenhaVar = ipt_ConfSenha_cadastro.value;
 
-		if (nomeVar == "" || cpfVar == "" || cargoVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+		if (nomeVar == "" || cpfVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
 			// cardErro.style.display = "block"
 			mensagem_erro.innerHTML = "Preencha todos os campos. ";
 
@@ -210,7 +203,7 @@
 					sessionStorage.ID_USUARIO = json.idFuncionario;
 					sessionStorage.EMAIL_USUARIO = json.email;
 					sessionStorage.NOME_USUARIO = json.nomeFuncionario;
-					// sessionStorage.CARGO_USUARIO = json.cargo;
+					sessionStorage.CARGO_USUARIO = json.cargo;
 					sessionStorage.FK_USUARIO = json.fk_posto;
 					
 					console.log(json.cargo);

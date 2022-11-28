@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="css/crud.css">
 </head>
 
-<body onload="obterDadosTotem(idTotem)">
+<body>
     <div class="container">
         <div class="left">
             <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
@@ -59,7 +59,6 @@
                 </li>
 
 
-
                 <li class="nav-item faq">
                     <a class="nav-link" href="FAQ.html">
                         <i class="fas fa-fw fa-question"></i>
@@ -83,89 +82,80 @@
                 </div>
             </ul>
         </div>
+
         <div class="right">
             <div class="botaoVoltar">
                 <a class="back" href="configuracao.html">Voltar</a>
             </div>
+
             <div class="crud">
+
                 <div class="ipt">
                     <div>
-                        <input id="iptSerial" type="text" placeholder="Nº de série">
+                        <input id="iptNome" type="text" placeholder="Nome">
+                    </div>
+                    <br>
+                    <div>
+                        <input id="iptEmail" type="text" placeholder="Email">
+                    </div>
+                    <br>
+                    <div>
+                        <input id="iptCpf" type="text" placeholder="CPF">
+                    </div>
+                    <br>
+                    <div>
+                        <input id="iptSenha" type="password" placeholder="Senha">
+                    </div><br>
+                    <div class="label">
+                        Cargo:
+                        <select name="" id="selectCargo">
+                            <option>Selecione:</option>
+                            <option value="técnico">Técnico de TI</option>
+                        </select>
                     </div>
                     <br>
                     <div class="label">
-                        Sistema Operacional
-                        <select name="" id="selectSO">
-                            <option value="Windows">Windows</option>
-                            <option value="Linux">Linux</option>
+                        Unidade:
+                        <select name="" id="selectUnidade">
+                            <option value="1">São Caetano do Sul</option>
+                            <option value="2">Santo André</option>
+                            <option value="3">Lapa</option>
                         </select>
                     </div>
-                    <div>
-                        <br>
-                        <button class="btn" onclick="editarTotem(idTotem)">Adicionar</button>
-                    </div>
+                    <button class="btn" onclick="addUser()">Adicionar</button>
                 </div>
             </div>
         </div>
+    </div>
 
-        <script src="vendor/jquery/jquery.min.js"></script>
-        <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Core plugin JavaScript-->
-        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        <!-- Custom scripts for all pages-->
-        <script src="js/sb-admin-2.min.js"></script>
-        <script src="../js/funcoes.js"></script>
-        <script src="crud.js "></script>
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
 </body>
-
 </html>
 
 <script>
+    function addUser() {
+        var nomeVar = iptNome.value;
+        var emailVar = iptEmail.value;
+        var cpfVar = iptCpf.value;
+        var senhaVar = iptSenha.value;
+        var cargoVar = selectCargo.value;
+        var unidadeVar = selectUnidade.value;
 
-    let idTotem = location.hash.split("#")[1];
-    function obterDadosTotem(idTotem) {
-        fetch(`/medidas/dadosTotem/${idTotem}`, { cache: 'no-store' }).then(function (response) {
-            if (response.ok) {
-                response.json().then(function (resposta) {
-                    console.log('foi')
-                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                    resposta.reverse();
 
-                    // var data = {
-                    //     totemId: resposta[idTotem].totemId,
-                    //     totemSerial: resposta[idTotem].totemSerial,
-                    //     totemSO: resposta[idTotem].totemSO,
-                    //     totemData: resposta[idTotem].totemData
-                    // }
-                    mostrarDados(resposta);
-
-                });
-            } else {
-                console.error('Nenhum dado encontrado ou erro na API');
-            }
-        })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-            });
-    }
-    function mostrarDados(resposta) {
-        console.log(resposta[0].totemSerial);
-        iptSerial.value = resposta[0].totemSerial;
-        selectSO.value = resposta[0].totemSO;
-    }
-    function editarTotem(idTotem) {
-        var serialVar = iptSerial.value;
-        var soVar = selectSO.value;
-
-        if (serialVar == "" || soVar == "") {
-            alert("Preencha todos os campos. ");
+        if (nomeVar == "" || emailVar == "" || cpfVar == "" || senhaVar == "" || unidadeVar == "" || cargoVar == "") {
+            alert("Preencha todos os campos...");
             return false;
         }
 
         // Enviando o valor da nova input
-        fetch("/medidas/editarTotem", {
+        fetch("/usuarios/cadastrarUser", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -173,9 +163,12 @@
             body: JSON.stringify({
                 // crie um atributo que recebe o valor recuperado aqui
                 // Agora vá para o arquivo routes/usuario.js
-                serialServer: serialVar,
-                soServer: soVar,
-                idTotem: idTotem
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                cpfServer: cpfVar,
+                senhaServer: senhaVar,
+                cargoServer: cargoVar,
+                unidadeServer: unidadeVar,
             })
         }).then(function (resposta) {
 
@@ -184,10 +177,11 @@
             if (resposta.ok) {
                 // cardErro.style.display = "block";
 
-                alert("Totem editado com sucesso! Redirecionando para tela de configuração...");
+                alert("Funcionário adicionado com sucesso! Redirecionando para tela de configuração...");
+
                 setTimeout(() => {
-                    window.Location("configuracao.html");
-                }, "1000")
+                    location.reload();
+                }, "1500")
             } else {
                 throw ("Houve um erro ao tentar adicionar");
             }
@@ -199,3 +193,4 @@
 
     }
 </script>
+

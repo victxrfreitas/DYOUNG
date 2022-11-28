@@ -8,13 +8,14 @@ rua VARCHAR(80),
 numero INT,
 localidade VARCHAR(80)
 );
+
 CREATE TABLE posto (
 idPosto INT PRIMARY KEY auto_increment,
 nomePosto VARCHAR(80),
 responsavelTI VARCHAR(80),
 fk_Endereco_posto INT, foreign key (fk_Endereco_posto) references endereco_posto(idEndereco_posto)
 );
-select nomePosto, idTotem from totem join posto on idPosto = fk_posto;
+
 CREATE TABLE cadastro_funcionario (
 idFuncionario INT PRIMARY KEY AUTO_INCREMENT,
 nomeFuncionario VARCHAR(80),
@@ -33,7 +34,7 @@ statusTotem BOOLEAN,
 sistema_operacional VARCHAR(45),
 fk_posto INT, FOREIGN KEY (fk_posto) REFERENCES posto(idPosto)
 );
-select * from dado_cpu;
+
 CREATE TABLE dado_cpu(
 id_dado_cpu INT PRIMARY KEY AUTO_INCREMENT,
 uso_cpu DOUBLE,
@@ -61,6 +62,8 @@ fk_totem INT, FOREIGN KEY (fk_totem) REFERENCES totem(idTotem),
 fk_posto INT, FOREIGN KEY (fk_posto) REFERENCES posto(idPosto)
 );
 
+
+
 -- SELECT id_dado_cpu 'Id', uso_cpu 'UsoCpu', temp_cpu 'TempCpu', concat(left(DATE_FORMAT(data_hora_captura, "%d/%m/%Y | %H:%i:%s"),10)," ",right(DATE_FORMAT(data_hora_captura, "%d/%m/%Y | %H:%i:%s"),8)) 'DtHrCaptura' FROM dado_cpu;
 
 -- SELECT concat(left(DATE_FORMAT(data_hora_captura, "%d/%m/%Y | %H:%i:%s"),10)," ",right(DATE_FORMAT(data_hora_captura, "%d/%m/%Y | %H:%i:%s"),8)) 'DtHrCaptura' FROM dado_cpu;
@@ -87,11 +90,10 @@ INSERT INTO endereco_posto  VALUES
 
 
 -- insert into cadastro_funcionario values(10, 'Yuzo', 'yuzo@email.com', null, 'ativo', 123, null, null);
-desc totem;
+
 SELECT * FROM cadastro_funcionario;
 SELECT * FROM posto;
 SELECT * FROM totem;
-delete from totem where idTotem = 1;
 SELECT * FROM dado_cpu;
 SELECT * FROM dado_ram;
 SELECT * FROM dado_disco;
