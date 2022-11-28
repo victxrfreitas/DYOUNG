@@ -7,12 +7,16 @@ import com.github.britooo.looca.api.group.discos.DiscoGrupo;
 import com.github.britooo.looca.api.group.memoria.Memoria;
 import com.github.britooo.looca.api.group.processador.Processador;
 import com.github.britooo.looca.api.group.sistema.Sistema;
+import com.github.britooo.looca.api.group.temperatura.Temperatura;
 import com.github.britooo.looca.api.util.Conversor;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.json.JSONObject;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
@@ -20,6 +24,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
  * @author gutyc
  */
 public class Logado extends javax.swing.JFrame {
+
     private Integer id_totem = 0;
     private Integer fk_Posto = 0;
 
@@ -38,13 +43,13 @@ public class Logado extends javax.swing.JFrame {
     public void setFk_Posto(Integer fk_Posto) {
         this.fk_Posto = fk_Posto;
     }
-    
+
     /**
-     * Creates new form 
+     * Creates new form
      */
     public Logado() {
         initComponents();
-        
+
         Conexao con = new Conexao();
         JdbcTemplate banco = con.getConnection();
         Conversor convert = new Conversor();
@@ -54,19 +59,16 @@ public class Logado extends javax.swing.JFrame {
 //        DiscosGroup discoGrupo = new DiscosGroup();
         Sistema sistema = new Sistema();
         Totem totem = new Totem();
+        Temperatura temperatura = new Temperatura();
         DecimalFormat df = new DecimalFormat("##.00");
-        
 
-        
-        new Timer().scheduleAtFixedRate(new TimerTask(){
+        new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
-            public void run(){
-                
-                
-                
+            public void run() {
+
                 //Pegando os dados da CPU = Processador exibindo e guardando no banco de dados
                 Double dadoCpu = cpu.getUso();
-                
+
                 String insert = "INSERT INTO dado_cpu (uso_cpu, status_coleta, fk_totem, fk_posto)VALUES (?, 1, ?, ?);";
                 banco.update(insert, df.format(dadoCpu), getId_totem(), getFk_Posto());
                 System.out.println(String.format("Inserindo dado CPU: %.1f ---- ID: %d ---- fkPosto: %d",
@@ -76,41 +78,40 @@ public class Logado extends javax.swing.JFrame {
 //                banco.update(insert, dadoCpu);
 //                System.out.println(String.format("Inserindo dado CPU: %.1f", dadoCpu));
                 lblDadoCpu.setText(String.format("%.1f %s", dadoCpu, "%"));
-                
-                
+
                 //Pegando os dados da RAM = Memória RAM transformando, exibindo 
                 //e guardando no banco de dados
                 //Os dados da memoria chegam em "LONG", porem temos que converter
                 //para double e fazer a conta para calcular a porcentagem de uso
-               Long dadoMemoriaRam = mem.getEmUso();
+                Long dadoMemoriaRam = mem.getEmUso();
                 Long dadoTotalMemoriaRam = mem.getTotal();
-                
+
                 //Convertendo os dados para "String" para ficar mais faceis de transformar em double
                 String dadoRamString = Conversor02.formatarBytes(dadoMemoriaRam);
                 String dadoTotalRamString = Conversor02.formatarBytes(dadoTotalMemoriaRam);
-               
-               lblProcessadorNome.setText(cpu.getNome());
-               lblRamNome.setText(String.format("%s", dadoTotalRamString));
-               lblSistemaNome.setText(sistema.getSistemaOperacional());
+
+                lblProcessadorNome.setText(cpu.getNome());
+                lblRamNome.setText(String.format("%s", dadoTotalRamString));
+                lblSistemaNome.setText(sistema.getSistemaOperacional());
                 lblTipoSistemaNome.setText(sistema.getArquitetura() + "bits");
-                
+
                 //Tranformando os dados de "String" para "Double"
                 Double dadoRamDouble = Double.valueOf(dadoRamString);
                 Double dadoTotalRamlDouble = Double.valueOf(dadoTotalRamString);
-                
+
                 // Realizando a conta para calcular a porcentagem de uso
-               Double totalRam = (dadoRamDouble * 100) / dadoTotalRamlDouble;
-                
+                Double totalRam = (dadoRamDouble * 100) / dadoTotalRamlDouble;
+
                 //Inserindo os dados no banco
                 String insertRam = "INSERT INTO dado_ram (uso_ram, status_coleta, fk_totem, fk_posto)VALUES (?, 1, ?, ?);";
                 banco.update(insertRam, df.format(totalRam), getId_totem(), getFk_Posto());
 //                
 //                //Exibindo os dados
-               System.out.println(String.format("Inserindo dado da Memória RAM: %.1f", totalRam));
+                System.out.println(String.format("Inserindo dado da Memória RAM: %.1f", totalRam));
 //                    System.out.println(String.format("%s", dadoRamString));
-              lblDadoRam.setText(String.format("%.1f %s", totalRam, "%"));
+                lblDadoRam.setText(String.format("%.1f %s", totalRam, "%"));
 //             lblDadoRam.setText(String.format("%s", dadoRamString));
-                
+
                 //Pegando os dados do DISCO = Disco transformando, exibindo e guardando no banco de dados
                 List<Disco> discos = discoGrupo.getDiscos();
                 for (Disco disco : discos) {
@@ -119,27 +120,125 @@ public class Logado extends javax.swing.JFrame {
 //                    System.out.println(Conversor.formatarBytes(disco.getLeituras()));
 //                    System.out.println(Conversor.formatarBytes(disco.getBytesDeEscritas()));
 //                    System.out.println(Conversor.formatarBytes(disco.getEscritas()));
-                    
-                    
+
                     String dadoDiscoTotalString = Conversor.formatarBytes(disco.getTamanho());
                     String dadoDiscoEcritaString = Conversor.formatarBytes(disco.getBytesDeEscritas());
                     String dadoDiscoLeituraString = Conversor.formatarBytes(disco.getBytesDeLeitura());
-                    
+
                     Double dadoDiscoTotalDouble = Double.valueOf(dadoDiscoTotalString.substring(0, 3));
                     Double dadoDiscoEcritaDouble = Double.valueOf(dadoDiscoEcritaString.substring(0, 1));
                     Double dadoDiscoLeituraDouble = Double.valueOf(dadoDiscoLeituraString.substring(0, 1));
-                    
+
                     Double totalUso = dadoDiscoEcritaDouble + dadoDiscoLeituraDouble;
                     Double totalDisco = (totalUso * 100) / dadoDiscoTotalDouble;
-                    
+
                     System.out.println(String.format("Inserindo dado do Disco: %.1f", totalDisco));
                     lblDadoDisco.setText(String.format("%.1f %s", totalDisco, "%"));
                     String insertDisco = "INSERT INTO dado_disco (uso_disco, status_coleta, fk_totem, fk_posto)VALUES (?, 1, ?, ?);";
                     banco.update(insertDisco, df.format(totalDisco), getId_totem(), getFk_Posto());
-//
+
+                    Double tempUso = temperatura.getTemperatura();
+                    
+                    if (totalDisco > 80.00) {
+                        JSONObject json = new JSONObject();
+
+                        json.put("text", "Alerta! Seu consumo de Disco está em um nivel critico.");
+                        try {
+                            Slack.enviarMensagem(json);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Logado.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Logado.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    if (totalDisco < 79.00 && totalDisco > 49.00) {
+                        JSONObject json = new JSONObject();
+
+                        json.put("text", "Atenção! Seu consumo de Disco está em estado de atenção.");
+                        try {
+                            Slack.enviarMensagem(json);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Logado.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Logado.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    if (totalRam > 80.00) {
+                        JSONObject json = new JSONObject();
+
+                        json.put("text", "Alerta! Seu consumo de Memória RAM está em um nivel critico.");
+                        try {
+                            Slack.enviarMensagem(json);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Logado.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Logado.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    if (totalRam < 79.00 && totalRam> 49.00) {
+                        JSONObject json = new JSONObject();
+
+                        json.put("text", "Atenção! Seu consumo de Memória RAM está em estado de atenção.");
+                        try {
+                            Slack.enviarMensagem(json);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Logado.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Logado.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    if (dadoCpu > 80.00) {
+                        JSONObject json = new JSONObject();
+
+                        json.put("text", "Alerta! Seu consumo de CPU está em um nivel critico.");
+                        try {
+                            Slack.enviarMensagem(json);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Logado.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Logado.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    if (dadoCpu < 79.00 && dadoCpu > 49.00) {
+                        JSONObject json = new JSONObject();
+
+                        json.put("text", "Atenção! Seu consumo de CPU está em estado de atenção.");
+                        try {
+                            Slack.enviarMensagem(json);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Logado.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Logado.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    if (tempUso > 80.00) {
+                        JSONObject json = new JSONObject();
+
+                        json.put("text", "Alerta! A temperatura da sua CPU está em um nivel critico.");
+                        try {
+                            Slack.enviarMensagem(json);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Logado.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Logado.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    if (tempUso < 79.00 && tempUso > 49.00) {
+                        JSONObject json = new JSONObject();
+
+                        json.put("text", "Atenção! A temperatura da sua CPU está em estado de atenção.");
+                        try {
+                            Slack.enviarMensagem(json);
+                        } catch (IOException ex) {
+                            Logger.getLogger(Logado.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(Logado.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+
 //                }
-                
-                }}
+                }
+            }
         }, 0, 2000);
     }
 
@@ -378,14 +477,14 @@ public class Logado extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Logado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Logado().setVisible(true);
             }
         });
-        
+
         LogBackup logBackup = new LogBackup();
         logBackup.gerarLog();
     }
