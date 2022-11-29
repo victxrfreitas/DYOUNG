@@ -472,13 +472,20 @@
     obterdadosDisco(idTotem);
     obterdadosRam(idTotem);
 
-    var dadosCpu = {};
-    var dadosDisco = {};
-    var dadosRam = {};
-    
+    // var dadosCpu = {};
+    // var dadosDisco = {};
+    // var dadosRam = {};
+
+
+var dadosDisco1 = [];
+var dadosRam2 = [];
+var dadosTeste = dadosRam2.concat(dadosDisco1);
+
+
     var qtdIdeal = 0;
     var qtdAlerta = 0;
     var qtdCritico = 0;
+    var dadosMaq = [];
 
     var idPosto = sessionStorage.FK_USUARIO;
     // var idPosto = queryString("id");
@@ -538,6 +545,7 @@
 
 
     alertarMetricas(dadosMaq);
+
     function obterdadosCpu() {
         fetch(`/medidas/AlertarCpuTotem`)
             .then(resposta => {
@@ -556,6 +564,10 @@
                             dadosMaq.push(dadosCpu);
                             dadosMaq.push(dadosTemp);
                         };
+
+                        var dados = {
+                            dadoCpu : resposta[0].dadoCpu
+                        }
 
 
                         // alertarCpu(dadosCpu);
@@ -581,10 +593,10 @@
 
                         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                         for (i = 0; i <= resposta.length; i++) {
-                            dados = {
+                            dadosDisco1 = [{
                                 dadoDisco: resposta[i].dadoDisco,
-                            }
-                            dadosMaq.push(dados);
+                            }];
+                            // dadosMaq.push(dados);
                         }
                         // alertarMetricas(dados);
                     });
@@ -606,10 +618,10 @@
 
                         console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
                         for (i = 0; i <= resposta.length; i++) {
-                            dados = {
+                            dadosRam2 = [{
                                 dadoRam: resposta[i].dadoRam,
-                            }
-                            dadosMaq.push(dados);
+                            }];
+                            // dadosMaq.push(dados);
                         }
 
                         // alertarMetricas(dados);

@@ -288,20 +288,20 @@
                             <div class="card-header py-3">
                                 <h6 class="m-0 font-weight-bold text-primary">Dados de todos os postos</h6>
                             </div>
-                            <div class="card-body">
-                                <div class="table-responsive">
-                                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                            <div id="feed_cards" class="card-body-totem-ti">
+                                <!-- <div class="table-responsive"> -->
+                                    <!-- <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
                                             <tr>
                                                 <th>Totens</th>
-                                                <!-- <th>Total de Totens</th> -->
-                                                <th>Situação do Totem</th>
+                                                <th>Total de Totens</th>
+                                                <th>Situação do Totem</th> -->
     
     
-                                            </tr>
-                                        </thead>
+                                            <!-- </tr>
+                                        </thead> -->
                                             <!-- <tfoot> -->
-                                        <tbody id="feed_totem">
+                                        <!-- <tbody id="feed_totem"> -->
                                             <!-- <tr> -->
                                                 <!-- <td> <a onclick="verPosto(6)" id="spn_nomePosto3">Totem 1</a></td> -->
                                                 <!-- <td><span id="count1"></span> </td> -->
@@ -354,9 +354,12 @@
     
                                             </tr> -->
     
-                                        </tbody>
+                                        <!-- </tbody>
                                     </table>
-                                </div>
+                                </div> -->
+
+
+
                             </div>
                         </div>
     
@@ -493,62 +496,16 @@
 
 </html>
 <script>
-      var idTotem = queryString("id");
-    function queryString(parameter) {
-        var loc = location.search.substring(1, location.search.length);
-        var param_value = false;
-        var params = loc.split("&");
-        for (i = 0; i < params.length; i++) {
-            param_name = params[i].substring(0, params[i].indexOf('='));
-            if (param_name == parameter) {
-                param_value = params[i].substring(params[i].indexOf('=') + 1)
-            }
-        }
-        if (param_value) {
-            return param_value;
-        }
-        else {
-            return undefined;
-        }
-    }
-
-    // obterdadosTotem(idTotem);
-
-
-    // function obterdadosTotem(idTotem) {
-    //     // console.log("id posto " + idPosto);
-    //     fetch(`/medidas/identificacaoTotem/${idTotem}`)
-    //         .then(resposta => {
-
-    //             if (resposta.ok) {
-    //                 resposta.json().then(resposta => {
-
-    //                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-    //                     var dados = {
-    //                         totemId: resposta[0].totemId,
-    //                     }
-    //                         console.log("nome totem"+totemId)
-    //                     // alertar(resposta[0].totemId, idTotem);
-
-    //                 });
-    //             } else {
-
-    //                 console.error('Nenhum dado encontrado ou erro na API');
-    //             }
-    //         })
-    //         .catch(function (error) {
-    //             console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
-    //         });
-
-    // }
-
+  
+    var idFuncionario = sessionStorage.ID_USUARIO;
+    var idPosto = sessionStorage.FK_USUARIO;
+    
 
 
 
     function atualizarTotensTi() {
         //aguardar();
-    fetch(`/medidas/identTotem/${idTotem}`).then(function (resposta) {
+    fetch(`/medidas/identTotem/${idFuncionario}/${idPosto}`).then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {
                     // var feed = document.getElementById("feed_container");
@@ -569,45 +526,177 @@
                         var totemId = resposta[i].totemId;
 
                         // criando e manipulando elementos do HTML via JavaScript
-                        var feed_totem = document.getElementById("feed_totem");
-                        var trTotem = document.createElement("tr");
-                        var tdTtotem = document.createElement("td");
-                        var aTotem = document.createElement("a");
-                        var tdEstado = document.createElement("td");
-                        var bEstado = document.createElement("b");
+                        
+                        // var trTotem = document.createElement("tr");
+                        // var tdTtotem = document.createElement("td");
+                        // var aTotem = document.createElement("a");
+                        // var tdEstado = document.createElement("td");
+                        // var bEstado = document.createElement("b");
 
                         //Adicionando o id do totem na listagem
-                        aTotem.innerHTML = "Totem " + totemId;
+                        // aTotem.innerHTML = "Totem " + totemId;
 
                         //Adiconando atributos nos elementos
-                        aTotem.setAttribute("onclick", `verTotem(${totemId})`);
+                        // aTotem.setAttribute("onclick", `verTotem(${totemId})`);
 
                         // bEstado.setAttribute("style", `color:#e74a3b;`);
 
-                        feed_totem.appendChild("trTotem");
-                        tr.appendChild("tdTotem");
-                        tdTotem.appendChild("aTotem");
+                        // feed_totem.appendChild("trTotem");
+                        // tr.appendChild("tdTotem");
+                        // tdTotem.appendChild("aTotem");
 
+                        //feed
+                        var feed_cards= document.getElementById("feed_cards");
+                        //filhos
+                        var divXl3 = document.createElement("div");
+                        var divCardBorder = document.createElement("div");
+                        var divCardBody = document.createElement("div");
+                        var divRow = document.createElement("div");
+                        // divs criadas abaixo serao implementadas dentro da divRow
+                        var divMr2 = document.createElement("div");
+                        var divColAuto = document.createElement("div");
+                        // Divs abaixo serao implementadas dentro da Mr2
+                        var divTextXs = document.createElement("div");
+                        var divH5 = document.createElement("div");
+                        // elemento <a> abaixo sera implementado dentro da divH5
+                        var aStyle = document.createElement("a");
 
-
-
+                        // adicionando texto aos elementos
+                        aStyle.innerHTML = "Totem " + totemId;
                         
+                            //adicionando as classes aos elementos
+                            divXl3.className = "col-xl-3 col-md-6 mb-4";
+                            divCardBorder.className = "card border-left-primary shadow h-100 py-2";
+                            divCardBody.className="card-body";
+                            divRow.className="row no-gutters align-items-center";
+                            divMr2.className="col mr-2";
+                            divColAuto.className="col-auto";
+                            divTextXs.className="text-xs font-weight-bold text-success text-uppercase mb-1";
+                            divH5.className="h5 mb-0 font-weight-bold text-gray-800";
+                            aStyle.style="text-decoration: none; color: rgb(95, 94, 94);";
 
-                       
+                            //inserindo atributo no card
+                            aStyle.setAttribute("onclick", `verTotem(${totemId})`)
 
+                            //Adicionando os elementos criados no feed
+
+                            feed_cards.appendChild(divXl3);
+                            divXl3.appendChild(divCardBorder);
+                            divCardBorder.appendChild(divCardBody);
+                            divCardBody.appendChild(divRow);
+                            divRow.appendChild(divMr2);
+                            divRow.appendChild(divColAuto);
+                            divMr2.appendChild(divTextXs);
+                            divMr2.appendChild(divH5);
+                            divH5.appendChild(aStyle);
                         
                     }
 
-                    finalizarAguardar();
+                    // finalizarAguardar();
                 });
             } else {
                 throw ('Houve um erro na API!');
             }
         }).catch(function (resposta) {
             console.error(resposta);
-            finalizarAguardar();
+            // finalizarAguardar();
         });
     }
+    obterdadosRam(idPosto);
+    obterdadosDisco(idPosto);
+    obterdadosCpu(idPosto);
+
+
+
+
+    function obterdadosRam(idPosto) {
+        fetch(`/medidas/alerta-ram/${idPosto}`)
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    resposta.json().then(resposta => {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                       
+                            dados = {
+                                dadoRam: resposta[0].dadoRam,
+                            }
+                        
+                        
+
+                        // alertarMetricas(dados);
+
+
+                    });
+                } else {
+
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function obterdadosDisco(idPosto) {
+        fetch(`/medidas/alerta-disco/${idPosto}`)
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    resposta.json().then(resposta => {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                       
+                            var dados = {
+                                dadoDisco: resposta[0].dadoDisco,
+                            }
+                        
+                        
+
+                        // alertarMetricas(dados);
+
+
+                    });
+                } else {
+
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function obterdadosCpu(idPosto) {
+        fetch(`/medidas/alerta-cpu/${idPosto}`)
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    resposta.json().then(resposta => {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                       
+                            var dados = {
+                                dadoCpu: resposta[0].dadoCpu,
+                                dadoTemperatura: resposta[0].dadoTemperatura,
+                            }
+                        
+                        
+
+                        // alertarMetricas(dados);
+
+
+                    });
+                } else {
+
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+    }
+
 
 
 

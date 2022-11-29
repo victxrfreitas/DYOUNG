@@ -57,11 +57,26 @@ router.get("/qtdTotens/:idPosto", function (req, res) {
 //////////////////////////////////////////////////////////////
 
 
-// ####################### LISTAR TOTENS #############################
-router.get("/identTotem/:idTotem", function (req, res) {
+// ####################### DASHBOARD RESP TI #############################
+router.get("/identTotem/:idFuncionario/:idPosto", function (req, res) {
     medidaController.identificacaoTotem(req, res);
     console.log("Rota");
 });
+
+router.get("/alerta-ram/:idPosto", function (req, res) {
+    medidaController.alertaRamTi(req, res);
+    console.log("Rota");
+});
+
+router.get("/alerta-cpu/:idPosto", function (req, res) {
+    medidaController.alertaCpuTi(req, res);
+    console.log("Rota");
+});
+router.get("/alerta-disco/:idPosto", function (req, res) {
+    medidaController.alertaDiscoTi(req, res);
+    console.log("Rota");
+});
+
 
 ///////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////

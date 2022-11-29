@@ -4552,6 +4552,16 @@ input[type="button"].btn-block {
   
 }
 
+.card-body-totem-ti {
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 1.25rem;
+  flex-direction: row;
+  flex-wrap: wrap;
+  
+}
+
 
 .card-title {
   margin-bottom: 0.75rem;
