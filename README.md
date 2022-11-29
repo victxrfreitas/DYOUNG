@@ -1,4 +1,4 @@
-# Como usar Brach:
+# Como usar Branches:
 
 ### Comandos:
 
