@@ -24,7 +24,7 @@
 
 </head>
 
-<body id="page-top" onload="validarSessao()">
+<body id="page-top" onload=" atualizarTotensTi()">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -169,7 +169,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-white text-uppercase mb-1">
                                               Em Alerta</div>
-                                            <div class="h5 mb-0 font-weight-bold text-white">CPU, Disco ou RAM em: 40% a 79%
+                                            <div class="h5 mb-0 font-weight-bold text-white">Componentes em: 40% a 79%
                                                 da capacidade total.</div>
                                         </div>
                                         <!-- <div class="col-auto">
@@ -188,7 +188,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-white text-uppercase mb-1">
                                                 Estado Crítico     </div>
-                                            <div class="h5 mb-0 font-weight-bold text-white">CPU, Disco e RAM em: 80% a 100%
+                                            <div class="h5 mb-0 font-weight-bold text-white">Componentes em: 80% a 100%
                                                 da capacidade total.</div>
                                         </div>
                                         
@@ -206,7 +206,8 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-white text-uppercase mb-1">
                                                 Ideal</div>
-                                            <div class="h5 mb-0 font-weight-bold text-white">Hardware com bom desempenho</div>
+                                            <div class="h5 mb-0 font-weight-bold text-white">Componentes em: 0% a 39%
+                                                da capacidade total</div>
                                         </div>
                                         
                                         <!-- <div class="col-auto">
@@ -299,58 +300,59 @@
     
                                             </tr>
                                         </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <td> <a onclick="verPosto(6)" id="spn_nomePosto3">Totem 1</td>
+                                            <!-- <tfoot> -->
+                                        <tbody id="feed_totem">
+                                            <!-- <tr> -->
+                                                <!-- <td> <a onclick="verPosto(6)" id="spn_nomePosto3">Totem 1</a></td> -->
                                                 <!-- <td><span id="count1"></span> </td> -->
-                                                <td> <b style="color:#e74a3b;">Estado crítico</b></td>
+                                                <!-- <td> <b style="color:#e74a3b;">Estado crítico</b></td>
     
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                            <tr>
-                                                <td> <a onclick="verPosto(4)"id="spn_nomePosto">Totem 2</td>
+                                            </tr> -->
+                                            <!-- </tfoot> -->
+                                        
+                                            <!-- <tr>
+                                                <td> <a onclick="verPosto(4)"id="spn_nomePosto">Totem 2</td> -->
                                                 <!-- <td>
                                                     <div id="count2"> </div>
                                                 </td> -->
-                                                <td> <b style="color:#f6c23e;">Em alerta</b></td>
+                                                <!-- <td> <b style="color:#f6c23e;">Em alerta</b></td>
     
                                             </tr>
                                             <tr>
-                                                <td><a onclick="verPosto(5)" id="spn_nomePosto2">Totem 3</a></td>
+                                                <td><a onclick="verPosto(5)" id="spn_nomePosto2">Totem 3</a></td> -->
                                                 <!-- <td>
                                                     <div id="count3"> </div>
                                                 </td> -->
-                                                <td><b style="color:#1cc88a;">Ideal</b></td>
+                                                <!-- <td><b style="color:#1cc88a;">Ideal</b></td>
     
                                             </tr>
                                             <tr>
-                                                <td><a onclick="verPosto(15)" id="spn_nomePosto6">Totem 4</a></td>
+                                                <td><a onclick="verPosto(15)" id="spn_nomePosto6">Totem 4</a></td> -->
                                                 <!-- <td>
                                                     <div id="count4"> </div>
                                                 </td> -->
-                                                <td><b style="color:#1cc88a;">Ideal</b></td>
+                                                <!-- <td><b style="color:#1cc88a;">Ideal</b></td>
     
     
                                             </tr>
                                             <tr>
-                                                <td><a onclick="verPosto(13)" id="spn_nomePosto4">Totem 5</a></td>
+                                                <td><a onclick="verPosto(13)" id="spn_nomePosto4">Totem 5</a></td> -->
                                                 <!-- <td>
                                                     <div id="count5"> </div>
                                                 </td> -->
-                                                <td><b style="color:#1cc88a;">Ideal</b></td>
+                                                <!-- <td><b style="color:#1cc88a;">Ideal</b></td>
     
     
                                             </tr>
                                             <tr>
-                                                <td><a onclick="verPosto(14)" id="spn_nomePosto5">Totem 6</a></td>
+                                                <td><a onclick="verPosto(14)" id="spn_nomePosto5">Totem 6</a></td> -->
                                                 <!-- <td>
                                                     <div id="count6"> </div>
                                                 </td> -->
-                                                <td><b style="color:#1cc88a;">Ideal</b></td>
+                                                <!-- <td><b style="color:#1cc88a;">Ideal</b></td>
     
     
-                                            </tr>
+                                            </tr> -->
     
                                         </tbody>
                                     </table>
@@ -510,84 +512,101 @@
         }
     }
 
+    // obterdadosTotem(idTotem);
 
-function atualizacaoPeriodicaPosto() {
-       
 
-        // function sendData() {
-        // 	var http = new XMLHttpRequest();
-        // 	http.open('POST', 'http://localhost:3000/api/sendData', false);
-        // 	http.send(null);
-        // }
+    // function obterdadosTotem(idTotem) {
+    //     // console.log("id posto " + idPosto);
+    //     fetch(`/medidas/identificacaoTotem/${idTotem}`)
+    //         .then(resposta => {
 
-        setInterval(() => {
-            // sendData();
-        }, 2000);
-        setTimeout(atualizacaoPeriodica, 5000);
-    }
+    //             if (resposta.ok) {
+    //                 resposta.json().then(resposta => {
 
-    function obterdadosTotem(idTotem) {
-        // console.log("id posto " + idPosto);
-        fetch(`/medidas/nomesPosto/${idPosto}`)
-            .then(resposta => {
+    //                     console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-                if (resposta.ok) {
-                    resposta.json().then(resposta => {
+    //                     var dados = {
+    //                         totemId: resposta[0].totemId,
+    //                     }
+    //                         console.log("nome totem"+totemId)
+    //                     // alertar(resposta[0].totemId, idTotem);
 
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+    //                 });
+    //             } else {
 
-                        var dados = {
-                            totemNome: resposta[0].totemNome,
-                        }
+    //                 console.error('Nenhum dado encontrado ou erro na API');
+    //             }
+    //         })
+    //         .catch(function (error) {
+    //             console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+    //         });
 
-                        alertar(resposta[0].totemNome, idTotem);
+    // }
 
-                    });
-                } else {
 
-                    console.error('Nenhum dado encontrado ou erro na API');
+
+
+    function atualizarTotensTi() {
+        //aguardar();
+    fetch(`/medidas/identTotem/${idTotem}`).then(function (resposta) {
+            if (resposta.ok) {
+                if (resposta.status == 204) {
+                    // var feed = document.getElementById("feed_container");
+                    // var mensagem = document.createElement("span");
+                    // mensagem.innerHTML = "Nenhum resultado encontrado."
+                    // feed.appendChild(mensagem);
+                    throw "Nenhum resultado encontrado!!";
                 }
-            })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
-            });
 
-    }
+                resposta.json().then(function (resposta) {
+                    console.log("Dados recebidos: ", JSON.stringify(resposta));
 
+                    // var feed = document.getElementById("feed_container");
+                    // feed.innerHTML = "";
 
-    function alertarTotem(idTotem) {
+                    for (let i = 0; i < resposta.length; i++) {
 
-        var card;
+                        var totemId = resposta[i].totemId;
 
-        if (idPosto == 4) {
-            spn_nomePosto.innerHTML = idTotem;
+                        // criando e manipulando elementos do HTML via JavaScript
+                        var feed_totem = document.getElementById("feed_totem");
+                        var trTotem = document.createElement("tr");
+                        var tdTtotem = document.createElement("td");
+                        var aTotem = document.createElement("a");
+                        var tdEstado = document.createElement("td");
+                        var bEstado = document.createElement("b");
 
-        } else if (idPosto == 5) {
-            spn_nomePosto2.innerHTML = idTotem;
+                        //Adicionando o id do totem na listagem
+                        aTotem.innerHTML = "Totem " + totemId;
 
+                        //Adiconando atributos nos elementos
+                        aTotem.setAttribute("onclick", `verTotem(${totemId})`);
 
-        } else if (idPosto == 6) {
-            spn_nomePosto3.innerHTML = idTotem;
+                        // bEstado.setAttribute("style", `color:#e74a3b;`);
 
-
-        } else if (idPosto == 13) {
-            spn_nomePosto4.innerHTML = idTotem;
-
-
-
-        } else if (idPosto == 14) {
-            spn_nomePosto5.innerHTML = totemNome;
-
-
-        }
-        else if (idPosto == 15) {
-            spn_nomePosto6.innerHTML = postoNome;
-
-
-        }
+                        feed_totem.appendChild("trTotem");
+                        tr.appendChild("tdTotem");
+                        tdTotem.appendChild("aTotem");
 
 
 
+
+                        
+
+                       
+
+                        
+                    }
+
+                    finalizarAguardar();
+                });
+            } else {
+                throw ('Houve um erro na API!');
+            }
+        }).catch(function (resposta) {
+            console.error(resposta);
+            finalizarAguardar();
+        });
     }
 
 

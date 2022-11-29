@@ -37,4 +37,7 @@ router.get("/listarTotensPorPosto/:idPosto", function (req, res) {
     avisoController.listarTotensPorPosto(req, res);
 })
 
+
+
+
 module.exports = router;

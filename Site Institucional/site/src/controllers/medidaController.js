@@ -74,9 +74,9 @@ function buscarqtdTotem(req, res) {
 
 function AlertarDiscoTotem(req, res) {
 
-    var idPosto = req.params.idPosto;
+    var idTotem = req.params.idTotem;
 
-    medidaModel.AlertarDiscoTotem(idPosto).then(function (resultado) {
+    medidaModel.AlertarDiscoTotem(idTotem).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -91,9 +91,9 @@ function AlertarDiscoTotem(req, res) {
 
 function AlertarRamTotem(req, res) {
 
-    var idPosto = req.params.idPosto;
+    var idTotem = req.params.idTotem;
 
-    medidaModel.AlertarRamTotem(idPosto).then(function (resultado) {
+    medidaModel.AlertarRamTotem(idTotem).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -107,9 +107,7 @@ function AlertarRamTotem(req, res) {
 }
 function AlertarCpuTotem(req, res) {
 
-    var idPosto = req.params.idPosto;
-
-    medidaModel.AlertarCpuTotem(idPosto).then(function (resultado) {
+    medidaModel.AlertarCpuTotem().then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -166,6 +164,27 @@ function buscarNomesPosto(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
+
+
+function identificacaoTotem(req, res) {
+
+    console.log("nomes medida controller");
+    var idTotem = req.params.idTotem;
+    
+    medidaModel.identificacaoTotem(idTotem).then(function (resultado) {
+        if (resultado.length > 0) {
+            res.status(200).json(resultado);
+            
+        } else {
+            res.status(204).send("Nenhum resultado encontrado!")
+        }
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar os nomes dos postos.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+}
+
 
 /////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////
@@ -384,5 +403,6 @@ module.exports = {
     buscarQtdTotens,
     AlertarCpuTotem,
     AlertarRamTotem,
-    AlertarDiscoTotem
+    AlertarDiscoTotem,
+    identificacaoTotem
 }

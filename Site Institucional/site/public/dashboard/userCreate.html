@@ -52,7 +52,7 @@
                         <span>Dashboard</span></a>
                 </li>
 
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="tables.html">
                         <i class="fas fa-fw fa-table"></i>
                         <span>Tabela</span></a>
@@ -63,7 +63,7 @@
                     <a class="nav-link" href="FAQ.html">
                         <i class="fas fa-fw fa-question"></i>
                         <span>FAQ</span></a>
-                </li>
+                </li> -->
 
                 <li class="nav-item faq">
                     <a class="nav-link" href="https://dyoung.tomticket.com?account=3823360P15112022021213"
@@ -83,50 +83,50 @@
             </ul>
         </div>
 
-        <div class="right">
-            <div class="botaoVoltar">
-                <a class="back" href="configuracao.html">Voltar</a>
-            </div>
+                <div class="right">
+                    <div class="botaoVoltar">
+                        <a class="back" href="configuracao.html">Voltar</a>
+                    </div>
 
-            <div class="crud">
+                    <div class="crud">
 
-                <div class="ipt">
-                    <div>
-                        <input id="iptNome" type="text" placeholder="Nome">
+                        <div class="ipt">
+                            <div>
+                                <input id="iptNome" type="text" placeholder="Nome">
+                            </div>
+                            <br>
+                            <div>
+                                <input id="iptEmail" type="text" placeholder="Email">
+                            </div>
+                            <br>
+                            <div>
+                                <input id="iptCpf" type="text" placeholder="CPF">
+                            </div>
+                            <br>
+                            <div>
+                                <input id="iptSenha" type="password" placeholder="Senha">
+                            </div><br>
+                            <div class="label">
+                                Cargo:
+                                <select name="" id="selectCargo" class="selectOption">
+                                    <option>Selecione:</option>
+                                    <option value="técnico">Técnico de TI</option>
+                                </select>
+                            </div>
+                            <br>
+                            <div class="label">
+                                Unidade:
+                                <select name="" id="selectUnidade">
+                                    <option value="1">São Caetano do Sul</option>
+                                    <option value="2">Santo André</option>
+                                    <option value="3">Lapa</option>
+                                </select>
+                            </div>
+                            <button class="btn" onclick="addUser()">Adicionar</button>
+                        </div>
                     </div>
-                    <br>
-                    <div>
-                        <input id="iptEmail" type="text" placeholder="Email">
-                    </div>
-                    <br>
-                    <div>
-                        <input id="iptCpf" type="text" placeholder="CPF">
-                    </div>
-                    <br>
-                    <div>
-                        <input id="iptSenha" type="password" placeholder="Senha">
-                    </div><br>
-                    <div class="label">
-                        Cargo:
-                        <select name="" id="selectCargo">
-                            <option>Selecione:</option>
-                            <option value="técnico">Técnico de TI</option>
-                        </select>
-                    </div>
-                    <br>
-                    <div class="label">
-                        Unidade:
-                        <select name="" id="selectUnidade">
-                            <option value="1">São Caetano do Sul</option>
-                            <option value="2">Santo André</option>
-                            <option value="3">Lapa</option>
-                        </select>
-                    </div>
-                    <button class="btn" onclick="addUser()">Adicionar</button>
                 </div>
             </div>
-        </div>
-    </div>
 
     <script src="vendor/jquery/jquery.min.js"></script>
     <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>

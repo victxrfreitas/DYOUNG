@@ -24,7 +24,7 @@
 
 </head>
 
-<body id="page-top" onload=" atualizacaoPeriodica(), atualizacaoPeriodicaDosTotens()">
+<body id="page-top" onload="atualizacaoPeriodicaPosto(), atualizacaoPeriodica()">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -37,10 +37,10 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <!-- <i class="fas fa-laugh-wink"></i> -->
                 </div>
-                
-             
-                    <img src="img/Logo-DYoung.png" width="60%">
-            
+
+
+                <img src="img/Logo-DYoung.png" width="60%">
+
             </a>
 
             <!-- Divider -->
@@ -54,32 +54,33 @@
             </li>
 
 
- 
-          
+
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
-                     
-            <li class="nav-item">
+
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="tables.html">
                     <i class="fas fa-fw fa-table"></i>
                     <span>Tabela</span></a>
-            </li>
+            </li> -->
 
-            
+
 
             <!-- Nav Item - Charts -->
-        
 
-         
-            <li class="nav-item faq">
+
+
+            <!-- <li class="nav-item faq">
                 <a class="nav-link" href="FAQ.html">
                     <i class="fas fa-fw fa-question"></i>
                     <span>FAQ</span></a>
-            </li>
+            </li> -->
 
             <li class="nav-item faq">
-                <a class="nav-link" href="https://dyoung.tomticket.com?account=3823360P15112022021213" target="_blank" rel="noopener noreferrer">
+                <a class="nav-link" href="https://dyoung.tomticket.com?account=3823360P15112022021213" target="_blank"
+                    rel="noopener noreferrer">
                     <i class="fas fa-fw fa-headset"></i>
                     <span>HelpDesk</span></a>
             </li>
@@ -89,9 +90,9 @@
                     <i class="fas fa-fw fa-tablet"></i>
                     <span>Configurações</span></a>
             </li>
-      
 
-         
+
+
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -101,7 +102,7 @@
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
 
-     
+
 
         </ul>
         <!-- End of Sidebar -->
@@ -120,19 +121,7 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Topbar Search -->
-                    <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -161,60 +150,8 @@
                             </div>
                         </li>
 
-                        <!-- Nav Item - Alerts -->
-                        <!-- Nav Item - Alerts -->
-                        <!-- <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                --Counter - Alerts 
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                             --Dropdown - Alerts
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li> -->
-                        
 
-                   
+
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 
@@ -223,13 +160,12 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Leonardo</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
@@ -241,262 +177,229 @@
                     </ul>
 
                 </nav>
-               
-                <div class="container-fluid">
 
 
-                  
-                    <div class="row">
+                <div class="row">
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-warning shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                                Em alerta</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="alerta"><span id="count_alerta"></span></div>
-                                        </div>
-                                        <!-- <div class="col-auto">
-                                            <i class="fas fa-alert fa-2x text-gray-300"></i>
-                                        </div> -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-warning shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
+                                            Em alerta</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="alerta"><span
+                                                id="count_alerta"></span></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-danger shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
-                                                Estado Crítico</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="critico"><span id="count_critico"></span></div>
+                    <!-- Earnings (Monthly) Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-danger shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                            Estado Crítico</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="critico">
+                                            <span id="count_critico"></span>
                                         </div>
-                                        
-                                        <!-- <div class="col-auto">
+                                    </div>
+
+                                    <!-- <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                                         </div> -->
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-success shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                               Ideal</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="ideal"><span id="count_ideal"></span></div>
-                                        </div>
-                                        
-                                        <!-- <div class="col-auto">
+                    </div>
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-success shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                            Ideal</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="ideal"><span
+                                                id="count_ideal"></span></div>
+                                    </div>
+
+                                    <!-- <div class="col-auto">
                                             <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
                                         </div> -->
-                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                       
+                    <!-- Pending Requests Card Example -->
+                    <div class="col-xl-3 col-md-6 mb-4">
+                        <div class="card border-left-primary shadow h-100 py-2">
+                            <div class="card-body">
+                                <div class="row no-gutters align-items-center">
+                                    <div class="col mr-2">
+                                        <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
+                                            Total de TOTENS</div>
 
-                        <!-- Pending Requests Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Total de TOTENS</div>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="count_totem"></div>
 
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="count_totem"></div>
-
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" ><span id="count"></span></div>
-
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800"><span id="count"></span>
                                         </div>
-                                        <!-- <div class="col-auto">
+
+                                    </div>
+                                    <!-- <div class="col-auto">
                                             <i class="fas fa-comments fa-2x text-gray-300"></i>
                                         </div> -->
-                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                </div>
 
-                    <!-- Content Row -->
+                <!-- Content Row -->
 
-                    <div class="row">
+                <div class="row">
 
-                        <!-- Area Chart -->
-                         <!-- <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>  -->
-                                <!-- Card Body -->
-                                <!-- <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
 
-                        <!-- Pie Chart -->
-                     
 
-                    <!-- Content Row -->
-                    <div class="row">
 
-                        <!-- Content Column -->
-                        <div class="col-lg-6 mb-4" style="width: 65rem;">
 
-                            <!-- Project Card Example -->
-                            <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary"> Situação dos Postos do Poupa Tempo</h6>
-                                </div>
-                                <div class="card-body2">
-                                    <h4 class="small font-weight-bold"><a href="cards.html">Itaquera</a><span
-                                            class="float-right">Em estado crítico: 90%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 90%"
-                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    
-                                    <h4 class="small font-weight-bold"><a href="cards.html">Sé</a><span
-                                            class="float-right">Em alerta: 40%</span></h4>
-                                    <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                    <h4 class="small font-weight-bold"><a href="cards.html">Lapa</a><span
-                                        class="float-right">Em alerta: 50%</span></h4>
-                                <div class="progress mb-4">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 50%"
-                                        aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div>
-                              
-                                    <h4 class="small font-weight-bold"><a href="cards.html">Osasco</a><span
-                                            class="float-right">Ideal</span></h4>
-                                    <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 10%"
-                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="10"></div>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <!-- Color System -->
-                            <div class="row" style="margin-top: -16rem; margin-left: 32rem; margin-right: -30rem; flex-wrap: nowrap;">
-                                
-                                <div class="col-xl-5 col-lg-6 mb-4">
-                                    <div class="card bg-danger text-white shadow">
-                                        <div class="card-body">
-                                            Estado Crítico <br>
-                                            <b>80% a 100%</b>
-                                            dos totens estão com um mau desempenho e travamento.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-5 col-lg-6 mb-4">
-                                    <div class="card bg-warning text-white shadow">
-                                        <div class="card-body">
-                                            Em alerta
-                                            <br>
-                                            <b>40% a 79%</b>
-                                            dos totens estão com chances de ocorrer travamento.
-                                        </div>
-                                    </div>
-                                </div>
-                               
-                               
-                       
-
-                                <div class="col-xl-5 col-lg-6 mb-4"  > <!--  style="margin-left: 8rem;"-->
-                                    <div class="card bg-success text-white shadow">
-                                        <div class="card-body">
-                                            Ideal
-                                            <br>
-                                            <b>0% a 39%</b>
-                                            dos totens estão com chances de ocorrer travamento.
-                                        </div>
-                                    </div>
-                                </div>
-                               
-                            </div>
-
+                    <!-- DataTales Example -->
+                    <div class="card shadow mb-4" style="margin-left: 5%">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">Dados de todos os postos</h6>
                         </div>
-<!-- 
-                        <div class="col-lg-6 mb-4"> -->
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Poupa Tempo</th>
+                                            <th>Total de Totens</th>
+                                            <!-- <th>Situação do Posto</th> -->
 
-                            <!-- Illustrations -->
-                            <!-- <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Illustrations</h6>
-                                </div>
-                                <div class="card-body">
-                                    <div class="text-center">
-                                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
-                                            src="img/undraw_posting_photo.svg" alt="...">
-                                    </div>
-                                    <p>Add some quality, svg illustrations to your project courtesy of <a
-                                            target="_blank" rel="nofollow" href="https://undraw.co/">unDraw</a>, a
-                                        constantly updated collection of beautiful svg images that you can use
-                                        completely free and without attribution!</p>
-                                    <a target="_blank" rel="nofollow" href="https://undraw.co/">Browse Illustrations on
-                                        unDraw &rarr;</a>
-                                </div>
-                            </div> -->
 
-                            <!-- Approach -->
-                            <!-- <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary">Development Approach</h6>
-                                </div>
-                                <div class="card-body">
-                                    <p>SB Admin 2 makes extensive use of Bootstrap 4 utility classes in order to reduce
-                                        CSS bloat and poor page performance. Custom CSS classes are used to create
-                                        custom components and custom utility classes.</p>
-                                    <p class="mb-0">Before working with this theme, you should become familiar with the
-                                        Bootstrap framework, especially the utility classes.</p>
-                                </div>
+                                        </tr>
+                                    </thead>
+                                    <tfoot>
+                                        <tr>
+                                            <td> <a onclick="verPosto(6)" id="spn_nomePosto3"></td>
+                                            <td><span id="count1"></span> </td>
+                                            <!-- <td> <b style="color:#e74a3b;">Estado crítico</b></td> -->
+
+                                        </tr>
+                                    </tfoot>
+                                    <tbody>
+                                        <tr>
+                                            <td> <a onclick="verPosto(4)" id="spn_nomePosto"></td>
+                                            <td>
+                                                <div id="count2"> </div>
+                                            </td>
+                                            <!-- <td> <b style="color:#f6c23e;">Em alerta</b></td> -->
+
+                                        </tr>
+                                        <tr>
+                                            <td><a onclick="verPosto(5)" id="spn_nomePosto2"></a></td>
+                                            <td>
+                                                <div id="count3"> </div>
+                                            </td>
+                                            <!-- <td><b style="color:#1cc88a;">Ideal</b></td> -->
+
+                                        </tr>
+                                        <tr>
+                                            <td><a onclick="verPosto(15)" id="spn_nomePosto6"></a></td>
+                                            <td>
+                                                <div id="count4"> </div>
+                                            </td>
+                                            <!-- <td><b style="color:#1cc88a;">Ideal</b></td> -->
+
+
+                                        </tr>
+                                        <tr>
+                                            <td><a onclick="verPosto(13)" id="spn_nomePosto4"></a></td>
+                                            <td>
+                                                <div id="count5"> </div>
+                                            </td>
+                                            <!-- <td><b style="color:#1cc88a;">Ideal</b></td> -->
+
+
+                                        </tr>
+                                        <tr>
+                                            <td><a onclick="verPosto(14)" id="spn_nomePosto5"></a></td>
+                                            <td>
+                                                <div id="count6"> </div>
+                                            </td>
+                                            <!-- <td><b style="color:#1cc88a;">Ideal</b></td> -->
+
+
+                                        </tr>
+
+                                    </tbody>
+                                </table>
                             </div>
-
                         </div>
                     </div>
 
-                </div> -->
-                <!-- /.container-fluid -->
+                </div>
+
+                <!-- Color System -->
+                <div class="row" style="margin-top: -20rem; margin-left: 31rem; flex-wrap: nowrap; width: 50rem;">
+
+                    <div class="col-xl-5 col-lg-6 mb-4" style="margin-top: -10rem; margin-left: 3.7rem;">
+                        <div class="card bg-danger text-white shadow">
+                            <div class="card-body">
+                                Estado Crítico <br>
+                                Componentes em: 80% a 100% 
+                                da capacidade total.
+                                <!-- <b>80% a 100%</b>
+                                            dos totens estão com um mau desempenho e travamento. -->
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-5 col-lg-6 mb-4" style="margin-top: 0rem; margin-left: -21rem;">
+                        <div class="card bg-warning text-white shadow">
+                            <div class="card-body">
+                                Em alerta
+                                <br>
+                                Componentes em: 40% a 79%
+                                da capacidade total.
+                                <!-- <b>40% a 79%</b>
+                                            dos totens estão com chances de ocorrer travamento. -->
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="col-xl-5 col-lg-6 mb-4" style="margin-top: 8.5rem; margin-left: -20.7rem;">
+                        <div class="card bg-success text-white shadow">
+                            <div class="card-body">
+                                Ideal
+                                <br>
+                                Componentes em: 0% a 30%
+                                da capacidade total.
+                                <!-- <b>0% a 39%</b>
+                                            dos totens estão com chances de ocorrer travamento. -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
 
             </div>
-            <!-- End of Main Content -->
 
-            <!-- Footer -->
-            
-            <!-- End of Footer -->
+
 
         </div>
-        <!-- End of Content Wrapper -->
+
+
+    </div>
+    <!-- End of Content Wrapper -->
 
     </div>
     <!-- End of Page Wrapper -->
@@ -519,7 +422,7 @@
                 </div>
                 <div class="modal-body">Selecione o botão "Sair" se você estiver preparado para sair desta sessão.</div>
                 <div class="modal-footer">
-                    <button  class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
                     <a onclick="limparSessao()" class="btn btn-primary">Sair</a>
                 </div>
             </div>
@@ -542,54 +445,66 @@
     <!-- Page level custom scripts -->
     <script src="js/demo/chart-area-demo.js"></script>
     <script src="js/demo/chart-pie-demo.js"></script>
-    
+
 
 </body>
 
 </html>
 
 <script>
-    var idTotem = queryString("id");
-    var idPosto = sessionStorage.FK_USUARIO;
-         obterdados(idTotem);
-        obterdadosCpu(idPosto);
-        obterdadosDisco(1);
-        obterdadosRam(7);
+    obterdadosTotem(6);
+    obterdadosTotem(4);
+    obterdadosTotem(5);
+    obterdadosTotem(13);
+    obterdadosTotem(14);
+    obterdadosTotem(15);
+
+    obterdadosPosto(6);
+    obterdadosPosto(4);
+    obterdadosPosto(5);
+    obterdadosPosto(13);
+    obterdadosPosto(14);
+    obterdadosPosto(15);
     
+    obterdados(idTotem);
+    // obterdadosCpu(idTotem);
+    obterdadosCpu();
+    obterdadosDisco(idTotem);
+    obterdadosRam(idTotem);
+
+    var dadosCpu = {};
+    var dadosDisco = {};
+    var dadosRam = {};
+    
+    var qtdIdeal = 0;
+    var qtdAlerta = 0;
+    var qtdCritico = 0;
+
+    var idPosto = sessionStorage.FK_USUARIO;
+    // var idPosto = queryString("id");
+    var idTotem = queryString("id");
+    // var dados = {}
+    // var idPosto = sessionStorage.FK_USUARIO;
+
     function queryString(parameter) {
-              var loc = location.search.substring(1, location.search.length);
-              var param_value = false;
-              var params = loc.split("&");
-              for (i=0; i<params.length;i++) {
-                  param_name = params[i].substring(0,params[i].indexOf('='));
-                  if (param_name == parameter) {
-                      param_value = params[i].substring(params[i].indexOf('=')+1)
-                  }
-              }
-              if (param_value) {
-                  return param_value;
-              }
-              else {
-                  return undefined;
-              }
+        var loc = location.search.substring(1, location.search.length);
+        var param_value = false;
+        var params = loc.split("&");
+        for (i = 0; i < params.length; i++) {
+            param_name = params[i].substring(0, params[i].indexOf('='));
+            if (param_name == parameter) {
+                param_value = params[i].substring(params[i].indexOf('=') + 1)
+            }
         }
+        if (param_value) {
+            return param_value;
+        }
+        else {
+            return undefined;
+        }
+    }
 
-    // function atualizacaoPeriodica() {
-      
-    //     console.log("atualizacão")
-
-    //     // function sendData() {
-    //     // 	var http = new XMLHttpRequest();
-    //     // 	http.open('POST', 'http://localhost:3000/api/sendData', false);
-    //     // 	http.send(null);
-    //     // }
-
-    //     setInterval(() => {
-    //         // sendData();
-    //     }, 2000);
-    //     setTimeout(atualizacaoPeriodica, 5000);
-    // }
-
+   
     function obterdados(idTotem) {
         fetch(`/medidas/dadosTotem-qtd/${idTotem}`)
             .then(resposta => {
@@ -617,189 +532,266 @@
     }
 
     //////////////////////////////////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////////////////////////////////'
+
+    
+
+
+    alertarMetricas(dadosMaq);
+    function obterdadosCpu() {
+        fetch(`/medidas/AlertarCpuTotem`)
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    resposta.json().then(resposta => {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        for (i = 0; i <= resposta.length; i++) {
+                            dadosCpu = {
+                                dadoCpu: resposta[i].dadoCpu,
+                            };
+                            dadosTemp = {
+                                dadoTemp: resposta[i].dadoTemperatura
+                            };
+                            dadosMaq.push(dadosCpu);
+                            dadosMaq.push(dadosTemp);
+                        };
+
+
+                        // alertarCpu(dadosCpu);
+
+
+                    });
+                } else {
+
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function obterdadosDisco(idTotem) {
+        fetch(`/medidas/AlertarDiscoTotem/${idTotem}`)
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    resposta.json().then(resposta => {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        for (i = 0; i <= resposta.length; i++) {
+                            dados = {
+                                dadoDisco: resposta[i].dadoDisco,
+                            }
+                            dadosMaq.push(dados);
+                        }
+                        // alertarMetricas(dados);
+                    });
+                } else {
+
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+    }
+    function obterdadosRam(idTotem) {
+        fetch(`/medidas/AlertarRamTotem/${idTotem}`)
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    resposta.json().then(resposta => {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                        for (i = 0; i <= resposta.length; i++) {
+                            dados = {
+                                dadoRam: resposta[i].dadoRam,
+                            }
+                            dadosMaq.push(dados);
+                        }
+
+                        // alertarMetricas(dados);
+
+
+                    });
+                } else {
+
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+    }
+
+    //////////////////////////////////////////////////////////////////////////////////////////////
     /////////////////////////////////////////////////////////////////////////////////////////////
 
-    // function atualizacaoPeriodicaDosTotens() {
-    //     obterdadosCpu(idTotem);
-    //     obterdadoDisco(idTotem);
-    //     obterdadosRam(idTotem);
-    //     console.log("atualizacão");
-
-    //     // function sendData() {
-    //     // 	var http = new XMLHttpRequest();
-    //     // 	http.open('POST', 'http://localhost:3000/api/sendData', false);
-    //     // 	http.send(null);
-    //     // }
-
-    //     setInterval(() => {
-    //         // sendData();
-    //     }, 2000);
-    //     setTimeout(atualizacaoPeriodicaDosTotens, 5000);
-    // }
-
-    function obterdadosCpu(idPosto) {
-        fetch(`/medidas/AlertarCpuTotem/${idPosto}`)
-            .then(resposta => {
-
-                if (resposta.ok) {
-                    resposta.json().then(resposta => {
-
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                        var dados = {
-                            dadoCpu: resposta[0].dadoCpu,
-                            dadoTemperatura: resposta[0].dadoTemperatura,
-                        }
-
-                        alertar2(resposta[0].dadoCpu,resposta[0].dadoTemperatura, idPosto);
-                    });
-                } else {
-
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
-            });
-    }
-    function obterdadosDisco(idPosto) {
-        fetch(`/medidas/AlertarDiscoTotem/${idPosto}`)
-            .then(resposta => {
-
-                if (resposta.ok) {
-                    resposta.json().then(resposta => {
-
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                        var dados = {
-                            dadoDisco: resposta[0].dadoDisco,
-                        }
-
-                        alertar2(resposta[0].dadoDisco, idTotem);
-                    });
-                } else {
-
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
-            });
-    }
-    function obterdadosRam(idPosto) {
-        fetch(`/medidas/AlertarRamTotem/${idPosto}`)
-            .then(resposta => {
-
-                if (resposta.ok) {
-                    resposta.json().then(resposta => {
-
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-
-                        var dados = {
-                            dadoRam: resposta[0].dadoRam,
-                        }
-
-                        alertar3(resposta[0].dadoRam, idTotem);
-                        console.log("testeeee raammmmmmmmm")
-                    });
-                } else {
-
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
-            });
-    }
-
-        //////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////
-
-
-       var qtdIdeal = 0;
-        var qtdAlerta = 0;
-        var qtdCritico = 0;
+    // console.log("mostrando dado ram"+dadoRam)
+  
     
-    function alertar2(dadoCpu, dadoTemperatura, dadoDisco, dadoRam, idPosto,idTotem) {
-        var qtdIdeal = 0;
-        var qtdAlerta = 0;
-        var qtdCritico = 0;
+    function alertarMetricas(dadosMaq) {
 
-
-        var limites ={
+        var limites = {
             critico: 80,
-            alerta : 39
+            alerta: 39
         }
 
-       
-        if(dadoCpu >= limites.critico){
-            console.log("teste")
+        if (dadosMaq.dadoCpu >= limites.critico || dadosMaq.dadoDisco >= limites.critico || dadosMaq.dadoRam >= limites.critico || dadosMaq.dadoTemperatura >= limites.critico) {
+            console.log("caiu no 1")
+            qtdCritico++;
+            count_critico.innerHTML = qtdCritico;
+        }
+         else if (dadosMaq.dadoCpu <= ideal.metrica || dadosMaq.dadoDisco <= ideal.metrica || dadosMaq.dadoRam <= ideal.metrica) {
+             console.log("caiu no 2")
+             count_ideal.innerHTML =  qtdIdeal++;
+
+
+         }
+         else if (dadosMaq.dadoCpu <= limitesCritico.metrica || dadosMaq.dadoDisco <= limitesCritico.metrica || dadosMaq.dadoRam <= limitesCritico.metrica &&
+         dadosMaq.dadoCpu >= ideal.metrica || dadosMaq.dadoDisco >= ideal.metrica || dadosMaq.dadoRam >= ideal.metrica) {
+             console.log("caiu no 3")
+             count_alerta.innerHTML =  qtdAlerta++;
+
         }
 
-
-        // if (dadoCpu >= limitesCritico.metrica || dadoDisco >= limitesCritico.metrica || dadoRam >= limitesCritico.metrica) {
-        //     console.log("caiu no 1")
-        //     count_critico.innerHTML =  qtdCritico++;
-        
- 
-
-        // }
-        // else if (dadoCpu <= ideal.metrica || dadoDisco <= ideal.metrica || dadoRam <= ideal.metrica) {
-        //     console.log("caiu no 2")
-        //     count_ideal.innerHTML =  qtdIdeal++;
-      
-      
-        // }
-        // else if (dadoCpu <= limitesCritico.metrica || dadoDisco <= limitesCritico.metrica || dadoRam <= limitesCritico.metrica &&
-        // dadoCpu >= ideal.metrica || dadoDisco >= ideal.metrica || dadoRam >= ideal.metrica) {
-        //     console.log("caiu no 3")
-        //     count_alerta.innerHTML =  qtdAlerta++;
-        
-        // }
-
-        
 
     }
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+    function verPosto(idPosto) {
+        location.assign("cards.html?id=" + idPosto);
+    }
+
+
+
+    function obterdadosTotem(idPosto) {
+        fetch(`/medidas/qtdTotens/${idPosto}`)
+            .then(resposta => {
+
+                if (resposta.ok) {
+                    resposta.json().then(resposta => {
+
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+
+                        var dados = {
+                            qtd: resposta[0].qtd,
+
+                        }
+                        alertar(resposta[0].qtd, idPosto);
+
+
+                    });
+                } else {
+
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
+    }
+
     
-    function alertar3(dadoRam, idTotem) {
 
+    function obterdadosPosto(idPosto) {
+        // console.log("id posto " + idPosto);
+        fetch(`/medidas/nomesPosto/${idPosto}`)
+            .then(resposta => {
 
+                if (resposta.ok) {
+                    resposta.json().then(resposta => {
 
-        var limites ={
-            critico: 80,
-            alerta : 39
-        }
+                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
-       
-        if(dadoRam <= limites.alerta){
-            console.log("teste")
-            qtdIdeal ++;
-        }
+                        var dados = {
+                            postoNome: resposta[0].postoNome,
+                        }
 
+                        alertarPosto(resposta[0].postoNome, idPosto);
 
-        // if (dadoCpu >= limitesCritico.metrica || dadoDisco >= limitesCritico.metrica || dadoRam >= limitesCritico.metrica) {
-        //     console.log("caiu no 1")
-        //     count_critico.innerHTML =  qtdCritico++;
-        
- 
+                    });
+                } else {
 
-        // }
-        // else if (dadoCpu <= ideal.metrica || dadoDisco <= ideal.metrica || dadoRam <= ideal.metrica) {
-        //     console.log("caiu no 2")
-        //     count_ideal.innerHTML =  qtdIdeal++;
-      
-      
-        // }
-        // else if (dadoCpu <= limitesCritico.metrica || dadoDisco <= limitesCritico.metrica || dadoRam <= limitesCritico.metrica &&
-        // dadoCpu >= ideal.metrica || dadoDisco >= ideal.metrica || dadoRam >= ideal.metrica) {
-        //     console.log("caiu no 3")
-        //     count_alerta.innerHTML =  qtdAlerta++;
-        
-        // }
-
-        
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
+            });
 
     }
+
+
+    function alertar(qtd, idPosto) {
+
+
+
+        var card;
+
+        if (idPosto == 4) {
+            count2.innerHTML = qtd;
+
+        } else if (idPosto == 5) {
+            count3.innerHTML = qtd;
+
+        } else if (idPosto == 6) {
+            count1.innerHTML = qtd;
+
+        } else if (idPosto == 13) {
+            count5.innerHTML = qtd;
+
+
+        } else if (idPosto == 14) {
+            count4.innerHTML = qtd;
+
+        }
+        else if (idPosto == 15) {
+            count6.innerHTML = qtd;
+
+        }
+
+
+    }
+
+    function alertarPosto(postoNome, idPosto) {
+
+        var card;
+
+        if (idPosto == 4) {
+            spn_nomePosto.innerHTML = postoNome;
+
+        } else if (idPosto == 5) {
+            spn_nomePosto2.innerHTML = postoNome;
+
+
+        } else if (idPosto == 6) {
+            spn_nomePosto3.innerHTML = postoNome;
+
+
+        } else if (idPosto == 13) {
+            spn_nomePosto4.innerHTML = postoNome;
+
+
+
+        } else if (idPosto == 14) {
+            spn_nomePosto5.innerHTML = postoNome;
+
+
+        }
+        else if (idPosto == 15) {
+            spn_nomePosto6.innerHTML = postoNome;
+
+
+        }
+
+
+
+    }
+
+
+
 </script>
-
-
