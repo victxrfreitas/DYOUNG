@@ -142,7 +142,8 @@ public class Logado extends javax.swing.JFrame {
                     if (totalDisco > 80.00) {
                         JSONObject json = new JSONObject();
 
-                        json.put("text", "Alerta! Seu consumo de Disco está em um nivel critico.");
+                        json.put("text", "Alerta! Seu consumo de Disco está em um nivel critico.\n"
+                                + "Totem: " + getId_totem());
                         try {
                             Slack.enviarMensagem(json);
                         } catch (IOException ex) {
@@ -154,7 +155,8 @@ public class Logado extends javax.swing.JFrame {
                     if (totalDisco < 79.00 && totalDisco > 49.00) {
                         JSONObject json = new JSONObject();
 
-                        json.put("text", "Atenção! Seu consumo de Disco está em estado de atenção.");
+                        json.put("text", "Atenção! Seu consumo de Disco está em estado de atenção.\n"
+                                + "Totem: " + getId_totem());
                         try {
                             Slack.enviarMensagem(json);
                         } catch (IOException ex) {
@@ -166,7 +168,8 @@ public class Logado extends javax.swing.JFrame {
                     if (totalRam > 80.00) {
                         JSONObject json = new JSONObject();
 
-                        json.put("text", "Alerta! Seu consumo de Memória RAM está em um nivel critico.");
+                        json.put("text", "Alerta! Seu consumo de Memória RAM está em um nivel critico.\n"
+                                + "Totem: " + getId_totem());
                         try {
                             Slack.enviarMensagem(json);
                         } catch (IOException ex) {
@@ -178,7 +181,8 @@ public class Logado extends javax.swing.JFrame {
                     if (totalRam < 79.00 && totalRam> 49.00) {
                         JSONObject json = new JSONObject();
 
-                        json.put("text", "Atenção! Seu consumo de Memória RAM está em estado de atenção.");
+                        json.put("text", "Atenção! Seu consumo de Memória RAM está em estado de atenção.\n"
+                                + "Totem: " + getId_totem());
                         try {
                             Slack.enviarMensagem(json);
                         } catch (IOException ex) {
@@ -190,7 +194,8 @@ public class Logado extends javax.swing.JFrame {
                     if (dadoCpu > 80.00) {
                         JSONObject json = new JSONObject();
 
-                        json.put("text", "Alerta! Seu consumo de CPU está em um nivel critico.");
+                        json.put("text", "Alerta! Seu consumo de CPU está em um nivel critico.\n"
+                                + "Totem: " + getId_totem());
                         try {
                             Slack.enviarMensagem(json);
                         } catch (IOException ex) {
@@ -202,7 +207,8 @@ public class Logado extends javax.swing.JFrame {
                     if (dadoCpu < 79.00 && dadoCpu > 49.00) {
                         JSONObject json = new JSONObject();
 
-                        json.put("text", "Atenção! Seu consumo de CPU está em estado de atenção.");
+                        json.put("text", "Atenção! Seu consumo de CPU está em estado de atenção.\n"
+                                + "Totem: " + getId_totem());
                         try {
                             Slack.enviarMensagem(json);
                         } catch (IOException ex) {
@@ -214,7 +220,8 @@ public class Logado extends javax.swing.JFrame {
                     if (tempUso > 80.00) {
                         JSONObject json = new JSONObject();
 
-                        json.put("text", "Alerta! A temperatura da sua CPU está em um nivel critico.");
+                        json.put("text", "Alerta! A temperatura da sua CPU está em um nivel critico.\n"
+                                + "Totem: " + getId_totem());
                         try {
                             Slack.enviarMensagem(json);
                         } catch (IOException ex) {
@@ -226,7 +233,8 @@ public class Logado extends javax.swing.JFrame {
                     if (tempUso < 79.00 && tempUso > 49.00) {
                         JSONObject json = new JSONObject();
 
-                        json.put("text", "Atenção! A temperatura da sua CPU está em estado de atenção.");
+                        json.put("text", "Atenção! A temperatura da sua CPU está em estado de atenção.\n"
+                                + "Totem: " + getId_totem());
                         try {
                             Slack.enviarMensagem(json);
                         } catch (IOException ex) {
