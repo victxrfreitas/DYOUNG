@@ -190,9 +190,6 @@ public class TelaLogin extends javax.swing.JFrame {
                 new BeanPropertyRowMapper<>(Totem.class));
         
         for(Totem busca: buscarFuncionario){
-//            System.out.println(busca.getLoginTotem());
-//            System.out.println("=======");
-//            System.out.println(busca.getSenhaTotem());
             if(busca.getLoginTotem().equals(usuario) && busca.getSenhaTotem().equals(senha)){
                 tela.setVisible(true);
                 tela.setId_totem(busca.getIdTotem());
