@@ -73,7 +73,7 @@ public class LogBackup {
             
             
 
-            for (int i = 0; i < 500; i++) {
+            for (int i = 0; i < 10; i++) {
                 
 // Iremos fazer um log de instalação/login, nele terá email e id da maquina do login, e dados do hardware atual da máquina pós iniciação ou manutenção
 // total do HD, total da RAM, numero de CPUS, fabricante, nome do processador, frequencia e SO do sistema.
