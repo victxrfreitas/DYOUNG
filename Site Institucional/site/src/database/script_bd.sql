@@ -5,16 +5,26 @@ USE dyoung;
 CREATE TABLE endereco_posto (
 idEndereco_posto INT PRIMARY KEY auto_increment,
 rua VARCHAR(80),
-numero INT,
-localidade VARCHAR(80)
+numero INT
 );
+INSERT INTO endereco_posto(rua, numero) VALUES
+('Rua do Curtume', null),
+('Rua Giovanni Battista Pirelli', 155),
+('Praça do Carmo', null),
+('R. Amador Bueno', 229),
+('Av. do Contorno', 60);
 
 CREATE TABLE posto (
 idPosto INT PRIMARY KEY auto_increment,
 nomePosto VARCHAR(80),
-responsavelTI VARCHAR(80),
 fk_Endereco_posto INT, foreign key (fk_Endereco_posto) references endereco_posto(idEndereco_posto)
 );
+INSERT INTO posto(nomePosto, fk_Endereco_posto)VALUES
+('Lapa', 1),
+('Santo André', 2),
+('Sé', 3),
+('Santo Amaro', 4),
+('Itaquera', 5);
 
 CREATE TABLE cadastro_funcionario (
 idFuncionario INT PRIMARY KEY AUTO_INCREMENT,
@@ -44,14 +54,6 @@ status_coleta TINYINT,
 fk_totem INT, FOREIGN KEY (fk_totem) REFERENCES totem(idTotem),
 fk_posto INT, FOREIGN KEY (fk_posto) REFERENCES posto(idPosto)
 );
-
-insert into dado_disco(uso_disco) values(69);
-select * from dado_disco;
-
-update dado_ram set fk_totem = 1 where id_dado_ram in(1,2,3,4,5);
-select * from totem;
-
-select uso_cpu, uso_ram, uso_disco, temp_cpu from dado_cpu, dado_ram, dado_disco left join totem t on fk_totem = t.idTotem where uso_ram >=80 OR uso_disco >=80 OR uso_disco >=80 OR temp_cpu >=26;
 
 CREATE TABLE dado_disco (
 id_dado_disco INT PRIMARY KEY AUTO_INCREMENT,
@@ -101,3 +103,4 @@ update dado_disco set fk_totem = 1 where id_dado_disco in (7,8,9,10);
 SELECT uso_cpu, temp_cpu FROM cadastro_funcionario c JOIN posto p on c.fk_posto = p.idPosto JOIN dado_cpu d ON p.idPosto = c.fk_posto;
 SELECT uso_ram FROM cadastro_funcionario c JOIN posto p on c.fk_posto = p.idPosto JOIN dado_ram d ON p.idPosto = c.fk_posto;
 SELECT uso_disco FROM cadastro_funcionario c JOIN posto p on c.fk_posto = p.idPosto JOIN dado_disco d ON p.idPosto = c.fk_posto;
+
