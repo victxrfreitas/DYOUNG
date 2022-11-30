@@ -9,9 +9,9 @@ function buscarUltimasMedidasRam(idTotemRam , limite_linhas) {
         uso_ram as usoRam, 
         status_coleta as statusRam,
         data_hora_captura,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
+                        FORMAT(data_hora_captura,'hh:mm:ss') as momento_grafico
                         from dado_ram join totem on fk_totem = idTotem Where fk_totem = ${idTotemRam}
-                    order by id desc limit ${limite_linhas}`;   
+                    order by id_dado_ram desc`;   
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSqlRam = `select 
         uso_ram as usoRam, 
@@ -38,7 +38,7 @@ function buscarMedidasEmTempoRealRam(idTotemRam) {
         instrucaoSqlRam = `select top 1
         uso_ram as usoRam, 
         status_coleta as statusCpu,  
-                        CONVERT(varchar, data_hora_captura, 108) as momento_grafico, 
+        FORMAT(data_hora_captura,'hh:mm:ss') as momento_grafico, 
                         fk_totem 
                         from dado_ram join totem on fk_totem = idTotem Where fk_totem = ${idTotemRam}
                     order by id_dado_ram desc`;
@@ -82,7 +82,7 @@ function getDadosCpuByIdTotem(idTotem) {
     instrucaoSqlRam = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSqlRam = `SELECT uso_cpu 'usoCpu', temp_cpu 'tempCpu', DATE_FORMAT(data_hora_captura, \"%d/%m/%Y | %H:%i:%s\") 'dtHrColeta' from dado_cpu where fk_totem = ${idTotem};`;   
+        instrucaoSqlRam = `SELECT uso_cpu 'usoCpu', FORMAT(data_hora_captura, 'dd-MM-yy-hh:mm:ss') 'dtHrColeta' from dado_cpu where fk_totem = ${idTotem};`;   
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSqlRam = `SELECT uso_cpu 'usoCpu', temp_cpu 'tempCpu', DATE_FORMAT(data_hora_captura, \"%d/%m/%Y | %H:%i:%s\") 'dtHrColeta' from dado_cpu where fk_totem = ${idTotem};`;
     } else {

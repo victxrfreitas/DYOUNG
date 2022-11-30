@@ -135,6 +135,7 @@
             <pre id="json" style="display:none"></pre>
             <button onclick="downloadExcel()" class="btn2">Download</button>
           </div>
+
           <h1 class="h3 mb-2 text-gray-800">Dados do Totem</h1>
 
           <!-- <p class="mb-4">Relatório geral: Sem serviço </p> -->
@@ -251,6 +252,8 @@
 <script src="js/json-excel.js"></script>
 <script src="./js/teste.js"></script>
 <script>
+
+
   userName.innerHTML = sessionStorage.NOME_USUARIO;
 
 
@@ -281,7 +284,6 @@
     }
   }
   var idTotem = queryString("id");
-  console.log("abacate" + idTotem);
   //   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
   var idPosto = sessionStorage.FK_USUARIO;
   let proximaAtualizacao;
@@ -475,7 +477,6 @@
 
   // var idTotemRam = location.hash.split("=")[1];
   var idTotemRam = queryString("id");
-  console.log(idTotemRam);
 
   function obterDadosGraficoRam(idTotemRam) {
     // alterarTitulo(id_da);

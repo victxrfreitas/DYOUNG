@@ -1,5 +1,4 @@
 var data = [];
-var idTotem = 1;
 
 // DADOS CPU //
 

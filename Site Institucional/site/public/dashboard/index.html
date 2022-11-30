@@ -24,7 +24,7 @@
 
 </head>
 
-<body id="page-top" onload="atualizacaoPeriodicaPosto(), atualizacaoPeriodicaTotem()">
+<body id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -58,25 +58,6 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
-
-
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="tables.html">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Tabela</span></a>
-            </li> -->
-
-
-
-            <!-- Nav Item - Charts -->
-
-
-
-            <!-- <li class="nav-item faq">
-                <a class="nav-link" href="FAQ.html">
-                    <i class="fas fa-fw fa-question"></i>
-                    <span>FAQ</span></a>
-            </li> -->
 
             <li class="nav-item faq">
                 <a class="nav-link" href="https://dyoung.tomticket.com?account=3823360P15112022021213" target="_blank"
@@ -244,9 +225,7 @@
                                         <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                             Total de TOTENS</div>
 
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800" id="count_totem"></div>
-
-                                        <div class="h5 mb-0 font-weight-bold text-gray-800"><span id="count"></span>
+                                        <div class="h5 mb-0 font-weight-bold text-gray-800"><span id="count">0</span>
                                         </div>
 
                                     </div>
@@ -281,29 +260,23 @@
                                             <th>Poupa Tempo</th>
                                             <th>Total de Totens</th>
                                             <!-- <th>Situação do Posto</th> -->
-
-
                                         </tr>
                                     </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <td> <a onclick="verPosto(1)" id="spn_nomePosto3"></td>
-                                            <td><span id="count1"></span> </td>
-                                            <!-- <td> <b style="color:#e74a3b;">Estado crítico</b></td> -->
-
-                                        </tr>
-                                    </tfoot>
                                     <tbody>
                                         <tr>
-                                            <td> <a onclick="verPosto(1)" id="spn_nomePosto"></td>
-                                            <td>
-                                                <div id="count2">São Caetano do Sul</div>
-                                            </td>
-                                            <!-- <td> <b style="color:#f6c23e;">Em alerta</b></td> -->
-
+                                            <td> <a onclick="verPosto(1)">Lapa</td>
+                                            <td><span id="count1"></span> </td>
+                                            <!-- <td> <b style="color:#e74a3b;">Estado crítico</b></td> -->
                                         </tr>
                                         <tr>
-                                            <td><a onclick="verPosto(2)" id="spn_nomePosto2"></a></td>
+                                            <td> <a onclick="verPosto(2)">Santo André</td>
+                                            <td>
+                                                <div id="count2"></div>
+                                            </td>
+                                            <!-- <td> <b style="color:#f6c23e;">Em alerta</b></td> -->
+                                        </tr>
+                                        <tr>
+                                            <td><a onclick="verPosto(3)">Sé</a></td>
                                             <td>
                                                 <div id="count3"> </div>
                                             </td>
@@ -311,7 +284,7 @@
 
                                         </tr>
                                         <tr>
-                                            <td><a onclick="verPosto(3)" id="spn_nomePosto6"></a></td>
+                                            <td><a onclick="verPosto(4)">Santo Amaro</a></td>
                                             <td>
                                                 <div id="count4"> </div>
                                             </td>
@@ -320,24 +293,12 @@
 
                                         </tr>
                                         <tr>
-                                            <td><a onclick="verPosto(5)" id="spn_nomePosto4"></a></td>
+                                            <td><a onclick="verPosto(5)">Itaquera</a></td>
                                             <td>
                                                 <div id="count5"> </div>
                                             </td>
                                             <!-- <td><b style="color:#1cc88a;">Ideal</b></td> -->
-
-
                                         </tr>
-                                        <tr>
-                                            <td><a onclick="verPosto(1)" id="spn_nomePosto5"></a></td>
-                                            <td>
-                                                <div id="count6"> </div>
-                                            </td>
-                                            <!-- <td><b style="color:#1cc88a;">Ideal</b></td> -->
-
-
-                                        </tr>
-
                                     </tbody>
                                 </table>
                             </div>
@@ -459,9 +420,9 @@
     obterdadosCpu();
     obterdadosDisco();
     obterdadosRam();
-    
-    
-    
+
+
+
     var qtdIdeal = 0;
     var qtdAlerta = 0;
     var qtdCritico = 0;
@@ -499,13 +460,7 @@
                 if (resposta.ok) {
                     resposta.json().then(resposta => {
 
-
-                        var dados = {
-                            qtdTotem: resposta[0].qtdTotem,
-                        }
-
-                        // alertar(resposta[0].idTotem, idTotem);
-                        count.innerHTML = dados.qtdTotem;
+                        count.innerHTML = resposta[0].qtdTotem;
                     });
                 } else {
 
@@ -524,7 +479,7 @@
 
                 if (resposta.ok) {
                     resposta.json().then(resposta => {
-                        
+
                         resposta.forEach(item => {
                             let dados = {
                                 usoCpu: '',
@@ -533,8 +488,8 @@
                                 usoRam: ''
                             };
                             dados.usoCpu = item.dadoCpu,
-                            dados.tempCpu = item.dadoTemp,
-                            obterdadosDisco()
+                                dados.tempCpu = item.dadoTemp,
+                                obterdadosDisco()
                             obterdadosRam()
                             data.push(dados);
                         });
@@ -626,16 +581,16 @@
         location.assign("cards.html#" + idPosto);
     }
 
-        obterdadosTotem(1);
-        obterdadosTotem(2);
-        obterdadosTotem(3);
-        obterdadosTotem(4);
-        obterdadosTotem(5);
-        obterdadosTotem(6);
+    obterdadosTotem(1);
+    obterdadosTotem(2);
+    obterdadosTotem(3);
+    obterdadosTotem(4);
+    obterdadosTotem(5);
+    obterdadosTotem(6);
     // function atualizacaoPeriodicaTotem() {
 
 
-     
+
 
 
 
@@ -676,12 +631,12 @@
                 console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
             });
     }
-        obterdadosPosto(1);
-        obterdadosPosto(2);
-        obterdadosPosto(3);
-        obterdadosPosto(4);
-        obterdadosPosto(5);
-        obterdadosPosto(6);
+    obterdadosPosto(1);
+    obterdadosPosto(2);
+    obterdadosPosto(3);
+    obterdadosPosto(4);
+    obterdadosPosto(5);
+    obterdadosPosto(6);
 
 
     function obterdadosPosto(idPosto) {
@@ -694,10 +649,11 @@
 
 
                         var dados = {
+                            postoId: resposta[0].idPosto,
                             postoNome: resposta[0].postoNome,
                         }
 
-                        alertarPosto(resposta[0].postoNome, idPosto);
+                        alertarPosto(dados);
 
                     });
                 } else {
@@ -717,62 +673,16 @@
         var card;
 
         if (idPosto == 1) {
-            count2.innerHTML = qtd;
-
-        } else if (idPosto == 2) {
-            count3.innerHTML = qtd;
-
-        } else if (idPosto == 3) {
             count1.innerHTML = qtd;
-
-        } else if (idPosto == 4) {
-            count5.innerHTML = qtd;
-
-
-        } else if (idPosto == 5) {
-            count4.innerHTML = qtd;
-
-        }
-        else if (idPosto == 6) {
-            count6.innerHTML = qtd;
-
-        }
-
-
-    }
-
-    function alertarPosto(postoNome, idPosto) {
-
-        var card;
-
-        if (idPosto == 1) {
-            spn_nomePosto.innerHTML = postoNome;
-
         } else if (idPosto == 2) {
-            spn_nomePosto2.innerHTML = postoNome;
-
-
+            count2.innerHTML = qtd;
         } else if (idPosto == 3) {
-            spn_nomePosto3.innerHTML = postoNome;
-
-
+            count3.innerHTML = qtd;
         } else if (idPosto == 4) {
-            spn_nomePosto4.innerHTML = postoNome;
-
-
-
+            count4.innerHTML = qtd;
         } else if (idPosto == 5) {
-            spn_nomePosto5.innerHTML = postoNome;
-
-
+            count5.innerHTML = qtd;
         }
-        else if (idPosto == 6) {
-            spn_nomePosto6.innerHTML = postoNome;
-
-
-        }
-
-
-
     }
+
 </script>

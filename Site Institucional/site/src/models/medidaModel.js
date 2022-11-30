@@ -11,10 +11,9 @@ function buscarUltimasMedidas(limite_linhas, idTotem) {
         instrucaoSql = `select top ${limite_linhas}
         uso_cpu as usoCpu, 
         status_coleta as statusCpu,
-        data_hora_captura,
-                        DATE_FORMAT(momento,'%H:%i:%s') as momento_grafico
+                        FORMAT(data_hora_captura,'hh:mm:ss') as momento_grafico
                     from dado_cpu join totem on fk_totem = idTotem Where fk_totem = ${idTotem}
-                    order by id desc limit ${limite_linhas}`;
+                    order by id_dado_cpu desc`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `select 
         uso_cpu as usoCpu, 
@@ -41,7 +40,7 @@ function buscarMedidasEmTempoReal(idTotem) {
         instrucaoSql = `select top 1
         uso_cpu as usoCpu, 
         status_coleta as statusCpu,  
-                        CONVERT(varchar, data_hora_captura, 108) as momento_grafico, 
+        FORMAT(data_hora_captura,'hh:mm:ss') as momento_grafico, 
                         fk_totem 
                         from dado_cpu join totem on fk_totem = idTotem WHere fk_totem = ${idTotem}
                     order by id_dado_cpu desc`;
@@ -109,9 +108,9 @@ function buscarDadosPostos(idPosto) {
         idTotem 'totemId',
         serie 'totemSerial',
         sistema_operacional 'totemSO',
-        status 'status',
+        statusTotem 'status',
         fk_posto 'fkPosto',
-        DATE_FORMAT(dtInstalacao, "%d/%m/%Y") 'totemData',
+        FORMAT(dtInstalacao, 'dd-MM-yy') 'totemData',
         nomePosto 'nomePosto'
     FROM
         totem
@@ -295,12 +294,12 @@ function buscarNomesPosto(idPosto) {
     if (process.env.AMBIENTE_PROCESSO == "producao") {
 
         instrucaoSql = `SELECT
-        idPosto 'postoId',
-       nomePosto 'postoNome'
-    FROM 
-       posto
-   WHERE 
-       idPosto = ${idPosto};`
+            idPosto 'postoId',
+            nomePosto 'postoNome'
+                FROM 
+            posto
+                WHERE 
+            idPosto = ${idPosto};`
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
 
@@ -329,7 +328,7 @@ function buscarTodosDados(idTotem) {
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `SELECT COUNT(idTotem) from totem;`;
+        instrucaoSql = `SELECT COUNT(idTotem) 'qtdTotem' from totem;`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
         instrucaoSql = `SELECT COUNT(idTotem)'qtdTotem' FROM totem;`;
     } else {
@@ -439,8 +438,9 @@ function buscarDadosTotem(idTotem) {
                             idTotem 'totemId',
                             serie 'totemSerial',
                             sistema_operacional 'totemSO',
+                            statusTotem 'totemStatus',
                             fk_posto 'fkPosto',
-                            DATE_FORMAT(dtInstalacao, "%d/%m/%Y") 'totemData'
+                            FORMAT(dtInstalacao, "%d/%m/%Y") 'totemData'
                         FROM
                             totem 
                         WHERE 
@@ -450,8 +450,9 @@ function buscarDadosTotem(idTotem) {
                             idTotem 'totemId',
                             serie 'totemSerial',
                             sistema_operacional 'totemSO',
+                            statusTotem 'totemStatus',
                             fk_posto 'fkPosto',
-                            DATE_FORMAT(dtInstalacao, "%d/%m/%Y") 'totemData'
+                            FORMAT(dtInstalacao, "%d/%m/%Y") 'totemData'
                         FROM
                             totem 
                         WHERE 
@@ -471,7 +472,7 @@ function cadastrarTotem(serial, so, login, senha, unidade) {
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucao = `
-        INSERT INTO totem (serie, sistema_operacional, loginTotem, senhaTotem, status, fk_posto) VALUES ('${serial}', '${so}', '${login}', '${senha}', true, '${unidade}');
+        INSERT INTO totem (serie, sistema_operacional, loginTotem, senhaTotem, statusTotem, fk_posto) VALUES ('${serial}', '${so}', '${login}', '${senha}', 1, '${unidade}');
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
