@@ -78,7 +78,7 @@ public class Logado extends javax.swing.JFrame {
 
                 //Inserindo dados no banco
                 String insert = "INSERT INTO dado_cpu (uso_cpu, status_coleta, fk_totem, fk_posto)VALUES (?, 1, ?, ?);";
-                banco.update(insert, df.format(dadoCpu), getId_totem(), getFk_Posto());
+                banco.update(insert, dadoCpu, 1, 4);
                 
                 // Exibindo no console e no JFRAME
                 System.out.println(String.format("Inserindo dado CPU: %.1f ---- ID: %d ---- fkPosto: %d",
@@ -104,15 +104,15 @@ public class Logado extends javax.swing.JFrame {
                 String dadoTotalRamString = Conversor02.formatarBytes(dadoTotalMemoriaRam);
 
                 //Tranformando os dados de "String" para "Double"
-                Double dadoRamDouble = Double.valueOf(dadoRamString);
-                Double dadoTotalRamlDouble = Double.valueOf(dadoTotalRamString);
+                Double dadoRamDouble = Double.parseDouble(dadoRamString.substring(0, 1));
+                Double dadoTotalRamlDouble = Double.parseDouble(dadoTotalRamString.substring(0, 1));
 
                 // Realizando a conta para calcular a porcentagem de uso
                 Double totalRam = (dadoRamDouble * 100) / dadoTotalRamlDouble;
 
                 //Inserindo os dados no banco
                 String insertRam = "INSERT INTO dado_ram (uso_ram, status_coleta, fk_totem, fk_posto)VALUES (?, 1, ?, ?);";
-                banco.update(insertRam, df.format(totalRam), getId_totem(), getFk_Posto());
+                banco.update(insertRam, totalRam, 1, 4);
                 
                 //Exibindo os dados
                 System.out.println(String.format("Inserindo dado da Memória RAM: %.1f", totalRam));
@@ -154,9 +154,9 @@ public class Logado extends javax.swing.JFrame {
                     String dadoDiscoLeituraString = Conversor.formatarBytes(disco.getBytesDeLeitura());
 
                     //Tranformando os dados de "String" para "Double"
-                    Double dadoDiscoTotalDouble = Double.valueOf(dadoDiscoTotalString.substring(0, 3));
-                    Double dadoDiscoEcritaDouble = Double.valueOf(dadoDiscoEcritaString.substring(0, 1));
-                    Double dadoDiscoLeituraDouble = Double.valueOf(dadoDiscoLeituraString.substring(0, 1));
+                    Double dadoDiscoTotalDouble = Double.parseDouble(dadoDiscoTotalString.substring(0, 3));
+                    Double dadoDiscoEcritaDouble = Double.parseDouble(dadoDiscoEcritaString.substring(0, 1));
+                    Double dadoDiscoLeituraDouble = Double.parseDouble(dadoDiscoLeituraString.substring(0, 1));
 
                     // Realizando a conta para calcular a porcentagem de uso
                     Double totalUso = dadoDiscoEcritaDouble + dadoDiscoLeituraDouble;
@@ -168,7 +168,7 @@ public class Logado extends javax.swing.JFrame {
                     
                     // Inserindo dados no banco
                     String insertDisco = "INSERT INTO dado_disco (uso_disco, status_coleta, fk_totem, fk_posto)VALUES (?, 1, ?, ?);";
-                    banco.update(insertDisco, df.format(totalDisco), getId_totem(), getFk_Posto());
+                    banco.update(insertDisco, totalDisco, 1, 4);
 
                     Double tempUso = temperatura.getTemperatura();
                 
