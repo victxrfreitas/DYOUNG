@@ -16,6 +16,9 @@
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/sb-admin-2.css">
     <link rel="stylesheet" href="css/config.css">
+
+    <script src="js/filesaver.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 
 <body onload="obterDados(), obterDadosFuncionário()">
@@ -35,7 +38,7 @@
                 <hr class="sidebar-divider my-0">
 
                 <!-- Nav Item - Dashboard -->
-                
+
 
                 <li class="nav-item active">
                     <a class="nav-link" href="configuracao.html">
@@ -59,7 +62,7 @@
                         <span>Tabela</span></a>
                 </li>
 
-        
+
 
                 <li class="nav-item faq">
                     <a class="nav-link" href="FAQ.html">
@@ -139,6 +142,7 @@
     <script src="js/sb-admin-2.min.js"></script>
     <script src="../js/funcoes.js"></script>
 </body>
+<script src="js/json-excel.js"></script>
 
 </html>
 
@@ -162,7 +166,7 @@
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
-    }   
+    }
     function insertNewRecordTotem(resposta) {
         for (i = 0; i <= resposta.length; i++) {
             var table = document.getElementById("employeeList").getElementsByTagName('tbody')[0];
@@ -186,12 +190,12 @@
             var cell5 = newRow.insertCell(4);
             cell5.innerHTML = data.totemData;
             var cell6 = newRow.insertCell(5);
-                if(data.totemStatus == 1){
-                    cell6.innerHTML = "Ativo";
-            }   else{
-                    cell6.innerHTML = "Desativado";
+            if (data.totemStatus == 1) {
+                cell6.innerHTML = "Ativo";
+            } else {
+                cell6.innerHTML = "Desativado";
             }
-            
+
             var cell7 = newRow.insertCell(6);
             cell7.innerHTML = `<a class="btnDelete" onclick="editarTotem(${data.totemId})">Editar</a> <a class="btnDelete" onclick="deletarTotem(${data.totemId})">Desativar</a>`;
         }
@@ -241,10 +245,10 @@
             var cell5 = newRow.insertCell(4);
             cell5.innerHTML = dataFunc.nomePosto;
             var cell6 = newRow.insertCell(5);
-                if(dataFunc.status == 1){
-                    cell6.innerHTML = "Ativo";
-            }   else{
-                    cell6.innerHTML = "Desativado";
+            if (dataFunc.status == 1) {
+                cell6.innerHTML = "Ativo";
+            } else {
+                cell6.innerHTML = "Desativado";
             }
             var cell7 = newRow.insertCell(6);
             cell7.innerHTML = `<a class="btnDelete" onclick="editarTotem(${dataFunc.Id})">Editar</a> <a class="btnDelete" onclick="deletarTotem(${dataFunc.Id})">Deletar</a>`;
@@ -253,7 +257,7 @@
 </script>
 <script>
     function deletarTotem(idTotem) {
-        if(confirm("Tem certeza?")){
+        if (confirm("Tem certeza?")) {
             // Enviando o valor da nova input
             fetch("/medidas/deletarTotem", {
                 method: "POST",
@@ -285,14 +289,13 @@
             });
 
             return false;
-        
-    }
-}
 
-function editarTotem(idTotem){
-    console.log(idTotem);
-    location.assign("totemEdit.html#" + idTotem);
-}
+        }
+    }
+
+    function editarTotem(idTotem) {
+        console.log(idTotem);
+        location.assign("totemEdit.html#" + idTotem);
+    }
 
 </script>
-

@@ -26,6 +26,18 @@
     margin-top: 20px;
     margin-left: 75px;
 }
+.btn2{
+    border: 1.5px #00568f solid;
+    font-weight: bold;
+    color: #fff;
+    background-color: #00568f;
+    font-size: 16px;
+    margin-top: 20px;
+    margin-left: 800px;
+    padding: 30px;
+}
+
+
 
 .back{
     padding-right: 40px;
@@ -63,8 +75,6 @@ input{
     border-radius: 3%;
     box-shadow: 0 0.15rem 1.75rem 0 rgb(58 59 69 / 15%) !important;
 }
-
-
 
 
 

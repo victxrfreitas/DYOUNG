@@ -125,6 +125,7 @@
 <script>
 
     let idTotem = location.hash.split("#")[1];
+    
     function obterDadosTotem(idTotem) {
         fetch(`/medidas/dadosTotem/${idTotem}`, { cache: 'no-store' }).then(function (response) {
             if (response.ok) {

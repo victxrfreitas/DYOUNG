@@ -60,8 +60,60 @@ function buscarMedidasEmTempoRealRam(idTotemRam) {
     return database.executar(instrucaoSqlRam);
 }
 
+function getDadosByIdTotem(idTotem) {
 
+    instrucaoSqlRam = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSqlRam = `SELECT uso_ram 'usoRam' from dado_ram where fk_totem = ${idTotem};`;   
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSqlRam = `SELECT uso_ram 'usoRam' from dado_ram where fk_totem = ${idTotem};`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSqlRam);
+    return database.executar(instrucaoSqlRam);
+}
+
+function getDadosCpuByIdTotem(idTotem) {
+
+    instrucaoSqlRam = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSqlRam = `SELECT uso_cpu 'usoCpu', temp_cpu 'tempCpu', DATE_FORMAT(data_hora_captura, \"%d/%m/%Y | %H:%i:%s\") 'dtHrColeta' from dado_cpu where fk_totem = ${idTotem};`;   
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSqlRam = `SELECT uso_cpu 'usoCpu', temp_cpu 'tempCpu', DATE_FORMAT(data_hora_captura, \"%d/%m/%Y | %H:%i:%s\") 'dtHrColeta' from dado_cpu where fk_totem = ${idTotem};`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSqlRam);
+    return database.executar(instrucaoSqlRam);
+}
+
+function getDadosDiscoByIdTotem(idTotem) {
+
+    instrucaoSqlRam = ''
+
+    if (process.env.AMBIENTE_PROCESSO == "producao") {
+        instrucaoSqlRam = `SELECT uso_disco 'usoDisco' from dado_disco where fk_totem = ${idTotem};`;   
+    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+        instrucaoSqlRam = `SELECT uso_disco 'usoDisco' from dado_disco where fk_totem = ${idTotem};`;
+    } else {
+        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+        return
+    }
+
+    console.log("Executando a instrução SQL: \n" + instrucaoSqlRam);
+    return database.executar(instrucaoSqlRam);
+}
 module.exports = {
     buscarUltimasMedidasRam,
-    buscarMedidasEmTempoRealRam
+    buscarMedidasEmTempoRealRam,
+    getDadosByIdTotem,
+    getDadosCpuByIdTotem,
+    getDadosDiscoByIdTotem,
 }

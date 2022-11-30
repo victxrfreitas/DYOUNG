@@ -21,7 +21,16 @@ router.get("/tempo-realRam/:idTotemRam", function (req, res) {
     ramController.buscarMedidasEmTempoRealRam(req, res);
 });
 
+router.get("/getDadosByIdTotem/:idTotem", function (req, res) {
+    ramController.getDadosByIdTotem(req, res);
+});
 
+router.get("/getDadosCpuByIdTotem/:idTotem", function (req, res) {
+    ramController.getDadosCpuByIdTotem(req, res);
+});
 
+router.get("/getDadosDiscoByIdTotem/:idTotem", function (req, res) {
+    ramController.getDadosDiscoByIdTotem(req, res);
+});
 
 module.exports = router;

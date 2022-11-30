@@ -24,7 +24,7 @@
 
 </head>
 
-<body id="page-top" onload="atualizacaoPeriodicaPosto(), atualizacaoPeriodica()">
+<body id="page-top" onload="atualizacaoPeriodicaPosto(), atualizacaoPeriodicaTotem()">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -159,7 +159,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Leonardo</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="userNome">Usuario</span>
                                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
@@ -189,7 +189,7 @@
                                         <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                             Em alerta</div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800" id="alerta"><span
-                                                id="count_alerta"></span></div>
+                                                id="count_alerta">0</span></div>
                                     </div>
                                 </div>
                             </div>
@@ -205,7 +205,7 @@
                                         <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                             Estado Crítico</div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800" id="critico">
-                                            <span id="count_critico"></span>
+                                            <span id="count_critico">0</span>
                                         </div>
                                     </div>
 
@@ -224,7 +224,7 @@
                                         <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                             Ideal</div>
                                         <div class="h5 mb-0 font-weight-bold text-gray-800" id="ideal"><span
-                                                id="count_ideal"></span></div>
+                                                id="count_ideal">0</span></div>
                                     </div>
 
                                     <!-- <div class="col-auto">
@@ -287,7 +287,7 @@
                                     </thead>
                                     <tfoot>
                                         <tr>
-                                            <td> <a onclick="verPosto(6)" id="spn_nomePosto3"></td>
+                                            <td> <a onclick="verPosto(1)" id="spn_nomePosto3"></td>
                                             <td><span id="count1"></span> </td>
                                             <!-- <td> <b style="color:#e74a3b;">Estado crítico</b></td> -->
 
@@ -295,15 +295,15 @@
                                     </tfoot>
                                     <tbody>
                                         <tr>
-                                            <td> <a onclick="verPosto(4)" id="spn_nomePosto"></td>
+                                            <td> <a onclick="verPosto(1)" id="spn_nomePosto"></td>
                                             <td>
-                                                <div id="count2"> </div>
+                                                <div id="count2">São Caetano do Sul</div>
                                             </td>
                                             <!-- <td> <b style="color:#f6c23e;">Em alerta</b></td> -->
 
                                         </tr>
                                         <tr>
-                                            <td><a onclick="verPosto(5)" id="spn_nomePosto2"></a></td>
+                                            <td><a onclick="verPosto(2)" id="spn_nomePosto2"></a></td>
                                             <td>
                                                 <div id="count3"> </div>
                                             </td>
@@ -311,7 +311,7 @@
 
                                         </tr>
                                         <tr>
-                                            <td><a onclick="verPosto(15)" id="spn_nomePosto6"></a></td>
+                                            <td><a onclick="verPosto(3)" id="spn_nomePosto6"></a></td>
                                             <td>
                                                 <div id="count4"> </div>
                                             </td>
@@ -320,7 +320,7 @@
 
                                         </tr>
                                         <tr>
-                                            <td><a onclick="verPosto(13)" id="spn_nomePosto4"></a></td>
+                                            <td><a onclick="verPosto(5)" id="spn_nomePosto4"></a></td>
                                             <td>
                                                 <div id="count5"> </div>
                                             </td>
@@ -329,7 +329,7 @@
 
                                         </tr>
                                         <tr>
-                                            <td><a onclick="verPosto(14)" id="spn_nomePosto5"></a></td>
+                                            <td><a onclick="verPosto(1)" id="spn_nomePosto5"></a></td>
                                             <td>
                                                 <div id="count6"> </div>
                                             </td>
@@ -353,7 +353,7 @@
                         <div class="card bg-danger text-white shadow">
                             <div class="card-body">
                                 Estado Crítico <br>
-                                Componentes em: 80% a 100% 
+                                Componentes em: 80% a 100%
                                 da capacidade total.
                                 <!-- <b>80% a 100%</b>
                                             dos totens estão com um mau desempenho e travamento. -->
@@ -440,11 +440,11 @@
     <script src="js/sb-admin-2.min.js"></script>
 
     <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
+    <!-- <script src="vendor/chart.js/Chart.min.js"></script> -->
 
     <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+    <!-- <script src="js/demo/chart-area-demo.js"></script> -->
+    <!-- <script src="js/demo/chart-pie-demo.js"></script> -->
 
 
 </body>
@@ -452,47 +452,27 @@
 </html>
 
 <script>
-    obterdadosTotem(6);
-    obterdadosTotem(4);
-    obterdadosTotem(5);
-    obterdadosTotem(13);
-    obterdadosTotem(14);
-    obterdadosTotem(15);
 
-    obterdadosPosto(6);
-    obterdadosPosto(4);
-    obterdadosPosto(5);
-    obterdadosPosto(13);
-    obterdadosPosto(14);
-    obterdadosPosto(15);
-    
+    userNome.innerHTML = sessionStorage.NOME_USUARIO;
+
     obterdados(idTotem);
-    // obterdadosCpu(idTotem);
     obterdadosCpu();
-    obterdadosDisco(idTotem);
-    obterdadosRam(idTotem);
-
-    // var dadosCpu = {};
-    // var dadosDisco = {};
-    // var dadosRam = {};
-
-
-var dadosDisco1 = [];
-var dadosRam2 = [];
-var dadosTeste = dadosRam2.concat(dadosDisco1);
-
-
+    obterdadosDisco();
+    obterdadosRam();
+    
+    
+    
     var qtdIdeal = 0;
     var qtdAlerta = 0;
     var qtdCritico = 0;
     var dadosMaq = [];
+    var data = [];
 
     var idPosto = sessionStorage.FK_USUARIO;
-    // var idPosto = queryString("id");
+    //var idPosto = queryString("id");
     var idTotem = queryString("id");
     // var dados = {}
     // var idPosto = sessionStorage.FK_USUARIO;
-
     function queryString(parameter) {
         var loc = location.search.substring(1, location.search.length);
         var param_value = false;
@@ -511,7 +491,7 @@ var dadosTeste = dadosRam2.concat(dadosDisco1);
         }
     }
 
-   
+
     function obterdados(idTotem) {
         fetch(`/medidas/dadosTotem-qtd/${idTotem}`)
             .then(resposta => {
@@ -519,7 +499,6 @@ var dadosTeste = dadosRam2.concat(dadosDisco1);
                 if (resposta.ok) {
                     resposta.json().then(resposta => {
 
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                         var dados = {
                             qtdTotem: resposta[0].qtdTotem,
@@ -538,13 +517,6 @@ var dadosTeste = dadosRam2.concat(dadosDisco1);
             });
     }
 
-    //////////////////////////////////////////////////////////////////////////////////////////////
-    /////////////////////////////////////////////////////////////////////////////////////////////'
-
-    
-
-
-    alertarMetricas(dadosMaq);
 
     function obterdadosCpu() {
         fetch(`/medidas/AlertarCpuTotem`)
@@ -552,26 +524,22 @@ var dadosTeste = dadosRam2.concat(dadosDisco1);
 
                 if (resposta.ok) {
                     resposta.json().then(resposta => {
-
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                        for (i = 0; i <= resposta.length; i++) {
-                            dadosCpu = {
-                                dadoCpu: resposta[i].dadoCpu,
+                        
+                        resposta.forEach(item => {
+                            let dados = {
+                                usoCpu: '',
+                                tempCpu: '',
+                                usoDisco: '',
+                                usoRam: ''
                             };
-                            dadosTemp = {
-                                dadoTemp: resposta[i].dadoTemperatura
-                            };
-                            dadosMaq.push(dadosCpu);
-                            dadosMaq.push(dadosTemp);
-                        };
-
-                        var dados = {
-                            dadoCpu : resposta[0].dadoCpu
-                        }
-
-
-                        // alertarCpu(dadosCpu);
-
+                            dados.usoCpu = item.dadoCpu,
+                            dados.tempCpu = item.dadoTemp,
+                            obterdadosDisco()
+                            obterdadosRam()
+                            data.push(dados);
+                        });
+                        var size = Object.keys(data).length;
+                        alertarMetricas(data, size);
 
                     });
                 } else {
@@ -584,21 +552,15 @@ var dadosTeste = dadosRam2.concat(dadosDisco1);
             });
     }
 
-    function obterdadosDisco(idTotem) {
-        fetch(`/medidas/AlertarDiscoTotem/${idTotem}`)
+    function obterdadosDisco() {
+        fetch(`/medidas/AlertarDiscoTotem`)
             .then(resposta => {
 
                 if (resposta.ok) {
                     resposta.json().then(resposta => {
-
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                        for (i = 0; i <= resposta.length; i++) {
-                            dadosDisco1 = [{
-                                dadoDisco: resposta[i].dadoDisco,
-                            }];
-                            // dadosMaq.push(dados);
+                        for (let i = 0; i < resposta.length; i++) {
+                            data[i].usoDisco = resposta[i].dadoDisco;
                         }
-                        // alertarMetricas(dados);
                     });
                 } else {
 
@@ -609,24 +571,15 @@ var dadosTeste = dadosRam2.concat(dadosDisco1);
                 console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
             });
     }
-    function obterdadosRam(idTotem) {
-        fetch(`/medidas/AlertarRamTotem/${idTotem}`)
+    function obterdadosRam() {
+        fetch(`/medidas/AlertarRamTotem`)
             .then(resposta => {
 
                 if (resposta.ok) {
                     resposta.json().then(resposta => {
-
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                        for (i = 0; i <= resposta.length; i++) {
-                            dadosRam2 = [{
-                                dadoRam: resposta[i].dadoRam,
-                            }];
-                            // dadosMaq.push(dados);
+                        for (let i = 0; i < resposta.length; i++) {
+                            data[i].usoRam = resposta[i].dadoRam;
                         }
-
-                        // alertarMetricas(dados);
-
-
                     });
                 } else {
 
@@ -642,43 +595,61 @@ var dadosTeste = dadosRam2.concat(dadosDisco1);
     /////////////////////////////////////////////////////////////////////////////////////////////
 
     // console.log("mostrando dado ram"+dadoRam)
-  
-    
-    function alertarMetricas(dadosMaq) {
 
+
+    function alertarMetricas(data, size) {
         var limites = {
             critico: 80,
             alerta: 39
         }
 
-        if (dadosMaq.dadoCpu >= limites.critico || dadosMaq.dadoDisco >= limites.critico || dadosMaq.dadoRam >= limites.critico || dadosMaq.dadoTemperatura >= limites.critico) {
-            console.log("caiu no 1")
-            qtdCritico++;
-            count_critico.innerHTML = qtdCritico;
-        }
-         else if (dadosMaq.dadoCpu <= ideal.metrica || dadosMaq.dadoDisco <= ideal.metrica || dadosMaq.dadoRam <= ideal.metrica) {
-             console.log("caiu no 2")
-             count_ideal.innerHTML =  qtdIdeal++;
-
-
-         }
-         else if (dadosMaq.dadoCpu <= limitesCritico.metrica || dadosMaq.dadoDisco <= limitesCritico.metrica || dadosMaq.dadoRam <= limitesCritico.metrica &&
-         dadosMaq.dadoCpu >= ideal.metrica || dadosMaq.dadoDisco >= ideal.metrica || dadosMaq.dadoRam >= ideal.metrica) {
-             console.log("caiu no 3")
-             count_alerta.innerHTML =  qtdAlerta++;
-
-        }
-
-
+        data.forEach(item => {
+            if (item.usoCpu >= limites.critico || item.usoDisco >= limites.critico || item.usoRam >= limites.critico || item.tempCpu >= limites.critico) {
+                console.log("caiu no 1")
+                qtdCritico++;
+                count_critico.innerHTML = qtdCritico;
+            }
+            else if (item.usoCpu <= limites.alerta || item.tempCpu <= limites.alerta || item.usoDisco <= limites.alerta || item.usoRam <= limites.alerta) {
+                console.log("caiu no 2")
+                qtdIdeal++
+                count_ideal.innerHTML = qtdIdeal;
+            }
+            else {
+                console.log("caiu no 3")
+                qtdAlerta++
+                count_alerta.innerHTML = qtdAlerta;
+            }
+        });
     }
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
 
     function verPosto(idPosto) {
-        location.assign("cards.html?id=" + idPosto);
+        location.assign("cards.html#" + idPosto);
     }
 
+        obterdadosTotem(1);
+        obterdadosTotem(2);
+        obterdadosTotem(3);
+        obterdadosTotem(4);
+        obterdadosTotem(5);
+        obterdadosTotem(6);
+    // function atualizacaoPeriodicaTotem() {
 
+
+     
+
+
+
+    //     // function sendData() {
+    //     // 	var http = new XMLHttpRequest();
+    //     // 	http.open('POST', 'http://localhost:3000/api/sendData', false);
+    //     // 	http.send(null);
+    //     // }
+
+    //     setInterval(() => {
+    //         // sendData();
+    //     }, 2000);
+    //     setTimeout(atualizacaoPeriodica, 5000);
+    // }
 
     function obterdadosTotem(idPosto) {
         fetch(`/medidas/qtdTotens/${idPosto}`)
@@ -687,7 +658,6 @@ var dadosTeste = dadosRam2.concat(dadosDisco1);
                 if (resposta.ok) {
                     resposta.json().then(resposta => {
 
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                         var dados = {
                             qtd: resposta[0].qtd,
@@ -706,8 +676,13 @@ var dadosTeste = dadosRam2.concat(dadosDisco1);
                 console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
             });
     }
+        obterdadosPosto(1);
+        obterdadosPosto(2);
+        obterdadosPosto(3);
+        obterdadosPosto(4);
+        obterdadosPosto(5);
+        obterdadosPosto(6);
 
-    
 
     function obterdadosPosto(idPosto) {
         // console.log("id posto " + idPosto);
@@ -717,7 +692,6 @@ var dadosTeste = dadosRam2.concat(dadosDisco1);
                 if (resposta.ok) {
                     resposta.json().then(resposta => {
 
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
 
                         var dados = {
                             postoNome: resposta[0].postoNome,
@@ -740,28 +714,26 @@ var dadosTeste = dadosRam2.concat(dadosDisco1);
 
     function alertar(qtd, idPosto) {
 
-
-
         var card;
 
-        if (idPosto == 4) {
+        if (idPosto == 1) {
             count2.innerHTML = qtd;
 
-        } else if (idPosto == 5) {
+        } else if (idPosto == 2) {
             count3.innerHTML = qtd;
 
-        } else if (idPosto == 6) {
+        } else if (idPosto == 3) {
             count1.innerHTML = qtd;
 
-        } else if (idPosto == 13) {
+        } else if (idPosto == 4) {
             count5.innerHTML = qtd;
 
 
-        } else if (idPosto == 14) {
+        } else if (idPosto == 5) {
             count4.innerHTML = qtd;
 
         }
-        else if (idPosto == 15) {
+        else if (idPosto == 6) {
             count6.innerHTML = qtd;
 
         }
@@ -773,28 +745,28 @@ var dadosTeste = dadosRam2.concat(dadosDisco1);
 
         var card;
 
-        if (idPosto == 4) {
+        if (idPosto == 1) {
             spn_nomePosto.innerHTML = postoNome;
 
-        } else if (idPosto == 5) {
+        } else if (idPosto == 2) {
             spn_nomePosto2.innerHTML = postoNome;
 
 
-        } else if (idPosto == 6) {
+        } else if (idPosto == 3) {
             spn_nomePosto3.innerHTML = postoNome;
 
 
-        } else if (idPosto == 13) {
+        } else if (idPosto == 4) {
             spn_nomePosto4.innerHTML = postoNome;
 
 
 
-        } else if (idPosto == 14) {
+        } else if (idPosto == 5) {
             spn_nomePosto5.innerHTML = postoNome;
 
 
         }
-        else if (idPosto == 15) {
+        else if (idPosto == 6) {
             spn_nomePosto6.innerHTML = postoNome;
 
 
@@ -803,7 +775,4 @@ var dadosTeste = dadosRam2.concat(dadosDisco1);
 
 
     }
-
-
-
 </script>

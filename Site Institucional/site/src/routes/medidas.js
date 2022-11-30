@@ -5,7 +5,6 @@ var medidaController = require("../controllers/medidaController");
 
 
 router.get("/ultimasTotem/:idTotem", function (req, res) {
-    console.log("rotaaa");
     medidaController.buscarUltimasMedidas(req, res);
    
 });
@@ -31,26 +30,21 @@ router.get("/nomesPosto/:idPosto", function (req, res) {
 // INDEX
 router.get("/dadosTotem-qtd/:idTotem", function (req, res) {
     medidaController.buscarTodosDados(req, res);
-    console.log("Rota");
 });
 
-router.get("/AlertarDiscoTotem/:idTotem", function (req, res) {
+router.get("/AlertarDiscoTotem/", function (req, res) {
     medidaController.AlertarDiscoTotem(req, res);
-    console.log("Rota222222222222222");
 });
 
-router.get("/AlertarRamTotem/:idTotem", function (req, res) {
+router.get("/AlertarRamTotem/", function (req, res) {
     medidaController.AlertarRamTotem(req, res);
-    console.log("Rota2222222222222222");
 });
-router.get("/AlertarCpuTotem", function (req, res) {
+router.get("/AlertarCpuTotem/", function (req, res) {
     medidaController.AlertarCpuTotem(req, res);
-    console.log("Rota2222222222222");
 });
 // ####################### TABLE #############################
 router.get("/qtdTotens/:idPosto", function (req, res) {
     medidaController.buscarQtdTotens(req, res);
-    console.log("Rota");
 });
 
 ///////////////////////////////////////////////////////////////

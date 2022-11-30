@@ -16,15 +16,18 @@
   <link
     href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
     rel="stylesheet">
+  <link rel="stylesheet" href="css/crud.css">
 
   <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/sb-admin-2.css">
   <script src="../js/funcoes.js"></script>
-
+  <script src="js/filesaver.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
 
-<body id="page-top" onload="obterDadosGrafico(idTotem), obterDadosGraficoRam(idTotemRam),obterDadosGraficoDisco(idTotem)">
+<body id="page-top"
+  onload="obterDadosGrafico(idTotem), obterDadosGraficoRam(idTotemRam),obterDadosGraficoDisco(idTotem)">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -54,37 +57,21 @@
       <hr class="sidebar-divider">
 
       <!-- Nav Item - Tables -->
- 
+
       <li class="nav-item">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" onclick="trocarDash()">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
 
-      <!-- <li class="nav-item">
-        <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tabela</span></a>
-      </li> -->
-
-
-      <!-- <li class="nav-item faq">
-        <a class="nav-link" href="FAQ.html">
-          <i class="fas fa-fw fa-question"></i>
-          <span>FAQ</span></a>
-      </li> -->
 
       <li class="nav-item faq">
-        <a class="nav-link" href="https://dyoung.tomticket.com?account=3823360P15112022021213" target="_blank" rel="noopener noreferrer">
+        <a class="nav-link" href="https://dyoung.tomticket.com?account=3823360P15112022021213" target="_blank"
+          rel="noopener noreferrer">
           <i class="fas fa-fw fa-headset"></i>
           <span>HelpDesk</span></a>
       </li>
 
-      <!-- <li class="nav-item faq">
-        <a class="nav-link" href="configuracao.html">
-          <i class="fas fa-fw fa-tablet"></i>
-          <span>Configurações</span></a>
-      </li> -->
 
 
       <!-- Divider -->
@@ -112,65 +99,8 @@
             <i class="fa fa-bars"></i>
           </button>
 
-          <!-- Topbar Search -->
-  
-
-          <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
-          
-            <!-- Nav Item - Alerts -->
-            <!-- <li class="nav-item dropdown no-arrow mx-1">
-                            <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-bell fa-fw"></i>
-                                --Counter - Alerts 
-                                <span class="badge badge-danger badge-counter">3+</span>
-                            </a>
-                             --Dropdown - Alerts
-                            <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-                                aria-labelledby="alertsDropdown">
-                                <h6 class="dropdown-header">
-                                    Alerts Center
-                                </h6>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-primary">
-                                            <i class="fas fa-file-alt text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 12, 2019</div>
-                                        <span class="font-weight-bold">A new monthly report is ready to download!</span>
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-success">
-                                            <i class="fas fa-donate text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 7, 2019</div>
-                                        $290.29 has been deposited into your account!
-                                    </div>
-                                </a>
-                                <a class="dropdown-item d-flex align-items-center" href="#">
-                                    <div class="mr-3">
-                                        <div class="icon-circle bg-warning">
-                                            <i class="fas fa-exclamation-triangle text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div>
-                                        <div class="small text-gray-500">December 2, 2019</div>
-                                        Spending Alert: We've noticed unusually high spending for your account.
-                                    </div>
-                                </a>
-                                <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
-                            </div>
-                        </li> -->
-
-            <!-- Nav Item - Messages -->
 
 
             <div class="topbar-divider d-none d-sm-block"></div>
@@ -179,7 +109,7 @@
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Leonardo</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="userName">Usuario</span>
                 <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
               </a>
               <!-- Dropdown - User Information -->
@@ -201,9 +131,13 @@
 
         <div class="container-fluid">
 
-
+          <div class="container mt-5">
+            <pre id="json" style="display:none"></pre>
+            <button onclick="downloadExcel()" class="btn2">Download</button>
+          </div>
           <h1 class="h3 mb-2 text-gray-800">Dados do Totem</h1>
-          <p class="mb-4">Relatório geral: Sem serviço </p>
+
+          <!-- <p class="mb-4">Relatório geral: Sem serviço </p> -->
 
           <div class="row">
 
@@ -212,7 +146,7 @@
               <!-- Area Chart -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-danger">CPU</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">CPU</h6>
                 </div>
                 <div class="card-body">
                   <div class="chart-area">
@@ -226,7 +160,7 @@
               <!-- Bar Chart -->
               <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-danger">Disco</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Disco</h6>
                 </div>
                 <div class="card-body">
                   <div class="chart-bar">
@@ -244,7 +178,7 @@
               <div class="card shadow mb-4">
 
                 <div class="card-header py-3">
-                  <h6 class="m-0 font-weight-bold text-danger">Memória</h6>
+                  <h6 class="m-0 font-weight-bold text-primary">Memória</h6>
                 </div>
 
                 <div class="card-body">
@@ -285,7 +219,7 @@
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-primary" href="../cad-log.html">Logout</a>
           </div>
         </div>
       </div>
@@ -314,32 +248,42 @@
 
 </html>
 
-
+<script src="js/json-excel.js"></script>
+<script src="./js/teste.js"></script>
 <script>
-  
+  userName.innerHTML = sessionStorage.NOME_USUARIO;
 
+
+  function trocarDash() {
+    var cargo = sessionStorage.CARGO_USUARIO;
+    if (cargo == "gerente") {
+      window.location = "index.html"
+    } else {
+      window.location = "./dash_resp_ti.html"
+    }
+  }
 
   function queryString(parameter) {
-              var loc = location.search.substring(1, location.search.length);
-              var param_value = false;
-              var params = loc.split("&");
-              for (i=0; i<params.length;i++) {
-                  param_name = params[i].substring(0,params[i].indexOf('='));
-                  if (param_name == parameter) {
-                      param_value = params[i].substring(params[i].indexOf('=')+1)
-                  }
-              }
-              if (param_value) {
-                  return param_value;
-              }
-              else {
-                  return undefined;
-              }
-        }
+    var loc = location.search.substring(1, location.search.length);
+    var param_value = false;
+    var params = loc.split("&");
+    for (i = 0; i < params.length; i++) {
+      param_name = params[i].substring(0, params[i].indexOf('='));
+      if (param_name == parameter) {
+        param_value = params[i].substring(params[i].indexOf('=') + 1)
+      }
+    }
+    if (param_value) {
+      return param_value;
+    }
+    else {
+      return undefined;
+    }
+  }
   var idTotem = queryString("id");
   console.log("abacate" + idTotem);
   //   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
+  var idPosto = sessionStorage.FK_USUARIO;
   let proximaAtualizacao;
 
   // var id_dado_cpu = location.hash.split("#")[1];
@@ -347,24 +291,19 @@
   // var id_dado_cpu = sessionStorage.idTotem;
 
   obterDadosGrafico(idTotem);
+  getDadosCpuByIdTotem(idTotem);
 
   function obterDadosGrafico(idTotem) {
-    // alterarTitulo(id_da);
-  console.log("testeste");
 
     if (proximaAtualizacao != undefined) {
       clearTimeout(proximaAtualizacao);
     }
 
-    console.log(idTotem);
-
     fetch(`/medidas/ultimasTotem/${idTotem}`, { cache: "no-store" })
       .then(function (response) {
         if (response.ok) {
           response.json().then(function (resposta) {
-            console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
             resposta.reverse();
-            console.log("PLOTARCPU");
             plotarGrafico(resposta, idTotem);
           });
         } else {
@@ -377,7 +316,7 @@
         );
       });
 
-    
+
   }
 
   // Esta função *plotarGrafico* usa os dados capturados na função anterior para criar o gráfico
@@ -449,7 +388,6 @@
     let myAreaChart = new Chart(document.getElementById("myAreaChart"), config);
 
     setTimeout(() => atualizarGrafico(idTotem, dados, myAreaChart), 2000);
-    // console.log("ASDASFSDA==" + id_dado_cpu);
   }
 
   // Esta função *atualizarGrafico* atualiza o gráfico que foi renderizado na página,
@@ -457,7 +395,7 @@
 
   //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
   //     Para ajustar o "select", ajuste o comando sql em src/models
-  function atualizarGrafico( idTotem,dados, myAreaChart) {
+  function atualizarGrafico(idTotem, dados, myAreaChart) {
     // console.log("testASDASD== " + id_dado_cpu);
     fetch(`/medidas/tempo-realTotem/${idTotem}`, { cache: "no-store" })
       .then(function (response) {
@@ -535,15 +473,15 @@
 <!-- DADO RAM -->
 <script>
 
-// var idTotemRam = location.hash.split("=")[1];
+  // var idTotemRam = location.hash.split("=")[1];
   var idTotemRam = queryString("id");
   console.log(idTotemRam);
 
-function obterDadosGraficoRam(idTotemRam) {
+  function obterDadosGraficoRam(idTotemRam) {
     // alterarTitulo(id_da);
 
     if (proximaAtualizacao != undefined) {
-      clearTimeout(proximaAtualizacao); 	
+      clearTimeout(proximaAtualizacao);
     }
 
     fetch(`/ram/ultimasRam/${idTotemRam}`, { cache: "no-store" })
@@ -553,7 +491,7 @@ function obterDadosGraficoRam(idTotemRam) {
             console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
             resposta.reverse();
 
-            plotarGraficoRam(resposta,idTotemRam);
+            plotarGraficoRam(resposta, idTotemRam);
           });
         } else {
           console.error("Nenhum dado encontrado ou erro na API");
@@ -621,16 +559,16 @@ function obterDadosGraficoRam(idTotemRam) {
 
     // Criando estrutura para plotar gráfico - config
     const config = {
-  type: 'line',
-  data: dadosRam,
-};
+      type: 'line',
+      data: dadosRam,
+    };
     // Adicionando gráfico criado em div na tela
     let myPieChart = new Chart(document.getElementById("myPieChart"), config);
 
     setTimeout(() => atualizarGraficoRam(idTotemRam, dadosRam, myPieChart), 2000);
   }
 
-  function atualizarGraficoRam(idTotemRam,dadosRam, myPieChart) {
+  function atualizarGraficoRam(idTotemRam, dadosRam, myPieChart) {
     console.log(idTotemRam);
     fetch(`/ram/tempo-realRam/${idTotemRam}`, { cache: "no-store" })
       .then(function (response) {
@@ -669,15 +607,15 @@ function obterDadosGraficoRam(idTotemRam) {
               dadosRam.datasets[0].data.shift(); // apagar o primeiro de umidade
               dadosRam.datasets[0].data.push(novoRegistro[0].usoRam); // incluir uma nova medida de umidade
 
-            //   dados.datasets[1].data.shift(); // apagar o primeiro de temperatura
-            //   dados.datasets[1].data.push(novoRegistro[0].statusCpu); // incluir uma nova medida de temperatura
+              //   dados.datasets[1].data.shift(); // apagar o primeiro de temperatura
+              //   dados.datasets[1].data.push(novoRegistro[0].statusCpu); // incluir uma nova medida de temperatura
 
               myPieChart.update();
             }
 
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
             proximaAtualizacao = setTimeout(
-              () => atualizarGrafico(idTotemRam, dadosRam, myPieChart ),
+              () => atualizarGrafico(idTotemRam, dadosRam, myPieChart),
               2000
             );
           });
@@ -685,7 +623,7 @@ function obterDadosGraficoRam(idTotemRam) {
           console.error("Nenhum dado encontrado ou erro na API");
           // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
           proximaAtualizacao = setTimeout(
-            () => atualizarGrafico(idTotemRam, dadosRam, myPieChart ),
+            () => atualizarGrafico(idTotemRam, dadosRam, myPieChart),
             2000
           );
         }
@@ -701,12 +639,6 @@ function obterDadosGraficoRam(idTotemRam) {
 
 
 <script>
-  //   b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
-
- 
-
-
-
   function obterDadosGraficoDisco(idTotem) {
     // alterarTitulo(id_da);
 
@@ -720,8 +652,7 @@ function obterDadosGraficoRam(idTotemRam) {
           response.json().then(function (resposta) {
             console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
             resposta.reverse();
-
-            plotarGraficoDisco(resposta,idTotem);
+            plotarGraficoDisco(resposta, idTotem);
           });
         } else {
           console.error("Nenhum dado encontrado ou erro na API");
@@ -753,10 +684,10 @@ function obterDadosGraficoRam(idTotemRam) {
           data: [],
           // fill: false,
           backgroundColor: [
-          "#00568F"
-    ],
-    borderWidth: 1
-  }]
+            "#00568F"
+          ],
+          borderWidth: 1
+        }]
     };
 
 
@@ -784,9 +715,9 @@ function obterDadosGraficoRam(idTotemRam) {
 
     // Criando estrutura para plotar gráfico - config
     const config = {
-  type: 'bar',
-  data: dadosDisco,
-};
+      type: 'bar',
+      data: dadosDisco,
+    };
     // Adicionando gráfico criado em div na tela
     let myBarChart = new Chart(document.getElementById("myBarChart"), config);
 
@@ -798,7 +729,7 @@ function obterDadosGraficoRam(idTotemRam) {
 
   //     Se quiser alterar a busca, ajuste as regras de negócio em src/controllers
   //     Para ajustar o "select", ajuste o comando sql em src/models
-  function atualizarGraficoDisco(idTotem,dadosDisco, myBarChart) {
+  function atualizarGraficoDisco(idTotem, dadosDisco, myBarChart) {
     console.log(idTotem);
     fetch(`/disco/tempo-realDisco/${idTotem}`, { cache: "no-store" })
       .then(function (response) {
@@ -837,15 +768,15 @@ function obterDadosGraficoRam(idTotemRam) {
               dadosDisco.datasets[0].data.shift(); // apagar o primeiro de umidade
               dadosDisco.datasets[0].data.push(novoRegistro[0].usoDisco); // incluir uma nova medida de umidade
 
-            //   dados.datasets[1].data.shift(); // apagar o primeiro de temperatura
-            //   dados.datasets[1].data.push(novoRegistro[0].statusCpu); // incluir uma nova medida de temperatura
+              //   dados.datasets[1].data.shift(); // apagar o primeiro de temperatura
+              //   dados.datasets[1].data.push(novoRegistro[0].statusCpu); // incluir uma nova medida de temperatura
 
               myPieChart.update();
             }
 
             // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
             proximaAtualizacao = setTimeout(
-              () => atualizarGrafico(idTotem, dadosDisco, myBarChart ),
+              () => atualizarGrafico(idTotem, dadosDisco, myBarChart),
               2000
             );
           });
@@ -853,7 +784,7 @@ function obterDadosGraficoRam(idTotemRam) {
           console.error("Nenhum dado encontrado ou erro na API");
           // Altere aqui o valor em ms se quiser que o gráfico atualize mais rápido ou mais devagar
           proximaAtualizacao = setTimeout(
-            () => atualizarGrafico(idTotem, dadosDisco, myBarChart ),
+            () => atualizarGrafico(idTotem, dadosDisco, myBarChart),
             2000
           );
         }

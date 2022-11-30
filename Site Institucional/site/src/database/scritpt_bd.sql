@@ -8,22 +8,24 @@ rua VARCHAR(80),
 numero INT,
 localidade VARCHAR(80)
 );
+
 CREATE TABLE posto (
 idPosto INT PRIMARY KEY auto_increment,
 nomePosto VARCHAR(80),
 responsavelTI VARCHAR(80),
 fk_Endereco_posto INT, foreign key (fk_Endereco_posto) references endereco_posto(idEndereco_posto)
 );
-select nomePosto, idTotem from totem join posto on idPosto = fk_posto;
+
 CREATE TABLE cadastro_funcionario (
 idFuncionario INT PRIMARY KEY AUTO_INCREMENT,
 nomeFuncionario VARCHAR(80),
 email VARCHAR(80),
 cpf CHAR(11),
-statusFuncionario VARCHAR(45),
+statusFuncionario Boolean,
 senha VARCHAR(45),
 cargo VARCHAR(45),
-fk_posto INT, FOREIGN KEY (fk_posto) REFERENCES posto(idPosto));
+fk_posto INT, FOREIGN KEY (fk_posto) REFERENCES posto(idPosto)
+);
 
 CREATE TABLE totem (
 idTotem INT PRIMARY KEY AUTO_INCREMENT,
@@ -33,7 +35,7 @@ statusTotem BOOLEAN,
 sistema_operacional VARCHAR(45),
 fk_posto INT, FOREIGN KEY (fk_posto) REFERENCES posto(idPosto)
 );
-select * from dado_cpu;
+
 CREATE TABLE dado_cpu(
 id_dado_cpu INT PRIMARY KEY AUTO_INCREMENT,
 uso_cpu DOUBLE,
@@ -44,14 +46,6 @@ fk_totem INT, FOREIGN KEY (fk_totem) REFERENCES totem(idTotem),
 fk_posto INT, FOREIGN KEY (fk_posto) REFERENCES posto(idPosto)
 );
 
-insert into dado_disco(uso_disco) values(69);
-select * from dado_disco;
-
-update dado_ram set fk_totem = 1 where id_dado_ram in(1,2,3,4,5);
-select * from totem;
-
-select uso_cpu, uso_ram, uso_disco, temp_cpu from dado_cpu, dado_ram, dado_disco left join totem t on fk_totem = t.idTotem where uso_ram >=80 OR uso_disco >=80 OR uso_disco >=80 OR temp_cpu >=26;
-
 CREATE TABLE dado_disco (
 id_dado_disco INT PRIMARY KEY AUTO_INCREMENT,
 uso_disco DOUBLE,
@@ -61,9 +55,6 @@ fk_totem INT, FOREIGN KEY (fk_totem) REFERENCES totem(idTotem),
 fk_posto INT, FOREIGN KEY (fk_posto) REFERENCES posto(idPosto)
 );
 
--- SELECT id_dado_cpu 'Id', uso_cpu 'UsoCpu', temp_cpu 'TempCpu', concat(left(DATE_FORMAT(data_hora_captura, "%d/%m/%Y | %H:%i:%s"),10)," ",right(DATE_FORMAT(data_hora_captura, "%d/%m/%Y | %H:%i:%s"),8)) 'DtHrCaptura' FROM dado_cpu;
-
--- SELECT concat(left(DATE_FORMAT(data_hora_captura, "%d/%m/%Y | %H:%i:%s"),10)," ",right(DATE_FORMAT(data_hora_captura, "%d/%m/%Y | %H:%i:%s"),8)) 'DtHrCaptura' FROM dado_cpu;
 CREATE TABLE dado_ram (
 id_dado_ram INT PRIMARY KEY AUTO_INCREMENT,
 uso_ram DOUBLE,
@@ -73,29 +64,27 @@ fk_totem INT, FOREIGN KEY (fk_totem) REFERENCES totem(idTotem),
 fk_posto INT, FOREIGN KEY (fk_posto) REFERENCES posto(idPosto)
 );
 
-/*
-INSERT INTO endereco_posto  VALUES
-(null, 'Rua Santo André', 379, 'São Paulo'),
-(null, 'Rua Haddock Lobo', 595, 'São Paulo'),
-(null, 'Rua Jose', 555, 'São Paulo');
-*/
+select count(dc.uso_cpu) from dado_cpu dc;
+select uso_ram from dado_ram;
+select * from dado_cpu ORDER BY id_dado_cpu DESC ;
+select * from dado_ram ORDER BY id_dado_ram DESC ;
 
--- INSERT INTO posto VALUES
--- (null, 'Poupa Tempo São Caetano do Sul','Gustavo Carriel', 1),
--- (null, 'Poupa Tempo Santo André','Maciel Victor', 2),
--- (null, 'Poupa Tempo Lapa','Henrique Yuzo', 3);
+SELECT count(*) FROM dado_cpu dc JOIN totem t on dc.fk_totem = t.idTotem JOIN dado_ram dr ON dr.fk_totem = t.idTotem;
+select * from dado_ram;
+SELECT uso_cpu 'usoCpu', temp_cpu 'tempCpu' from dado_cpu where fk_totem = 2;
 
+SELECT uso_ram 'dadoRam'
+        FROM cadastro_funcionario c 
+        JOIN posto p on c.fk_posto = p.idPosto 
+        JOIN dado_ram d ON p.idPosto = c.fk_posto;
 
--- insert into cadastro_funcionario values(10, 'Yuzo', 'yuzo@email.com', null, 'ativo', 123, null, null);
-desc totem;
-SELECT * FROM cadastro_funcionario;
-SELECT * FROM posto;
-SELECT * FROM totem;
-delete from totem where idTotem = 1;
-SELECT * FROM dado_cpu;
-SELECT * FROM dado_ram;
-SELECT * FROM dado_disco;
-update dado_disco set fk_totem = 1 where id_dado_disco in (7,8,9,10);
-SELECT uso_cpu, temp_cpu FROM cadastro_funcionario c JOIN posto p on c.fk_posto = p.idPosto JOIN dado_cpu d ON p.idPosto = c.fk_posto;
-SELECT uso_ram FROM cadastro_funcionario c JOIN posto p on c.fk_posto = p.idPosto JOIN dado_ram d ON p.idPosto = c.fk_posto;
-SELECT uso_disco FROM cadastro_funcionario c JOIN posto p on c.fk_posto = p.idPosto JOIN dado_disco d ON p.idPosto = c.fk_posto;
+select * from cadastro_funcionario;
+select * from totem;
+select * from posto;
+select * from dado_cpu;
+select * from dado_ram;
+select * from dado_disco;
+insert into dado_cpu(uso_cpu, temp_cpu, fk_totem) values (51, 20, 5);
+insert into dado_ram(uso_ram, fk_totem) values (37, 1);
+insert into dado_disco(uso_disco, fk_totem) values (49, 1);
+DESC dado_ram;

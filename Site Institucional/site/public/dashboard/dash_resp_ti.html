@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard</title>
+    <title>Totens</title>
 
     <!-- Custom fonts for this template-->
     <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -20,11 +20,10 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/sb-admin-2.css">
-    <script src="../js/funcoes.js"></script>
 
 </head>
 
-<body id="page-top" onload=" atualizarTotensTi()">
+<body onload="atualizarTotens(idPosto)" id="page-top">
 
     <!-- Page Wrapper -->
     <div id="wrapper">
@@ -35,12 +34,9 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                 <div class="sidebar-brand-icon rotate-n-15">
-                    <!-- <i class="fas fa-laugh-wink"></i> -->
+
                 </div>
-                
-               
-                    <img src="img/Logo-DYoung.png" width="60%">
-               
+                <img src="img/Logo-DYoung.png" width="60%">
             </a>
 
             <!-- Divider -->
@@ -48,28 +44,23 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="dash_resp_ti.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                <a class="nav-link" href="#cards.html">
+                    <i class="fas fa-fw fa-tablet"></i>
+                    <span>Totens</span></a>
             </li>
 
 
- 
-          
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            <hr class="sidebar-divider">
 
-                     
-   
 
             <li class="nav-item faq">
-                <a class="nav-link" href="https://dyoung.tomticket.com?account=3823360P15112022021213" target="_blank" rel="noopener noreferrer">
+                <a class="nav-link" href="https://dyoung.tomticket.com?account=3823360P15112022021213" target="_blank"
+                    rel="noopener noreferrer">
                     <i class="fas fa-fw fa-headset"></i>
                     <span>HelpDesk</span></a>
             </li>
-      
 
-         
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -78,8 +69,6 @@
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
-     
 
         </ul>
         <!-- End of Sidebar -->
@@ -98,7 +87,19 @@
                         <i class="fa fa-bars"></i>
                     </button>
 
-              
+                    <!-- Topbar Search -->
+                    <form
+                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                        <div class="input-group">
+                            <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar..."
+                                aria-label="Search" aria-describedby="basic-addon2">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="fas fa-search fa-sm"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
@@ -127,26 +128,24 @@
                             </div>
                         </li>
 
-                      
-
+                        
                         <div class="topbar-divider d-none d-sm-block"></div>
 
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Leonardo</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" id="userName">Usuario</span>
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                 aria-labelledby="userDropdown">
-                                
+
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    Sair
+                                    Logout
                                 </a>
                             </div>
                         </li>
@@ -154,364 +153,112 @@
                     </ul>
 
                 </nav>
-               
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
                 <div class="container-fluid">
 
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Totens -
+                            <span id="spn_nomePosto" class="h3 mb-0 text-gray-800">
 
-                  
-                    <div class="row">
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card bg-warning text-white shadow">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-white text-uppercase mb-1">
-                                              Em Alerta</div>
-                                            <div class="h5 mb-0 font-weight-bold text-white">Componentes em: 40% a 79%
-                                                da capacidade total.</div>
-                                        </div>
-                                        <!-- <div class="col-auto">
-                                            <i class="fas fa-alert fa-2x text-gray-300"></i>
-                                        </div> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Earnings (Monthly) Card Example -->
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card bg-danger text-white shadow">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-white text-uppercase mb-1">
-                                                Estado Crítico     </div>
-                                            <div class="h5 mb-0 font-weight-bold text-white">Componentes em: 80% a 100%
-                                                da capacidade total.</div>
-                                        </div>
-                                        
-                                        <!-- <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card bg-success text-white shadow ">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-white text-uppercase mb-1">
-                                                Ideal</div>
-                                            <div class="h5 mb-0 font-weight-bold text-white">Componentes em: 0% a 39%
-                                                da capacidade total</div>
-                                        </div>
-                                        
-                                        <!-- <div class="col-auto">
-                                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                                        </div> -->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                       
-
-                        <!-- Pending Requests Card Example -->
-                        <!-- <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-left-primary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Total de TOTENS</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                                        </div> -->
-                                        <!-- <div class="col-auto">
-                                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                                        </div> -->
-                                    <!-- </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-
-                    <!-- Content Row -->
-
-                    <div class="row">
-
-                        <!-- Area Chart -->
-                         <!-- <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
-                                
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                                    <div class="dropdown no-arrow">
-                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                            aria-labelledby="dropdownMenuLink">
-                                            <div class="dropdown-header">Dropdown Header:</div>
-                                            <a class="dropdown-item" href="#">Action</a>
-                                            <a class="dropdown-item" href="#">Another action</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a class="dropdown-item" href="#">Something else here</a>
-                                        </div>
-                                    </div>
-                                </div>  -->
-                                <!-- Card Body -->
-                                <!-- <div class="card-body">
-                                    <div class="chart-area">
-                                        <canvas id="myAreaChart"></canvas>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-
-                        <!-- Pie Chart -->
-                     
-</div>
-                    <!-- Content Row -->
-                    <!-- <div class="row"> -->
-
-                        <div class="container-fluid">
-
-                            <!-- Page Heading -->
-                            <!-- <h1 class="h3 mb-2 text-gray-800">Postos do Poupa Tempo</h1> -->
-                        <div class="card shadow mb-4">
-                            <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Dados de todos os postos</h6>
-                            </div>
-                            <div id="feed_cards" class="card-body-totem-ti">
-                                <!-- <div class="table-responsive"> -->
-                                    <!-- <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                        <thead>
-                                            <tr>
-                                                <th>Totens</th>
-                                                <th>Total de Totens</th>
-                                                <th>Situação do Totem</th> -->
-    
-    
-                                            <!-- </tr>
-                                        </thead> -->
-                                            <!-- <tfoot> -->
-                                        <!-- <tbody id="feed_totem"> -->
-                                            <!-- <tr> -->
-                                                <!-- <td> <a onclick="verPosto(6)" id="spn_nomePosto3">Totem 1</a></td> -->
-                                                <!-- <td><span id="count1"></span> </td> -->
-                                                <!-- <td> <b style="color:#e74a3b;">Estado crítico</b></td>
-    
-                                            </tr> -->
-                                            <!-- </tfoot> -->
-                                        
-                                            <!-- <tr>
-                                                <td> <a onclick="verPosto(4)"id="spn_nomePosto">Totem 2</td> -->
-                                                <!-- <td>
-                                                    <div id="count2"> </div>
-                                                </td> -->
-                                                <!-- <td> <b style="color:#f6c23e;">Em alerta</b></td>
-    
-                                            </tr>
-                                            <tr>
-                                                <td><a onclick="verPosto(5)" id="spn_nomePosto2">Totem 3</a></td> -->
-                                                <!-- <td>
-                                                    <div id="count3"> </div>
-                                                </td> -->
-                                                <!-- <td><b style="color:#1cc88a;">Ideal</b></td>
-    
-                                            </tr>
-                                            <tr>
-                                                <td><a onclick="verPosto(15)" id="spn_nomePosto6">Totem 4</a></td> -->
-                                                <!-- <td>
-                                                    <div id="count4"> </div>
-                                                </td> -->
-                                                <!-- <td><b style="color:#1cc88a;">Ideal</b></td>
-    
-    
-                                            </tr>
-                                            <tr>
-                                                <td><a onclick="verPosto(13)" id="spn_nomePosto4">Totem 5</a></td> -->
-                                                <!-- <td>
-                                                    <div id="count5"> </div>
-                                                </td> -->
-                                                <!-- <td><b style="color:#1cc88a;">Ideal</b></td>
-    
-    
-                                            </tr>
-                                            <tr>
-                                                <td><a onclick="verPosto(14)" id="spn_nomePosto5">Totem 6</a></td> -->
-                                                <!-- <td>
-                                                    <div id="count6"> </div>
-                                                </td> -->
-                                                <!-- <td><b style="color:#1cc88a;">Ideal</b></td>
-    
-    
-                                            </tr> -->
-    
-                                        <!-- </tbody>
-                                    </table>
-                                </div> -->
-
-
-
-                            </div>
-                        </div>
-    
+                            </span>
+                        </h1>
                     </div>
 
-                        <!-- Content Column -->
-                        <!-- <div class="col-lg-6 mb-4" style="width: 65rem; margin-left: 1.1rem;"> -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">
+                            <span id="msg_erro_listagemTotem" class="h3 mb-0 text-gray-800"></span>
+                        </h1>
+                    </div>
 
-                            <!-- Project Card Example -->
-                            <!-- <div class="card shadow mb-4">
-                                <div class="card-header py-3">
-                                    <h6 class="m-0 font-weight-bold text-primary"> Situação dos Totens</h6>
-                                </div>
-                                <div class="card-body2">
-                                    <h4 class="small font-weight-bold"> <a href="charts_critico.html">Totem 1</a>  -->
-                                        <!-- <span   class="float-right">Em estado crítico: 90%</span></h4> -->
-                                    <!-- <div class="progress mb-4">
-                                        <div class="progress-bar bg-danger" role="progressbar" style="width: 90%"
-                                            aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div> -->
-                                    
-                                    <!-- <h4 class="small font-weight-bold"> <a href="charts_alerta.html">Totem 2</a>  -->
-                                        <!-- <span     class="float-right">Em alerta: 40%</span></h4> -->
-                                    <!-- <div class="progress mb-4">
-                                        <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
-                                            aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div> -->
-                                    <!-- <h4 class="small font-weight-bold"> <a href="charts_alerta.html">Totem 3</a>  -->
-                                        <!-- <span class="float-right">Em alerta: 50%</span></h4> -->
-                                <!-- <div class="progress mb-4">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 50%"
-                                        aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
-                                </div> -->
-                              
-                                    <!-- <h4 class="small font-weight-bold"> <a href="charts_ideal.html">Totem 4</a>  -->
-                                        <!-- <span class="float-right">Ideal</span></h4> -->
-                                    <!-- <div class="progress">
-                                        <div class="progress-bar bg-success" role="progressbar" style="width: 10%"
-                                            aria-valuenow="100" aria-valuemin="0" aria-valuemax="10"></div>
-                                    </div> -->
-                                <!-- </div>
-                            </div> -->
+                    <!-- <div class="testeCard"> -->
 
-                            <!-- Color System -->
-                            <!-- <div class="row" style="margin-top: -16rem; margin-left: 32rem; margin-right: -30rem; flex-wrap: nowrap;">
-                                
-                                <div class="col-xl-5 col-lg-6 mb-4">
-                                    <div class="card bg-danger text-white shadow">
-                                        <div class="card-body">
-                                            Estado Crítico <br>
-                                            <b>CPU, Disco e RAM em: 80% a 100%</b>
-                                           da capacidade total.
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-xl-5 col-lg-6 mb-4">
-                                    <div class="card bg-warning text-white shadow">
-                                        <div class="card-body">
-                                            Em alerta
-                                            <br>
-                                            <b>CPU, Disco e RAM em: 40% a 79%</b>
-                                            da capacidade total.
-                                        </div>
-                                    </div>
-                                </div>
+                    <div id="feed_cards" class="row">
 
-                                <div class="col-xl-5 col-lg-6 mb-4"  >
-                                    <div class="card bg-success text-white shadow">
-                                        <div class="card-body">
-                                            Ideal
-                                            <br>
-                                            <b>CPU, Disco e RAM em: 40% a 79%</b>
-                                            da capacidade total.
-                                        </div>
-                                    </div>
-                                </div>
-                               
-                            </div>
+                    </div>
 
-                        </div> -->
 
+                </div>
+                <!-- End of Content Wrapper -->
 
             </div>
-            <!-- End of Main Content -->
+            <!-- End of Page Wrapper -->
 
-            <!-- Footer -->
-            
-            <!-- End of Footer -->
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
 
-        </div>
-        <!-- End of Content Wrapper -->
-
-    </div>
-
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tem certeza que deseja sair?</h5>
-                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">Selecione o botão "Sair" se você estiver preparado para sair desta sessão.</div>
-                <div class="modal-footer">
-                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                    <a onclick="limparSessao()" class="btn btn-primary">Sair</a>
+            <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <a class="btn btn-primary" href="../cad-log.html">Logout</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- Bootstrap core JavaScript-->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <!-- Bootstrap core JavaScript-->
+            <script src="vendor/jquery/jquery.min.js"></script>
+            <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-    <!-- Core plugin JavaScript-->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+            <!-- Core plugin JavaScript-->
+            <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
-
-    <!-- Page level plugins -->
-    <script src="vendor/chart.js/Chart.min.js"></script>
-
-    <!-- Page level custom scripts -->
-    <script src="js/demo/chart-area-demo.js"></script>
-    <script src="js/demo/chart-pie-demo.js"></script>
+            <!-- Custom scripts for all pages-->
+            <script src="js/sb-admin-2.min.js"></script>
 
 </body>
 
 </html>
+
+</html>
+
 <script>
-  
-    var idFuncionario = sessionStorage.ID_USUARIO;
     var idPosto = sessionStorage.FK_USUARIO;
-    
 
+    userName.innerHTML = sessionStorage.NOME_USUARIO;
 
-
-    function atualizarTotensTi() {
-        //aguardar();
-    fetch(`/medidas/identTotem/${idFuncionario}/${idPosto}`).then(function (resposta) {
+    function queryString(parameter) {
+        var loc = location.search.substring(1, location.search.length);
+        var param_value = false;
+        var params = loc.split("&");
+        for (i = 0; i < params.length; i++) {
+            param_name = params[i].substring(0, params[i].indexOf('='));
+            if (param_name == parameter) {
+                param_value = params[i].substring(params[i].indexOf('=') + 1)
+            }
+        }
+        if (param_value) {
+            return param_value;
+        }
+        else {
+            return undefined;
+        }
+    }
+    function atualizarTotens(idPosto) {
+        
+        fetch(`/avisos/listarTotensPorPosto/${idPosto}`).then(function (resposta) {
             if (resposta.ok) {
                 if (resposta.status == 204) {
-                    // var feed = document.getElementById("feed_container");
-                    // var mensagem = document.createElement("span");
-                    // mensagem.innerHTML = "Nenhum resultado encontrado."
-                    // feed.appendChild(mensagem);
+                    var feed = document.getElementById("feed_container");
+                    var mensagem = document.createElement("span");
+                    mensagem.innerHTML = "Nenhum resultado encontrado."
+                    feed.appendChild(mensagem);
                     throw "Nenhum resultado encontrado!!";
                 }
 
@@ -520,33 +267,16 @@
 
                     // var feed = document.getElementById("feed_container");
                     // feed.innerHTML = "";
-
                     for (let i = 0; i < resposta.length; i++) {
-
-                        var totemId = resposta[i].totemId;
+                        var publicacao = resposta[i].publicacao;
 
                         // criando e manipulando elementos do HTML via JavaScript
-                        
-                        // var trTotem = document.createElement("tr");
-                        // var tdTtotem = document.createElement("td");
-                        // var aTotem = document.createElement("a");
-                        // var tdEstado = document.createElement("td");
-                        // var bEstado = document.createElement("b");
+                        // Ordem de criação dos cards dos totens:
 
-                        //Adicionando o id do totem na listagem
-                        // aTotem.innerHTML = "Totem " + totemId;
 
-                        //Adiconando atributos nos elementos
-                        // aTotem.setAttribute("onclick", `verTotem(${totemId})`);
 
-                        // bEstado.setAttribute("style", `color:#e74a3b;`);
-
-                        // feed_totem.appendChild("trTotem");
-                        // tr.appendChild("tdTotem");
-                        // tdTotem.appendChild("aTotem");
-
-                        //feed
-                        var feed_cards= document.getElementById("feed_cards");
+                        //feed pai
+                        var feed = document.getElementById("feed_cards");
                         //filhos
                         var divXl3 = document.createElement("div");
                         var divCardBorder = document.createElement("div");
@@ -562,34 +292,34 @@
                         var aStyle = document.createElement("a");
 
                         // adicionando texto aos elementos
-                        aStyle.innerHTML = "Totem " + totemId;
-                        
-                            //adicionando as classes aos elementos
-                            divXl3.className = "col-xl-3 col-md-6 mb-4";
-                            divCardBorder.className = "card border-left-primary shadow h-100 py-2";
-                            divCardBody.className="card-body";
-                            divRow.className="row no-gutters align-items-center";
-                            divMr2.className="col mr-2";
-                            divColAuto.className="col-auto";
-                            divTextXs.className="text-xs font-weight-bold text-success text-uppercase mb-1";
-                            divH5.className="h5 mb-0 font-weight-bold text-gray-800";
-                            aStyle.style="text-decoration: none; color: rgb(95, 94, 94);";
+                        aStyle.innerHTML = "Totem " + publicacao;
 
-                            //inserindo atributo no card
-                            aStyle.setAttribute("onclick", `verTotem(${totemId})`)
+                        //adicionando as classes aos elementos
+                        divXl3.className = "col-xl-3 col-md-6 mb-4";
+                        divCardBorder.className = "card border-left-primary shadow h-100 py-2";
+                        divCardBody.className = "card-body";
+                        divRow.className = "row no-gutters align-items-center";
+                        divMr2.className = "col mr-2";
+                        divColAuto.className = "col-auto";
+                        divTextXs.className = "text-xs font-weight-bold text-success text-uppercase mb-1";
+                        divH5.className = "h5 mb-0 font-weight-bold text-gray-800";
+                        aStyle.style = "text-decoration: none; color: rgb(95, 94, 94);";
 
-                            //Adicionando os elementos criados no feed
+                        //inserindo atributo no card
+                        aStyle.setAttribute("onclick", `verTotem(${publicacao})`)
 
-                            feed_cards.appendChild(divXl3);
-                            divXl3.appendChild(divCardBorder);
-                            divCardBorder.appendChild(divCardBody);
-                            divCardBody.appendChild(divRow);
-                            divRow.appendChild(divMr2);
-                            divRow.appendChild(divColAuto);
-                            divMr2.appendChild(divTextXs);
-                            divMr2.appendChild(divH5);
-                            divH5.appendChild(aStyle);
-                        
+                        //Adicionando os elementos criados no feed
+
+                        feed.appendChild(divXl3);
+                        divXl3.appendChild(divCardBorder);
+                        divCardBorder.appendChild(divCardBody);
+                        divCardBody.appendChild(divRow);
+                        divRow.appendChild(divMr2);
+                        divRow.appendChild(divColAuto);
+                        divMr2.appendChild(divTextXs);
+                        divMr2.appendChild(divH5);
+                        divH5.appendChild(aStyle);
+
                     }
 
                     // finalizarAguardar();
@@ -602,31 +332,21 @@
             // finalizarAguardar();
         });
     }
-    obterdadosRam(idPosto);
-    obterdadosDisco(idPosto);
-    obterdadosCpu(idPosto);
 
 
-
-
-    function obterdadosRam(idPosto) {
-        fetch(`/medidas/alerta-ram/${idPosto}`)
+    function obterdados(idPosto) {
+        fetch(`/medidas/nomesPosto/${idPosto}`)
             .then(resposta => {
 
                 if (resposta.ok) {
                     resposta.json().then(resposta => {
 
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                       
-                            dados = {
-                                dadoRam: resposta[0].dadoRam,
-                            }
-                        
-                        
+                        var dados = {
+                            postoNome: resposta[0].postoNome,
+                        }
 
-                        // alertarMetricas(dados);
-
-
+                        // alertar(resposta[0].nomePosto, idPosto);
+                        spn_nomePosto.innerHTML = dados.postoNome;
                     });
                 } else {
 
@@ -636,67 +356,20 @@
             .catch(function (error) {
                 console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
             });
+
     }
 
-    function obterdadosDisco(idPosto) {
-        fetch(`/medidas/alerta-disco/${idPosto}`)
-            .then(resposta => {
+    // function alertar(temperatura, idAquario) {
 
-                if (resposta.ok) {
-                    resposta.json().then(resposta => {
+    //     // alterando
+    //     card.className = classe_temperatura;
 
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                       
-                            var dados = {
-                                dadoDisco: resposta[0].dadoDisco,
-                            }
-                        
-                        
-
-                        // alertarMetricas(dados);
+    // }
 
 
-                    });
-                } else {
-
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
-            });
+    function verTotem(idTotem) {
+        location.assign("charts.html?id=" + idTotem);
     }
-
-    function obterdadosCpu(idPosto) {
-        fetch(`/medidas/alerta-cpu/${idPosto}`)
-            .then(resposta => {
-
-                if (resposta.ok) {
-                    resposta.json().then(resposta => {
-
-                        console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
-                       
-                            var dados = {
-                                dadoCpu: resposta[0].dadoCpu,
-                                dadoTemperatura: resposta[0].dadoTemperatura,
-                            }
-                        
-                        
-
-                        // alertarMetricas(dados);
-
-
-                    });
-                } else {
-
-                    console.error('Nenhum dado encontrado ou erro na API');
-                }
-            })
-            .catch(function (error) {
-                console.error(`Erro na obtenção dos dados do aquario p/ gráfico: ${error.message}`);
-            });
-    }
-
 
 
 

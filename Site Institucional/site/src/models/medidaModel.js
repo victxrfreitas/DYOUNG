@@ -147,13 +147,13 @@ function buscarDadosPostos(idPosto) {
 
 
 
-function identificacaoTotem(idFuncionario,idPosto) {
+function identificacaoTotem(idFuncionario, idPosto) {
 
     // console.log("Acesse o nomesPosto model id=" + idPosto);
 
     instrucaoSql = ''
 
-    
+
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
 
@@ -295,11 +295,12 @@ function buscarNomesPosto(idPosto) {
     if (process.env.AMBIENTE_PROCESSO == "producao") {
 
         instrucaoSql = `SELECT
-                postoId as idPosto,
-                            nomePosto
-                        FROM
-                             posto
-                        WHERE postoId = ${idPosto};`
+        idPosto 'postoId',
+       nomePosto 'postoNome'
+    FROM 
+       posto
+   WHERE 
+       idPosto = ${idPosto};`
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
 
@@ -340,18 +341,18 @@ function buscarTodosDados(idTotem) {
     return database.executar(instrucaoSql);
 }
 
-function AlertarRamTotem(idTotem) {
+function AlertarRamTotem() {
 
     instrucaoSql = ''
 
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select uso_ram 'dadoRam'
-        from dado_ram d join totem t on d.fk_totem= t.idTotem;`;
+        instrucaoSql = `SELECT uso_ram 'dadoRam'
+        FROM dado_ram;`;
 
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select uso_ram 'dadoRam'
-        from dado_ram d join totem t on d.fk_totem= t.idTotem;`;
+        instrucaoSql = `SELECT uso_ram 'dadoRam'
+        FROM dado_ram;`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -362,16 +363,16 @@ function AlertarRamTotem(idTotem) {
 }
 
 
-function AlertarDiscoTotem(idTotem) {
+function AlertarDiscoTotem() {
 
     instrucaoSql = ''
 
     if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = `select uso_disco 'dadoDisco'
-        from dado_disco d join totem t on d.fk_totem = t.idTotem;`;
+        instrucaoSql = `SELECT uso_disco 'dadoDisco'
+        FROM dado_disco;`;
     } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = `select uso_disco 'dadoDisco'
-        from dado_disco d join totem t on d.fk_totem = t.idTotem;`;
+        instrucaoSql = `SELECT uso_disco 'dadoDisco'
+        FROM dado_disco;`;
     } else {
         console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
         return
@@ -382,27 +383,27 @@ function AlertarDiscoTotem(idTotem) {
 }
 
 function AlertarCpuTotem() {
+    function AlertarCpuTotem() {
 
-    instrucaoSql = ''
+        instrucaoSql = ''
 
-    
 
-    if (process.env.AMBIENTE_PROCESSO == "producao") {
-        instrucaoSql = ` select uso_cpu 'dadoCpu', temp_cpu 'dadoTemperatura' 
-        from dado_cpu;
-        `; 
 
-    } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
-        instrucaoSql = ` select uso_cpu 'dadoCpu', temp_cpu 'dadoTemperatura' 
-        from dado_cpu;
-        `;
-    } else {
-        console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
-        return
+        if (process.env.AMBIENTE_PROCESSO == "producao") {
+            instrucaoSql = `SELECT uso_cpu 'dadoCpu', temp_cpu 'dadoTemp'
+        FROM dado_cpu;`;
+
+        } else if (process.env.AMBIENTE_PROCESSO == "desenvolvimento") {
+            instrucaoSql = `SELECT uso_cpu 'dadoCpu', temp_cpu 'dadoTemp'
+        FROM dado_cpu;`;
+        } else {
+            console.log("\nO AMBIENTE (produção OU desenvolvimento) NÃO FOI DEFINIDO EM app.js\n");
+            return
+        }
+
+        console.log("Executando a instrução SQL: \n" + instrucaoSql);
+        return database.executar(instrucaoSql);
     }
-
-    console.log("Executando a instrução SQL: \n" + instrucaoSql);
-    return database.executar(instrucaoSql);
 }
 
 //////////////////////////////////////////////////////////////////////////////////////
@@ -519,5 +520,5 @@ module.exports = {
     alertaRamTi,
     alertaDiscoTi,
     alertaCpuTi
-
 }
+
