@@ -1,0 +1,55 @@
+Máquina iniciada em 01-12-2022 10h07m08ss
+
+CPU: 2, 4, GenuineIntel, Intel(R) Core(TM) i5-10210U CPU @ 1.60GHz|
+RAM: 8 GB|
+Armazenamento total: 238.5 |
+Volumes: [UUID: 5f02a0be-da26-4ef6-adc3-eebb7882e3e2
+total: 239388434432
+disponível: 70025572352
+tipo: NTFS
+ponto de montagem: C:\
+]|
+Discos: [
+Nome: \\.\PHYSICALDRIVE0
+Modelo: NVMe IM2P33F8ABR1-256 (Unidades de disco padrão)
+Serial: 0000_0000_0000_0000_0000_0000_0000_0001.
+Tamanho: 256052966400
+Leituras: 613086
+Bytes de leitura: 24875531264
+Escritas: 389383
+Bytes de escritas: 16761246208
+Tamanho atual da fila: 0
+Tempo de transferência: 416344
+]|
+ SO: Windows|
+ 10:07:08|
+Freq & Uso: 2.0 , 9,74|
+MemUso: 7.6 |
+ 10:07:09|
+Freq & Uso: 2.0 , 9,74|
+MemUso: 7.5 |
+ 10:07:12|
+Freq & Uso: 2.0 , 9,74|
+MemUso: 7.5 |
+ 10:07:13|
+Freq & Uso: 2.0 , 21,76|
+MemUso: 7.5 |
+ 10:07:14|
+Freq & Uso: 2.0 , 21,76|
+MemUso: 7.5 |
+ 10:07:15|
+Freq & Uso: 2.0 , 21,76|
+MemUso: 7.5 |
+ 10:07:16|
+Freq & Uso: 2.0 , 21,62|
+MemUso: 7.5 |
+ 10:07:18|
+Freq & Uso: 2.0 , 21,62|
+MemUso: 7.5 |
+ 10:07:19|
+Freq & Uso: 2.0 , 21,62|
+MemUso: 7.5 |
+ 10:07:20|
+Freq & Uso: 2.0 , 22,71|
+MemUso: 7.5 |
+ 10:07:21|

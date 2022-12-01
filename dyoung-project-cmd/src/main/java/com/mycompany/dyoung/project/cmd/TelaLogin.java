@@ -31,8 +31,8 @@ public class TelaLogin {
         DecimalFormat df = new DecimalFormat("##.00");
         
         
-        Integer id_totem = 0;
-        Integer fk_Posto = 0;
+        Integer id_totem = 2;
+        Integer fk_Posto = 4;
         
         System.out.println("Usuario: ");
         String usuario = usu.nextLine();
@@ -49,8 +49,6 @@ public class TelaLogin {
             
             for (Totem totem : buscarFuncionario) {
                 if(totem.getLoginTotem().equals(usuario) && totem.getSenhaTotem().equals(senha)){
-                id_totem = totem.getIdTotem();
-                fk_Posto = totem.getFk_posto();
                 ativar = true;
             }
             }
@@ -58,13 +56,11 @@ public class TelaLogin {
                  Double dadoCpu = cpu.getUso();
                 
                 String insert = "INSERT INTO dado_cpu (uso_cpu, status_coleta, fk_totem, fk_posto)VALUES (?, 1, ?, ?);";
-                banco.update(insert, df.format(dadoCpu), id_totem,fk_Posto);
+                banco.update(insert, dadoCpu, id_totem,fk_Posto);
                 System.out.println(String.format("Inserindo dado CPU: %.1f ---- ID: %d ---- fkPosto: %d",
                         dadoCpu, id_totem,fk_Posto));
 
-//                String insert = "INSERT INTO dado_cpu (uso_cpu, status_coleta, fk_totem, fk_posto)VALUES (?, 1, 7, 4);";
-//                banco.update(insert, dadoCpu);
-//                System.out.println(String.format("Inserindo dado CPU: %.1f", dadoCpu));
+
                 
                 
                 //Pegando os dados da RAM = Memória RAM transformando, exibindo 
@@ -80,29 +76,23 @@ public class TelaLogin {
                
                 
                 //Tranformando os dados de "String" para "Double"
-                Double dadoRamDouble = Double.valueOf(dadoRamString);
-                Double dadoTotalRamlDouble = Double.valueOf(dadoTotalRamString);
+                Double dadoRamDouble = Double.valueOf(dadoRamString.substring(0,1));
+                Double dadoTotalRamlDouble = Double.valueOf(dadoTotalRamString.substring(0,1));
                 
                 // Realizando a conta para calcular a porcentagem de uso
                Double totalRam = (dadoRamDouble * 100) / dadoTotalRamlDouble;
                 
                 //Inserindo os dados no banco
                 String insertRam = "INSERT INTO dado_ram (uso_ram, status_coleta, fk_totem, fk_posto)VALUES (?, 1, ?, ?);";
-                banco.update(insertRam, df.format(totalRam), id_totem,fk_Posto);
+                banco.update(insertRam, totalRam, id_totem,fk_Posto);
 //                
 //                //Exibindo os dados
                System.out.println(String.format("Inserindo dado da Memória RAM: %.1f", totalRam));
-//                    System.out.println(String.format("%s", dadoRamString));
-//             lblDadoRam.setText(String.format("%s", dadoRamString));
+
                 
                 //Pegando os dados do DISCO = Disco transformando, exibindo e guardando no banco de dados
                 List<Disco> discos = discoGrupo.getDiscos();
                 for (Disco disco : discos) {
-//                    System.out.println("Tamanho do disco: " + Conversor.formatarBytes(disco.getTamanho()));
-//                    System.out.println(Conversor.formatarBytes(disco.getBytesDeLeitura()));
-//                    System.out.println(Conversor.formatarBytes(disco.getLeituras()));
-//                    System.out.println(Conversor.formatarBytes(disco.getBytesDeEscritas()));
-//                    System.out.println(Conversor.formatarBytes(disco.getEscritas()));
                     
                     
                     String dadoDiscoTotalString = Conversor.formatarBytes(disco.getTamanho());
@@ -118,11 +108,12 @@ public class TelaLogin {
                     
                     System.out.println(String.format("Inserindo dado do Disco: %.1f", totalDisco));
                     String insertDisco = "INSERT INTO dado_disco (uso_disco, status_coleta, fk_totem, fk_posto)VALUES (?, 1, ?, ?);";
-                    banco.update(insertDisco, df.format(totalDisco), id_totem,fk_Posto);
+                    banco.update(insertDisco, totalDisco, id_totem,fk_Posto);
 //
 //                }
                 
                 }
+                 System.out.println("\n ------------------------------------- \n");
              }
         }
     }

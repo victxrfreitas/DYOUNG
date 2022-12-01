@@ -25,8 +25,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
  */
 public class Logado extends javax.swing.JFrame {
 
-    private Integer id_totem = 0;
-    private Integer fk_Posto = 0;
+    private Integer id_totem = 1;
+    private Integer fk_Posto = 4;
 
     public Integer getId_totem() {
         return id_totem;
@@ -78,7 +78,7 @@ public class Logado extends javax.swing.JFrame {
 
                 //Inserindo dados no banco
                 String insert = "INSERT INTO dado_cpu (uso_cpu, status_coleta, fk_totem, fk_posto)VALUES (?, 1, ?, ?);";
-                banco.update(insert, dadoCpu, 1, 4);
+                banco.update(insert, dadoCpu, getId_totem(), getFk_Posto());
                 
                 // Exibindo no console e no JFRAME
                 System.out.println(String.format("Inserindo dado CPU: %.1f ---- ID: %d ---- fkPosto: %d",
@@ -112,7 +112,7 @@ public class Logado extends javax.swing.JFrame {
 
                 //Inserindo os dados no banco
                 String insertRam = "INSERT INTO dado_ram (uso_ram, status_coleta, fk_totem, fk_posto)VALUES (?, 1, ?, ?);";
-                banco.update(insertRam, totalRam, 1, 4);
+                banco.update(insertRam, totalRam, getId_totem(), getFk_Posto());
                 
                 //Exibindo os dados
                 System.out.println(String.format("Inserindo dado da Memória RAM: %.1f", totalRam));
@@ -168,7 +168,7 @@ public class Logado extends javax.swing.JFrame {
                     
                     // Inserindo dados no banco
                     String insertDisco = "INSERT INTO dado_disco (uso_disco, status_coleta, fk_totem, fk_posto)VALUES (?, 1, ?, ?);";
-                    banco.update(insertDisco, totalDisco, 1, 4);
+                    banco.update(insertDisco, totalDisco, getId_totem(), getFk_Posto());
 
                     Double tempUso = temperatura.getTemperatura();
                 
