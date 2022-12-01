@@ -44,7 +44,7 @@ public class LogBackup {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         DateFormat dateHoursFormat = new SimpleDateFormat("dd-MM-yyyy HH'h'mm'm'ss'ss'");
 
-        for (int b = 0; b < 2; b++) {
+        for (int b = 0; b < 200; b++) {
             Date dateHours = new Date();
             Date date = new Date();
             Date hours = new Date();
@@ -73,7 +73,7 @@ public class LogBackup {
             
             
 
-            for (int i = 0; i < 10; i++) {
+            for (int i = 0; i < 60; i++) {
                 
 // Iremos fazer um log de instalação/login, nele terá email e id da maquina do login, e dados do hardware atual da máquina pós iniciação ou manutenção
 // total do HD, total da RAM, numero de CPUS, fabricante, nome do processador, frequencia e SO do sistema.
